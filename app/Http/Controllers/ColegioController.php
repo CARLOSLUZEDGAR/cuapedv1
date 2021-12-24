@@ -1,0 +1,98 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Colegios;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+class ColegioController extends Controller
+{
+    public function index (Request $request)
+    {
+        $buscar = $request->buscar;
+        $criterio = $request->criterio;
+
+        if($buscar=='')
+        {
+            $colegio = DB::table('colegios')
+                        ->select(
+                            'colegios.id',
+                            'colegios.col_nombre',
+                            'colegios.col_abreviatura',
+                            'colegios.col_sie',
+                            'colegios.col_estado',
+                            'colegios.col_observacion'
+                        )
+                        ->orderBy('colegios.col_nombre','asc')
+                        ->take(1)
+                        ->paginate(10);
+        }
+        else
+        {
+            $colegio = DB::table('colegios')
+                        ->select(
+                            'colegios.id',
+                            'colegios.col_nombre',
+                            'colegios.col_abreviatura',
+                            'colegios.col_sie',
+                            'colegios.col_estado',
+                            'colegios.col_observacion'
+                        )
+                        ->where($criterio,'like','%'.$buscar.'%')
+                        ->orderBy('colegios.col_nombre','asc')
+                        ->take(1)
+                        ->paginate(10);
+        }
+        return [
+            'pagination' => [
+                'total'         => $colegio->total(),
+                'current_page'  => $colegio->currentPage(),
+                'per_page'      => $colegio->perPage(),
+                'last_page'     => $colegio->lastPage(),
+                'from'          => $colegio->firstItem(),
+                'to'            => $colegio->lastItem(),
+            
+            ],
+            'colegio' => $colegio
+        ];
+
+        //return response()->json($colegio);
+    }
+
+    public function registrarColegio(Request $request)
+    {
+        $colegio = Colegios::create([
+            //'CAMPO DE LA TABLA' => $request->NOMBRE Q VIENE DE LA VISTA
+            'col_nombre' => $request->col_nombre,
+            'col_abreviatura' => $request->col_abreviatura,
+            'col_sie' => $request->col_sie,
+            'col_estado' => '1',
+            'col_observacion' => $request->col_observacion,
+            'col_sysuser' => 'ADMIN',
+            
+        ]);
+    }
+
+    public function updateColegio(Request $request)
+    {
+        $colegio = Colegios::where('id',$request->col_id)
+                    ->first();
+        $colegio -> update([
+            'col_nombre' => $request->col_nombre,
+            'col_abreviatura' => $request->col_abreviatura,
+            'col_sie' => $request->col_sie,
+            'col_observaciones' => $request->col_onservaciones,
+        ]);
+    }
+
+    public function selectColegio(Request $request){
+        // if(!$request->ajax()) return view('/');
+        $colegio = DB::table('colegios')
+        ->select('id','col_abreviatura')
+        ->where('col_estado',1)
+        ->orderBy('col_abreviatura','asc')
+        ->get();
+        return response()->json($colegio);
+    }
+}
