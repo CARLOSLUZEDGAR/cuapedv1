@@ -2231,29 +2231,25 @@ __webpack_require__.r(__webpack_exports__);
     fecha_nacimiento : { required },
     id_lugar_trabajo : { required },*/
     col_nombre: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"],
-      $autoDirty: true
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
     },
     col_abreviatura: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"],
-      $autoDirty: true
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
     },
     col_sie: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"],
-      $autoDirty: true
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
     },
     col_nombreA: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"],
-      $autoDirty: true
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
     },
     col_abreviaturaA: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"],
-      $autoDirty: true
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
     },
     col_sieA: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"],
-      $autoDirty: true
-    }
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    validationGroupReg: ['col_nombre', 'col_abreviatura', 'col_sie'],
+    validationGroupEdit: ['col_nombreA', 'col_abreviaturaA', 'col_sieA']
   },
   mounted: function mounted() {
     this.listarColegios(this.page, this.buscar, this.criterio);
@@ -2343,7 +2339,9 @@ __webpack_require__.r(__webpack_exports__);
     RegistrarColegio: function RegistrarColegio() {
       var _this = this;
 
-      if (!this.$v.$invalid) {
+      this.$v.$reset();
+
+      if (!this.$v.validationGroupReg.$invalid) {
         swal.fire({
           title: 'Esta seguro de registrar este UNIDAD EDUCATIVA',
           // TITULO 
@@ -2402,7 +2400,9 @@ __webpack_require__.r(__webpack_exports__);
     EditarColegio: function EditarColegio() {
       var _this2 = this;
 
-      if (!this.$v.$invalid) {
+      this.$v.$reset();
+
+      if (!this.$v.validationGroupEdit.$invalid) {
         swal.fire({
           title: 'Esta seguro de modificar esta UNIDAD EDUCATIVA',
           // TITULO 
@@ -4686,78 +4686,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -4817,19 +4745,44 @@ __webpack_require__.r(__webpack_exports__);
       estado_civil : { required },
     fecha_nacimiento : { required },
     id_lugar_trabajo : { required },*/
-
-    /*est_rude : { required, $autoDirty: true },
-    est_ci : { required, $autoDirty: true },
-    est_expedido : { required, $autoDirty: true },
-    est_nombre : { required, $autoDirty: true },
-    est_paterno : { required, $autoDirty: true },
-    est_materno : { required, $autoDirty: true },
-      est_rudeA : { required, $autoDirty: true },
-    est_ciA : { required, $autoDirty: true },
-    est_expedidoA : { required, $autoDirty: true },
-    est_nombreA : { required, $autoDirty: true },
-    est_paternoA : { required, $autoDirty: true },
-    est_maternoA : { required, $autoDirty: true },*/
+    est_rude: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    est_ci: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    est_expedido: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    est_nombre: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    est_paterno: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    est_materno: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    est_rudeA: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    est_ciA: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    est_expedidoA: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    est_nombreA: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    est_paternoA: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    est_maternoA: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    validationGroupReg: ['est_rude', 'est_ci', 'est_expedido', 'est_nombre', 'est_paterno', 'est_materno'],
+    validationGroupEdit: ['est_rudeA', 'est_ciA', 'est_expedidoA', 'est_nombreA', 'est_paternoA', 'est_maternoA']
   },
   mounted: function mounted() {
     this.listarEstudiantes(this.page, this.buscar, this.criterio);
@@ -4901,9 +4854,9 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
+    //ABRIR MODAL REGISTRO
     NuevoEstudiante: function NuevoEstudiante() {
-      //this.$v.$reset(),
-      //PONER DE CERO EL MODAL ANTES DE REGISTRAR
+      this.$v.$reset(), //PONER DE CERO EL MODAL ANTES DE REGISTRAR
       this.est_rude = '', this.est_nombre = '', this.est_paterno = '', this.est_materno = '', this.est_ci = '', this.est_expedido = '', this.est_observacion = ''; //FIN PONER A CERO MODAL
 
       $('#NuevoEstudiante').modal('show');
@@ -4920,126 +4873,127 @@ __webpack_require__.r(__webpack_exports__);
     RegistrarEstudiante: function RegistrarEstudiante() {
       var _this = this;
 
-      // if(!this.$v.$invalid){
-      swal.fire({
-        title: 'Esta seguro de registrar a este ESTUDIANTE',
-        // TITULO 
-        icon: 'question',
-        //ICONO (success, warnning, error, info, question)
-        showCancelButton: true,
-        //HABILITACION DEL BOTON CANCELAR
-        confirmButtonColor: 'info',
-        // COLOR DEL BOTON PARA CONFIRMAR
-        cancelButtonColor: '#868077',
-        // CLOR DEL BOTON CANCELAR
-        confirmButtonText: 'Confirmar',
-        //TITULO DEL BOTON CONFIRMAR
-        cancelButtonText: 'Cancelar',
-        //TIUTLO DEL BOTON CANCELAR
-        buttonsStyling: true,
-        reverseButtons: true
-      }).then(function (result) {
-        if (result.value) {
-          //CODIGO HA SER VALIDADO
-          var me = _this;
-          axios.post("/registrarEstudiante", {
-            //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
-            est_rude: me.est_rude,
-            est_ci: me.est_ci,
-            est_expedido: me.est_expedido,
-            est_nombre: me.est_nombre,
-            est_paterno: me.est_paterno,
-            est_materno: me.est_materno,
-            est_observacion: me.est_observacion
-          }).then(function (response) {
-            //Respuesta de la peticion
-            console.log(response);
-            $('#NuevoEstudiante').modal('hide');
-            me.listarEstudiantes(me.page, me.buscar, me.criterio);
-            this.$v.$reset();
-          })["catch"](function (error) {
-            // handle error
-            console.log(error);
-          });
-        } else {
-          console.log('no empezamos');
-        }
-      });
-      /*}else{
-          this.$v.$touch();
-          Swal.fire({
-              icon: 'warning',
-              title: 'Ingrese todos los datos requeridos',
-              showConfirmButton: false,
-              timer: 2000
-          })
-          //this.$v.$reset();
-      }*/
+      this.$v.$reset();
+
+      if (!this.$v.validationGroupReg.$invalid) {
+        swal.fire({
+          title: 'Esta seguro de registrar a este ESTUDIANTE',
+          // TITULO 
+          icon: 'question',
+          //ICONO (success, warnning, error, info, question)
+          showCancelButton: true,
+          //HABILITACION DEL BOTON CANCELAR
+          confirmButtonColor: 'info',
+          // COLOR DEL BOTON PARA CONFIRMAR
+          cancelButtonColor: '#868077',
+          // CLOR DEL BOTON CANCELAR
+          confirmButtonText: 'Confirmar',
+          //TITULO DEL BOTON CONFIRMAR
+          cancelButtonText: 'Cancelar',
+          //TIUTLO DEL BOTON CANCELAR
+          buttonsStyling: true,
+          reverseButtons: true
+        }).then(function (result) {
+          if (result.value) {
+            //CODIGO HA SER VALIDADO
+            var me = _this;
+            axios.post("/registrarEstudiante", {
+              //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
+              est_rude: me.est_rude,
+              est_ci: me.est_ci,
+              est_expedido: me.est_expedido,
+              est_nombre: me.est_nombre,
+              est_paterno: me.est_paterno,
+              est_materno: me.est_materno,
+              est_observacion: me.est_observacion
+            }).then(function (response) {
+              //Respuesta de la peticion
+              console.log(response);
+              $('#NuevoEstudiante').modal('hide');
+              me.listarEstudiantes(me.page, me.buscar, me.criterio);
+              this.$v.$reset();
+            })["catch"](function (error) {
+              // handle error
+              console.log(error);
+            });
+          } else {
+            console.log('no empezamos');
+          }
+        });
+      } else {
+        this.$v.$touch();
+        Swal.fire({
+          icon: 'warning',
+          title: 'Ingrese todos los datos requeridos',
+          showConfirmButton: false,
+          timer: 2000
+        }); //this.$v.$reset();
+      }
     },
     abrirEditar: function abrirEditar(estudiante) {
-      var me = this; //this.$v.$reset(),
-
-      this.est_id = estudiante.id, this.est_rudeA = estudiante.est_rude, this.est_ciA = estudiante.est_ci, this.est_expedidoA = estudiante.est_expedido, this.est_nombreA = estudiante.est_nombre, this.est_paternoA = estudiante.est_paterno, this.est_maternoA = estudiante.est_materno, this.est_observacionA = estudiante.col_observacion, $('#EditarEstudiante').modal('show');
+      var me = this;
+      this.$v.$reset(), this.est_id = estudiante.id, this.est_rudeA = estudiante.est_rude, this.est_ciA = estudiante.est_ci, this.est_expedidoA = estudiante.est_expedido, this.est_nombreA = estudiante.est_nombre, this.est_paternoA = estudiante.est_paterno, this.est_maternoA = estudiante.est_materno, this.est_observacionA = estudiante.col_observacion, $('#EditarEstudiante').modal('show');
     },
     EditarEstudiante: function EditarEstudiante() {
       var _this2 = this;
 
-      // if(!this.$v.$invalid){
-      swal.fire({
-        title: 'Esta seguro de modificar a esta ESTUDIANTE',
-        // TITULO 
-        icon: 'question',
-        //ICONO (success, warnning, error, info, question)
-        showCancelButton: true,
-        //HABILITACION DEL BOTON CANCELAR
-        confirmButtonColor: 'info',
-        // COLOR DEL BOTON PARA CONFIRMAR
-        cancelButtonColor: '#868077',
-        // CLOR DEL BOTON CANCELAR
-        confirmButtonText: 'Confirmar',
-        //TITULO DEL BOTON CONFIRMAR
-        cancelButtonText: 'Cancelar',
-        //TIUTLO DEL BOTON CANCELAR
-        buttonsStyling: true,
-        reverseButtons: true
-      }).then(function (result) {
-        if (result.value) {
-          //CODIGO HA SER VALIDADO
-          var me = _this2;
-          axios.put("/editarEstudiante", {
-            //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
-            est_id: me.est_id,
-            est_rude: me.est_rudeA,
-            est_ci: me.est_ciA,
-            est_expedido: me.est_expedidoA,
-            est_nombre: me.est_nombreA,
-            est_paterno: me.est_paternoA,
-            est_materno: me.est_maternoA,
-            est_observacion: me.est_observacionA
-          }).then(function (response) {
-            //Respuesta de la peticion
-            console.log(response);
-            $('#EditarEstudiante').modal('hide');
-            me.listarEstudiantes(me.page, me.buscar, me.criterio);
-            this.$v.$reset();
-          })["catch"](function (error) {
-            // handle error
-            console.log(error);
-          });
-        } else {
-          console.log('no empezamos');
-        }
-      });
-      /* }else{
-           this.$v.$touch();
-           Swal.fire({
-               icon: 'warning',
-               title: 'Ingrese todos los datos requeridos',
-               showConfirmButton: false,
-               timer: 2000
-           })
-           //this.$v.$reset();
-       }*/
+      this.$v.$reset();
+
+      if (!this.$v.validationGroupEdit.$invalid) {
+        swal.fire({
+          title: 'Esta seguro de modificar a esta ESTUDIANTE',
+          // TITULO 
+          icon: 'question',
+          //ICONO (success, warnning, error, info, question)
+          showCancelButton: true,
+          //HABILITACION DEL BOTON CANCELAR
+          confirmButtonColor: 'info',
+          // COLOR DEL BOTON PARA CONFIRMAR
+          cancelButtonColor: '#868077',
+          // CLOR DEL BOTON CANCELAR
+          confirmButtonText: 'Confirmar',
+          //TITULO DEL BOTON CONFIRMAR
+          cancelButtonText: 'Cancelar',
+          //TIUTLO DEL BOTON CANCELAR
+          buttonsStyling: true,
+          reverseButtons: true
+        }).then(function (result) {
+          if (result.value) {
+            //CODIGO HA SER VALIDADO
+            var me = _this2;
+            axios.put("/editarEstudiante", {
+              //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
+              est_id: me.est_id,
+              est_rude: me.est_rudeA,
+              est_ci: me.est_ciA,
+              est_expedido: me.est_expedidoA,
+              est_nombre: me.est_nombreA,
+              est_paterno: me.est_paternoA,
+              est_materno: me.est_maternoA,
+              est_observacion: me.est_observacionA
+            }).then(function (response) {
+              //Respuesta de la peticion
+              console.log(response);
+              $('#EditarEstudiante').modal('hide');
+              me.listarEstudiantes(me.page, me.buscar, me.criterio);
+              this.$v.$reset();
+            })["catch"](function (error) {
+              // handle error
+              console.log(error);
+            });
+          } else {
+            console.log('no empezamos');
+          }
+        });
+      } else {
+        this.$v.$touch();
+        Swal.fire({
+          icon: 'warning',
+          title: 'Ingrese todos los datos requeridos',
+          showConfirmButton: false,
+          timer: 2000
+        }); //this.$v.$reset();
+      }
     }
   }
 });
@@ -9538,7 +9492,7 @@ exports = module.exports = __webpack_require__(/*! ../css-loader/lib/css-base.js
 
 
 // module
-exports.push([module.i, ".mx-icon-left:before,.mx-icon-right:before,.mx-icon-double-left:before,.mx-icon-double-right:before,.mx-icon-double-left:after,.mx-icon-double-right:after{content:\"\";position:relative;top:-1px;display:inline-block;width:10px;height:10px;vertical-align:middle;border-style:solid;border-color:currentColor;border-width:2px 0 0 2px;border-radius:1px;-webkit-box-sizing:border-box;box-sizing:border-box;-webkit-transform-origin:center;transform-origin:center;-webkit-transform:rotate(-45deg) scale(0.7);transform:rotate(-45deg) scale(0.7)}.mx-icon-double-left:after{left:-4px}.mx-icon-double-right:before{left:4px}.mx-icon-right:before,.mx-icon-double-right:before,.mx-icon-double-right:after{-webkit-transform:rotate(135deg) scale(0.7);transform:rotate(135deg) scale(0.7)}.mx-btn{-webkit-box-sizing:border-box;box-sizing:border-box;line-height:1;font-size:14px;font-weight:500;padding:7px 15px;margin:0;cursor:pointer;background-color:transparent;outline:none;border:1px solid rgba(0,0,0,.1);border-radius:4px;color:#73879c;white-space:nowrap}.mx-btn:hover{border-color:#1284e7;color:#1284e7}.mx-btn-text{border:0;padding:0 4px;text-align:left;line-height:inherit}.mx-scrollbar{height:100%}.mx-scrollbar:hover .mx-scrollbar-track{opacity:1}.mx-scrollbar-wrap{height:100%;overflow-x:hidden;overflow-y:auto}.mx-scrollbar-track{position:absolute;top:2px;right:2px;bottom:2px;width:6px;z-index:1;border-radius:4px;opacity:0;-webkit-transition:opacity .24s ease-out;transition:opacity .24s ease-out}.mx-scrollbar-track .mx-scrollbar-thumb{position:absolute;width:100%;height:0;cursor:pointer;border-radius:inherit;background-color:rgba(144,147,153,.3);-webkit-transition:background-color .3s;transition:background-color .3s}.mx-zoom-in-down-enter-active,.mx-zoom-in-down-leave-active{opacity:1;-webkit-transform:scaleY(1);transform:scaleY(1);-webkit-transition:opacity .3s cubic-bezier(0.23, 1, 0.32, 1),-webkit-transform .3s cubic-bezier(0.23, 1, 0.32, 1);transition:opacity .3s cubic-bezier(0.23, 1, 0.32, 1),-webkit-transform .3s cubic-bezier(0.23, 1, 0.32, 1);transition:transform .3s cubic-bezier(0.23, 1, 0.32, 1),opacity .3s cubic-bezier(0.23, 1, 0.32, 1);transition:transform .3s cubic-bezier(0.23, 1, 0.32, 1),opacity .3s cubic-bezier(0.23, 1, 0.32, 1),-webkit-transform .3s cubic-bezier(0.23, 1, 0.32, 1);-webkit-transform-origin:center top;transform-origin:center top}.mx-zoom-in-down-enter,.mx-zoom-in-down-leave-to{opacity:0;-webkit-transform:scaleY(0);transform:scaleY(0)}.mx-datepicker{position:relative;display:inline-block;width:210px}.mx-datepicker svg{width:1em;height:1em;vertical-align:-0.15em;fill:currentColor;overflow:hidden}.mx-datepicker-range{width:320px}.mx-datepicker-inline{width:auto}.mx-input-wrapper{position:relative}.mx-input-wrapper .mx-icon-clear{display:none}.mx-input-wrapper:hover .mx-icon-clear{display:block}.mx-input-wrapper:hover .mx-icon-clear+.mx-icon-calendar{display:none}.mx-input{display:inline-block;-webkit-box-sizing:border-box;box-sizing:border-box;width:100%;height:34px;padding:6px 30px;padding-left:10px;font-size:14px;line-height:1.4;color:#555;background-color:#fff;border:1px solid #ccc;border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);box-shadow:inset 0 1px 1px rgba(0,0,0,.075)}.mx-input:hover,.mx-input:focus{border-color:#409aff}.mx-input:disabled,.mx-input.disabled{color:#ccc;background-color:#f3f3f3;border-color:#ccc;cursor:not-allowed}.mx-input:focus{outline:none}.mx-input::-ms-clear{display:none}.mx-icon-calendar,.mx-icon-clear{position:absolute;top:50%;right:8px;-webkit-transform:translateY(-50%);transform:translateY(-50%);font-size:16px;line-height:1;color:rgba(0,0,0,.5);vertical-align:middle}.mx-icon-clear{cursor:pointer}.mx-icon-clear:hover{color:rgba(0,0,0,.8)}.mx-datepicker-main{font:14px/1.5 \"Helvetica Neue\",Helvetica,Arial,\"Microsoft Yahei\",sans-serif;color:#73879c;background-color:#fff;border:1px solid #e8e8e8}.mx-datepicker-popup{position:absolute;margin-top:1px;margin-bottom:1px;-webkit-box-shadow:0 6px 12px rgba(0,0,0,.175);box-shadow:0 6px 12px rgba(0,0,0,.175);z-index:2001}.mx-datepicker-sidebar{float:left;-webkit-box-sizing:border-box;box-sizing:border-box;width:100px;padding:6px;overflow:auto}.mx-datepicker-sidebar+.mx-datepicker-content{margin-left:100px;border-left:1px solid #e8e8e8}.mx-datepicker-body{position:relative;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.mx-btn-shortcut{display:block;padding:0 6px;line-height:24px}.mx-range-wrapper{display:-webkit-box;display:-ms-flexbox;display:flex}@media(max-width: 750px){.mx-range-wrapper{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}}.mx-datepicker-header{padding:6px 8px;border-bottom:1px solid #e8e8e8}.mx-datepicker-footer{padding:6px 8px;text-align:right;border-top:1px solid #e8e8e8}.mx-calendar{-webkit-box-sizing:border-box;box-sizing:border-box;width:248px;padding:6px 12px}.mx-calendar+.mx-calendar{border-left:1px solid #e8e8e8}.mx-calendar-header,.mx-time-header{-webkit-box-sizing:border-box;box-sizing:border-box;height:34px;line-height:34px;text-align:center;overflow:hidden}.mx-btn-icon-left,.mx-btn-icon-double-left{float:left}.mx-btn-icon-right,.mx-btn-icon-double-right{float:right}.mx-calendar-header-label{font-size:14px}.mx-calendar-decade-separator{margin:0 2px}.mx-calendar-decade-separator:after{content:\"~\"}.mx-calendar-content{position:relative;height:224px;-webkit-box-sizing:border-box;box-sizing:border-box}.mx-calendar-content .cell{cursor:pointer}.mx-calendar-content .cell:hover{color:#73879c;background-color:#f3f9fe}.mx-calendar-content .cell.active{color:#fff;background-color:#1284e7}.mx-calendar-content .cell.in-range,.mx-calendar-content .cell.hover-in-range{color:#73879c;background-color:#dbedfb}.mx-calendar-content .cell.disabled{cursor:not-allowed;color:#ccc;background-color:#f3f3f3}.mx-calendar-week-mode .mx-date-row{cursor:pointer}.mx-calendar-week-mode .mx-date-row:hover{background-color:#f3f9fe}.mx-calendar-week-mode .mx-date-row.mx-active-week{background-color:#dbedfb}.mx-calendar-week-mode .mx-date-row .cell:hover{color:inherit;background-color:transparent}.mx-calendar-week-mode .mx-date-row .cell.active{color:inherit;background-color:transparent}.mx-week-number{opacity:.5}.mx-table{table-layout:fixed;border-collapse:separate;border-spacing:0;width:100%;height:100%;-webkit-box-sizing:border-box;box-sizing:border-box;text-align:center;vertical-align:middle}.mx-table th{padding:0;font-weight:500}.mx-table td{padding:0}.mx-table-date td,.mx-table-date th{height:32px;font-size:12px}.mx-table-date .today{color:#2a90e9}.mx-table-date .cell.not-current-month{color:#ccc;background:none}.mx-time{-webkit-box-flex:1;-ms-flex:1;flex:1;width:224px;background:#fff}.mx-time+.mx-time{border-left:1px solid #e8e8e8}.mx-calendar-time{position:absolute;top:0;left:0;width:100%;height:100%}.mx-time-header{border-bottom:1px solid #e8e8e8}.mx-time-content{height:224px;-webkit-box-sizing:border-box;box-sizing:border-box;overflow:hidden}.mx-time-columns{display:-webkit-box;display:-ms-flexbox;display:flex;width:100%;height:100%;overflow:hidden}.mx-time-column{-webkit-box-flex:1;-ms-flex:1;flex:1;position:relative;border-left:1px solid #e8e8e8;text-align:center}.mx-time-column:first-child{border-left:0}.mx-time-column .mx-time-list{margin:0;padding:0;list-style:none}.mx-time-column .mx-time-list::after{content:\"\";display:block;height:192px}.mx-time-column .mx-time-item{cursor:pointer;font-size:12px;height:32px;line-height:32px}.mx-time-column .mx-time-item:hover{color:#73879c;background-color:#f3f9fe}.mx-time-column .mx-time-item.active{color:#1284e7;background-color:transparent;font-weight:700}.mx-time-column .mx-time-item.disabled{cursor:not-allowed;color:#ccc;background-color:#f3f3f3}.mx-time-option{cursor:pointer;padding:8px 10px;font-size:14px;line-height:20px}.mx-time-option:hover{color:#73879c;background-color:#f3f9fe}.mx-time-option.active{color:#1284e7;background-color:transparent;font-weight:700}.mx-time-option.disabled{cursor:not-allowed;color:#ccc;background-color:#f3f3f3}\n", ""]);
+exports.push([module.i, ".mx-icon-left:before,.mx-icon-right:before,.mx-icon-double-left:before,.mx-icon-double-right:before,.mx-icon-double-left:after,.mx-icon-double-right:after{content:\"\";position:relative;top:-1px;display:inline-block;width:10px;height:10px;vertical-align:middle;border-style:solid;border-color:currentColor;border-width:2px 0 0 2px;border-radius:1px;-webkit-box-sizing:border-box;box-sizing:border-box;-webkit-transform-origin:center;transform-origin:center;-webkit-transform:rotate(-45deg) scale(0.7);transform:rotate(-45deg) scale(0.7)}.mx-icon-double-left:after{left:-4px}.mx-icon-double-right:before{left:4px}.mx-icon-right:before,.mx-icon-double-right:before,.mx-icon-double-right:after{-webkit-transform:rotate(135deg) scale(0.7);transform:rotate(135deg) scale(0.7)}.mx-btn{-webkit-box-sizing:border-box;box-sizing:border-box;line-height:1;font-size:14px;font-weight:500;padding:7px 15px;margin:0;cursor:pointer;background-color:transparent;outline:none;border:1px solid rgba(0,0,0,.1);border-radius:4px;color:#73879c;white-space:nowrap}.mx-btn:hover{border-color:#1284e7;color:#1284e7}.mx-btn-text{border:0;padding:0 4px;text-align:left;line-height:inherit}.mx-scrollbar{height:100%}.mx-scrollbar:hover .mx-scrollbar-track{opacity:1}.mx-scrollbar-wrap{height:100%;overflow-x:hidden;overflow-y:auto}.mx-scrollbar-track{position:absolute;top:2px;right:2px;bottom:2px;width:6px;z-index:1;border-radius:4px;opacity:0;-webkit-transition:opacity .24s ease-out;transition:opacity .24s ease-out}.mx-scrollbar-track .mx-scrollbar-thumb{position:absolute;width:100%;height:0;cursor:pointer;border-radius:inherit;background-color:rgba(144,147,153,.3);-webkit-transition:background-color .3s;transition:background-color .3s}.mx-zoom-in-down-enter-active,.mx-zoom-in-down-leave-active{opacity:1;-webkit-transform:scaleY(1);transform:scaleY(1);-webkit-transition:opacity .3s cubic-bezier(0.23, 1, 0.32, 1),-webkit-transform .3s cubic-bezier(0.23, 1, 0.32, 1);transition:opacity .3s cubic-bezier(0.23, 1, 0.32, 1),-webkit-transform .3s cubic-bezier(0.23, 1, 0.32, 1);transition:transform .3s cubic-bezier(0.23, 1, 0.32, 1),opacity .3s cubic-bezier(0.23, 1, 0.32, 1);transition:transform .3s cubic-bezier(0.23, 1, 0.32, 1),opacity .3s cubic-bezier(0.23, 1, 0.32, 1),-webkit-transform .3s cubic-bezier(0.23, 1, 0.32, 1);-webkit-transform-origin:center top;transform-origin:center top}.mx-zoom-in-down-enter,.mx-zoom-in-down-leave-to{opacity:0;-webkit-transform:scaleY(0);transform:scaleY(0)}.mx-datepicker{position:relative;display:inline-block;width:210px}.mx-datepicker svg{width:1em;height:1em;vertical-align:-0.15em;fill:currentColor;overflow:hidden}.mx-datepicker-range{width:320px}.mx-datepicker-inline{width:auto}.mx-input-wrapper{position:relative}.mx-input-wrapper .mx-icon-clear{display:none}.mx-input-wrapper:hover .mx-icon-clear{display:block}.mx-input-wrapper:hover .mx-icon-clear+.mx-icon-calendar{display:none}.mx-input{display:inline-block;-webkit-box-sizing:border-box;box-sizing:border-box;width:100%;height:34px;padding:6px 30px;padding-left:10px;font-size:14px;line-height:1.4;color:#555;background-color:#fff;border:1px solid #ccc;border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);box-shadow:inset 0 1px 1px rgba(0,0,0,.075)}.mx-input:hover,.mx-input:focus{border-color:#409aff}.mx-input:disabled,.mx-input.disabled{color:#ccc;background-color:#f3f3f3;border-color:#ccc;cursor:not-allowed}.mx-input:focus{outline:none}.mx-input::-ms-clear{display:none}.mx-icon-calendar,.mx-icon-clear{position:absolute;top:50%;right:8px;-webkit-transform:translateY(-50%);transform:translateY(-50%);font-size:16px;line-height:1;color:rgba(0,0,0,.5);vertical-align:middle}.mx-icon-clear{cursor:pointer}.mx-icon-clear:hover{color:rgba(0,0,0,.8)}.mx-datepicker-main{font:14px/1.5 \"Helvetica Neue\",Helvetica,Arial,\"Microsoft Yahei\",sans-serif;color:#73879c;background-color:#fff;border:1px solid #e8e8e8}.mx-datepicker-popup{position:absolute;margin-top:1px;margin-bottom:1px;-webkit-box-shadow:0 6px 12px rgba(0,0,0,.175);box-shadow:0 6px 12px rgba(0,0,0,.175);z-index:2001}.mx-datepicker-sidebar{float:left;-webkit-box-sizing:border-box;box-sizing:border-box;width:100px;padding:6px;overflow:auto}.mx-datepicker-sidebar+.mx-datepicker-content{margin-left:100px;border-left:1px solid #e8e8e8}.mx-datepicker-body{position:relative;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.mx-btn-shortcut{display:block;padding:0 6px;line-height:24px}.mx-range-wrapper{display:-webkit-box;display:-ms-flexbox;display:flex}@media(max-width: 750px){.mx-range-wrapper{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}}.mx-datepicker-header{padding:6px 8px;border-bottom:1px solid #e8e8e8}.mx-datepicker-footer{padding:6px 8px;text-align:right;border-top:1px solid #e8e8e8}.mx-calendar{-webkit-box-sizing:border-box;box-sizing:border-box;width:248px;padding:6px 12px}.mx-calendar+.mx-calendar{border-left:1px solid #e8e8e8}.mx-calendar-header,.mx-time-header{-webkit-box-sizing:border-box;box-sizing:border-box;height:34px;line-height:34px;text-align:center;overflow:hidden}.mx-btn-icon-left,.mx-btn-icon-double-left{float:left}.mx-btn-icon-right,.mx-btn-icon-double-right{float:right}.mx-calendar-header-label{font-size:14px}.mx-calendar-decade-separator{margin:0 2px}.mx-calendar-decade-separator:after{content:\"~\"}.mx-calendar-content{position:relative;height:224px;-webkit-box-sizing:border-box;box-sizing:border-box}.mx-calendar-content .cell{cursor:pointer}.mx-calendar-content .cell:hover{color:#73879c;background-color:#f3f9fe}.mx-calendar-content .cell.active{color:#fff;background-color:#1284e7}.mx-calendar-content .cell.in-range,.mx-calendar-content .cell.hover-in-range{color:#73879c;background-color:#dbedfb}.mx-calendar-content .cell.disabled{cursor:not-allowed;color:#ccc;background-color:#f3f3f3}.mx-calendar-week-mode .mx-date-row{cursor:pointer}.mx-calendar-week-mode .mx-date-row:hover{background-color:#f3f9fe}.mx-calendar-week-mode .mx-date-row.mx-active-week{background-color:#dbedfb}.mx-calendar-week-mode .mx-date-row .cell:hover{color:inherit;background-color:transparent}.mx-calendar-week-mode .mx-date-row .cell.active{color:inherit;background-color:transparent}.mx-week-number{opacity:.5}.mx-table{table-layout:fixed;border-collapse:separate;border-spacing:0;width:100%;height:100%;-webkit-box-sizing:border-box;box-sizing:border-box;text-align:center;vertical-align:middle}.mx-table th{padding:0;font-weight:500}.mx-table td{padding:0}.mx-table-date td,.mx-table-date th{height:32px;font-size:12px}.mx-table-date .today{color:#2a90e9}.mx-table-date .cell.not-current-month{color:#ccc;background:none}.mx-time{-webkit-box-flex:1;-ms-flex:1;flex:1;width:224px;background:#fff}.mx-time+.mx-time{border-left:1px solid #e8e8e8}.mx-calendar-time{position:absolute;top:0;left:0;width:100%;height:100%}.mx-time-header{border-bottom:1px solid #e8e8e8}.mx-time-content{height:224px;-webkit-box-sizing:border-box;box-sizing:border-box;overflow:hidden}.mx-time-columns{display:-webkit-box;display:-ms-flexbox;display:flex;width:100%;height:100%;overflow:hidden}.mx-time-column{-webkit-box-flex:1;-ms-flex:1;flex:1;position:relative;border-left:1px solid #e8e8e8;text-align:center}.mx-time-column:first-child{border-left:0}.mx-time-column .mx-time-list{margin:0;padding:0;list-style:none}.mx-time-column .mx-time-list::after{content:\"\";display:block;height:192px}.mx-time-column .mx-time-item{cursor:pointer;font-size:12px;height:32px;line-height:32px}.mx-time-column .mx-time-item:hover{color:#73879c;background-color:#f3f9fe}.mx-time-column .mx-time-item.active{color:#1284e7;background-color:transparent;font-weight:700}.mx-time-column .mx-time-item.disabled{cursor:not-allowed;color:#ccc;background-color:#f3f3f3}.mx-time-option{cursor:pointer;padding:8px 10px;font-size:14px;line-height:20px}.mx-time-option:hover{color:#73879c;background-color:#f3f9fe}.mx-time-option.active{color:#1284e7;background-color:transparent;font-weight:700}.mx-time-option.disabled{cursor:not-allowed;color:#ccc;background-color:#f3f3f3}\r\n", ""]);
 
 // exports
 
@@ -42257,7 +42211,7 @@ var render = function() {
                     _c(
                       "tbody",
                       _vm._l(_vm.arrayColegio, function(colegio) {
-                        return _c("tr", [
+                        return _c("tr", { key: colegio.id }, [
                           _c(
                             "td",
                             [
@@ -43122,7 +43076,7 @@ var render = function() {
                     _c(
                       "tbody",
                       _vm._l(_vm.arrayEstudiante, function(estudiante) {
-                        return _c("tr", [
+                        return _c("tr", { key: estudiante.id }, [
                           _c("td", [
                             _c(
                               "button",
@@ -45999,7 +45953,7 @@ var render = function() {
                     _c(
                       "tbody",
                       _vm._l(_vm.arrayEstudiante, function(estudiante) {
-                        return _c("tr", [
+                        return _c("tr", { key: estudiante.id }, [
                           _c(
                             "td",
                             [
@@ -46265,6 +46219,10 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.$v.est_rude.$error,
+                        "is-valid": !_vm.$v.est_rude.$invalid
+                      },
                       attrs: { type: "text" },
                       domProps: { value: _vm.est_rude },
                       on: {
@@ -46275,12 +46233,18 @@ var render = function() {
                           _vm.est_rude = $event.target.value
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      !_vm.$v.est_rude.required
+                        ? _c("span", [_vm._v("Este campo es Requerido")])
+                        : _vm._e()
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group row" }, [
-                  _c("div", { staticClass: "col-md-12" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
                     _c(
                       "label",
                       {
@@ -46300,6 +46264,10 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.$v.est_ci.$error,
+                        "is-valid": !_vm.$v.est_ci.$invalid
+                      },
                       attrs: { type: "text" },
                       domProps: { value: _vm.est_ci },
                       on: {
@@ -46310,12 +46278,16 @@ var render = function() {
                           _vm.est_ci = $event.target.value
                         }
                       }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _c("div", { staticClass: "col-md-12" }, [
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      !_vm.$v.est_ci.required
+                        ? _c("span", [_vm._v("Este campo es Requerido")])
+                        : _vm._e()
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
                     _c(
                       "label",
                       {
@@ -46337,6 +46309,10 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
+                        class: {
+                          "is-invalid": _vm.$v.est_expedido.$error,
+                          "is-valid": !_vm.$v.est_expedido.$invalid
+                        },
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -46394,7 +46370,13 @@ var render = function() {
                           _vm._v("PANDO")
                         ])
                       ]
-                    )
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      !_vm.$v.est_expedido.required
+                        ? _c("span", [_vm._v("Este campo es Requerido")])
+                        : _vm._e()
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
@@ -46419,6 +46401,10 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.$v.est_nombre.$error,
+                        "is-valid": !_vm.$v.est_nombre.$invalid
+                      },
                       attrs: { type: "text" },
                       domProps: { value: _vm.est_nombre },
                       on: {
@@ -46429,12 +46415,18 @@ var render = function() {
                           _vm.est_nombre = $event.target.value
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      !_vm.$v.est_nombre.required
+                        ? _c("span", [_vm._v("Este campo es Requerido")])
+                        : _vm._e()
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group row" }, [
-                  _c("div", { staticClass: "col-md-12" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
                     _c(
                       "label",
                       {
@@ -46454,6 +46446,10 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.$v.est_paterno.$error,
+                        "is-valid": !_vm.$v.est_paterno.$invalid
+                      },
                       attrs: { type: "text" },
                       domProps: { value: _vm.est_paterno },
                       on: {
@@ -46464,12 +46460,16 @@ var render = function() {
                           _vm.est_paterno = $event.target.value
                         }
                       }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _c("div", { staticClass: "col-md-12" }, [
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      !_vm.$v.est_paterno.required
+                        ? _c("span", [_vm._v("Este campo es Requerido")])
+                        : _vm._e()
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
                     _c(
                       "label",
                       {
@@ -46489,6 +46489,10 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.$v.est_materno.$error,
+                        "is-valid": !_vm.$v.est_materno.$invalid
+                      },
                       attrs: { type: "text" },
                       domProps: { value: _vm.est_materno },
                       on: {
@@ -46499,7 +46503,13 @@ var render = function() {
                           _vm.est_materno = $event.target.value
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      !_vm.$v.est_materno.required
+                        ? _c("span", [_vm._v("Este campo es Requerido")])
+                        : _vm._e()
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
@@ -46633,6 +46643,10 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.$v.est_rudeA.$error,
+                        "is-valid": !_vm.$v.est_rudeA.$invalid
+                      },
                       attrs: { type: "text" },
                       domProps: { value: _vm.est_rudeA },
                       on: {
@@ -46643,12 +46657,18 @@ var render = function() {
                           _vm.est_rudeA = $event.target.value
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      !_vm.$v.est_rudeA.required
+                        ? _c("span", [_vm._v("Este campo es Requerido")])
+                        : _vm._e()
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group row" }, [
-                  _c("div", { staticClass: "col-md-12" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
                     _c(
                       "label",
                       {
@@ -46668,6 +46688,10 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.$v.est_ciA.$error,
+                        "is-valid": !_vm.$v.est_ciA.$invalid
+                      },
                       attrs: { type: "text" },
                       domProps: { value: _vm.est_ciA },
                       on: {
@@ -46678,12 +46702,16 @@ var render = function() {
                           _vm.est_ciA = $event.target.value
                         }
                       }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _c("div", { staticClass: "col-md-12" }, [
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      !_vm.$v.est_ciA.required
+                        ? _c("span", [_vm._v("Este campo es Requerido")])
+                        : _vm._e()
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
                     _c(
                       "label",
                       {
@@ -46705,6 +46733,10 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
+                        class: {
+                          "is-invalid": _vm.$v.est_expedidoA.$error,
+                          "is-valid": !_vm.$v.est_expedidoA.$invalid
+                        },
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -46762,7 +46794,13 @@ var render = function() {
                           _vm._v("PANDO")
                         ])
                       ]
-                    )
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      !_vm.$v.est_expedidoA.required
+                        ? _c("span", [_vm._v("Este campo es Requerido")])
+                        : _vm._e()
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
@@ -46787,6 +46825,10 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.$v.est_nombreA.$error,
+                        "is-valid": !_vm.$v.est_nombreA.$invalid
+                      },
                       attrs: { type: "text" },
                       domProps: { value: _vm.est_nombreA },
                       on: {
@@ -46797,12 +46839,18 @@ var render = function() {
                           _vm.est_nombreA = $event.target.value
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      !_vm.$v.est_nombreA.required
+                        ? _c("span", [_vm._v("Este campo es Requerido")])
+                        : _vm._e()
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group row" }, [
-                  _c("div", { staticClass: "col-md-12" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
                     _c(
                       "label",
                       {
@@ -46822,6 +46870,10 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.$v.est_paternoA.$error,
+                        "is-valid": !_vm.$v.est_paternoA.$invalid
+                      },
                       attrs: { type: "text" },
                       domProps: { value: _vm.est_paternoA },
                       on: {
@@ -46832,12 +46884,16 @@ var render = function() {
                           _vm.est_paternoA = $event.target.value
                         }
                       }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _c("div", { staticClass: "col-md-12" }, [
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      !_vm.$v.est_paternoA.required
+                        ? _c("span", [_vm._v("Este campo es Requerido")])
+                        : _vm._e()
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
                     _c(
                       "label",
                       {
@@ -46857,6 +46913,10 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.$v.est_maternoA.$error,
+                        "is-valid": !_vm.$v.est_maternoA.$invalid
+                      },
                       attrs: { type: "text" },
                       domProps: { value: _vm.est_maternoA },
                       on: {
@@ -46867,7 +46927,13 @@ var render = function() {
                           _vm.est_maternoA = $event.target.value
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      !_vm.$v.est_maternoA.required
+                        ? _c("span", [_vm._v("Este campo es Requerido")])
+                        : _vm._e()
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
@@ -73534,8 +73600,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\cuaderno_pedagogico\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\cuaderno_pedagogico\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\cuapedv1\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\cuapedv1\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

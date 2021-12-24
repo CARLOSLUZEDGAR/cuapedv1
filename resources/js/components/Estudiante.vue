@@ -73,7 +73,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="estudiante in arrayEstudiante">
+                            <tr v-for="estudiante in arrayEstudiante" :key="estudiante.id">
                                 <td>
                                     <button type="button" class="btn btn-warning btn-sm" @click="abrirEditar(estudiante)">
                                         <i class="fas fa-edit"></i>
@@ -147,33 +147,23 @@
             </div>
             <div class="modal-body">
                     <div class="form-group row">
-                        <!--<div class="col-md-12">
+                        <div class="col-md-12">
                             <label class="form-control-label" for="text-input">RUDE</label>
                             <input type="text" v-model="est_rude" class="form-control" :class="{ 'is-invalid' : $v.est_rude.$error, 'is-valid':!$v.est_rude.$invalid }">
                             <div class="invalid-feedback">
                                 <span v-if="!$v.est_rude.required">Este campo es Requerido</span>
                             </div> 
-                        </div>-->
-                        <div class="col-md-12">
-                            <label class="form-control-label" for="text-input">RUDE</label>
-                            <input type="text" v-model="est_rude" class="form-control" > 
                         </div>
                     </div>
                     <div class="form-group row">
-                        <!--<div class="col-md-12">
+                        <div class="col-md-6">
                             <label class="form-control-label" for="text-input">C. IDENTIDAD</label>
                             <input type="text" v-model="est_ci" class="form-control" :class="{ 'is-invalid' : $v.est_ci.$error, 'is-valid':!$v.est_ci.$invalid }">
                             <div class="invalid-feedback">
                                 <span v-if="!$v.est_ci.required">Este campo es Requerido</span>
                             </div>
-                        </div>-->
-                        <div class="col-md-12">
-                            <label class="form-control-label" for="text-input">C. IDENTIDAD</label>
-                            <input type="text" v-model="est_ci" class="form-control">
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <!--<div class="col-md-12">
+                        <div class="col-md-6">
                             <label class="form-control-label" for="text-input">EXPEDIDO</label>
                             <select class="form-control" v-model="est_expedido" :class="{ 'is-invalid' : $v.est_expedido.$error, 'is-valid':!$v.est_expedido.$invalid }">
                                 <option value="0" disabled>SELECCIONAR</option>
@@ -190,64 +180,41 @@
                             <div class="invalid-feedback">
                                 <span v-if="!$v.est_expedido.required">Este campo es Requerido</span>
                             </div>
-                        </div>-->
-                        <div class="col-md-12">
-                            <label class="form-control-label" for="text-input">EXPEDIDO</label>
-                            <select class="form-control" v-model="est_expedido" >
-                                <option value="0" disabled>SELECCIONAR</option>
-                                <option value="LP">LA PAZ</option>
-                                <option value="CB">COCHABAMBA</option>
-                                <option value="SC">SANTA CRUZ</option>
-                                <option value="CH">CHUQUISACA</option>
-                                <option value="OR">ORURO</option>
-                                <option value="PT">POTOSI</option>
-                                <option value="TJ">TARIJA</option>
-                                <option value="BN">BENI</option>
-                                <option value="PN">PANDO</option>
-                            </select>
                         </div>
                     </div>
+                    <!-- <div class="form-group row">
+                        
+                    </div> -->
                     <div class="form-group row">
-                        <!--<div class="col-md-12">
+                        <div class="col-md-12">
                             <label class="form-control-label" for="text-input">NOMBRE(S)</label>
                             <input type="text" v-model="est_nombre" class="form-control" :class="{ 'is-invalid' : $v.est_nombre.$error, 'is-valid':!$v.est_nombre.$invalid }">
                             <div class="invalid-feedback">
                                 <span v-if="!$v.est_nombre.required">Este campo es Requerido</span>
                             </div>
-                        </div>-->
-                        <div class="col-md-12">
-                            <label class="form-control-label" for="text-input">NOMBRE(S)</label>
-                            <input type="text" v-model="est_nombre" class="form-control" >
                         </div>
                     </div>
                     
                     <div class="form-group row">
-                        <!--<div class="col-md-12">
+                        <div class="col-md-6">
                             <label class="form-control-label" for="text-input">AP. PATERNO</label>
                             <input type="text" v-model="est_paterno" class="form-control" :class="{ 'is-invalid' : $v.est_paterno.$error, 'is-valid':!$v.est_paterno.$invalid }">
                             <div class="invalid-feedback">
                                 <span v-if="!$v.est_paterno.required">Este campo es Requerido</span>
                             </div>
-                        </div>-->
-                        <div class="col-md-12">
-                            <label class="form-control-label" for="text-input">AP. PATERNO</label>
-                            <input type="text" v-model="est_paterno" class="form-control">
                         </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <!--<div class="col-md-12">
+                        <div class="col-md-6">
                             <label class="form-control-label" for="text-input">AP. MATERNO</label>
                             <input type="text" v-model="est_materno" class="form-control" :class="{ 'is-invalid' : $v.est_materno.$error, 'is-valid':!$v.est_materno.$invalid }">
                             <div class="invalid-feedback">
                                 <span v-if="!$v.est_materno.required">Este campo es Requerido</span>
                             </div>
-                        </div>-->
-                        <div class="col-md-12">
-                            <label class="form-control-label" for="text-input">AP. MATERNO</label>
-                            <input type="text" v-model="est_materno" class="form-control" >
                         </div>
                     </div>
+
+                    <!-- <div class="form-group row">
+                        
+                    </div> -->
 
                     <div class="form-group row">
                         <div class="col-md-12">
@@ -277,35 +244,23 @@
             </div>
             <div class="modal-body">
                 <div class="form-group row">
-                        <!--<div class="col-md-12">
+                        <div class="col-md-12">
                             <label class="form-control-label" for="text-input">RUDE</label>
                             <input type="text" v-model="est_rudeA" class="form-control" :class="{ 'is-invalid' : $v.est_rudeA.$error, 'is-valid':!$v.est_rudeA.$invalid }">
                             <div class="invalid-feedback">
                                 <span v-if="!$v.est_rudeA.required">Este campo es Requerido</span>
                             </div> 
-                        </div>-->
-                        <div class="col-md-12">
-                            <label class="form-control-label" for="text-input">RUDE</label>
-                            <input type="text" v-model="est_rudeA" class="form-control" >
-                 
                         </div>
                     </div>
                     <div class="form-group row">
-                        <!--<div class="col-md-12">
+                        <div class="col-md-6">
                             <label class="form-control-label" for="text-input">C. IDENTIDAD</label>
                             <input type="text" v-model="est_ciA" class="form-control" :class="{ 'is-invalid' : $v.est_ciA.$error, 'is-valid':!$v.est_ciA.$invalid }">
                             <div class="invalid-feedback">
                                 <span v-if="!$v.est_ciA.required">Este campo es Requerido</span>
                             </div>
-                        </div>-->
-                        <div class="col-md-12">
-                            <label class="form-control-label" for="text-input">C. IDENTIDAD</label>
-                            <input type="text" v-model="est_ciA" class="form-control" >
-                            
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <!--<div class="col-md-12">
+                        <div class="col-md-6">
                             <label class="form-control-label" for="text-input">EXPEDIDO</label>
                             <select class="form-control" v-model="est_expedidoA" :class="{ 'is-invalid' : $v.est_expedidoA.$error, 'is-valid':!$v.est_expedidoA.$invalid }">
                                 <option value="0" disabled>SELECCIONAR</option>
@@ -322,68 +277,41 @@
                             <div class="invalid-feedback">
                                 <span v-if="!$v.est_expedidoA.required">Este campo es Requerido</span>
                             </div>
-                        </div>-->
-                        <div class="col-md-12">
-                            <label class="form-control-label" for="text-input">EXPEDIDO</label>
-                            <select class="form-control" v-model="est_expedidoA" >
-                                <option value="0" disabled>SELECCIONAR</option>
-                                <option value="LP">LA PAZ</option>
-                                <option value="CB">COCHABAMBA</option>
-                                <option value="SC">SANTA CRUZ</option>
-                                <option value="CH">CHUQUISACA</option>
-                                <option value="OR">ORURO</option>
-                                <option value="PT">POTOSI</option>
-                                <option value="TJ">TARIJA</option>
-                                <option value="BN">BENI</option>
-                                <option value="PN">PANDO</option>
-                            </select>
-                            
                         </div>
                     </div>
+                    <!-- <div class="form-group row">
+                        
+                    </div> -->
                     <div class="form-group row">
-                        <!--<div class="col-md-12">
+                        <div class="col-md-12">
                             <label class="form-control-label" for="text-input">NOMBRE(S)</label>
                             <input type="text" v-model="est_nombreA" class="form-control" :class="{ 'is-invalid' : $v.est_nombreA.$error, 'is-valid':!$v.est_nombreA.$invalid }">
                             <div class="invalid-feedback">
                                 <span v-if="!$v.est_nombreA.required">Este campo es Requerido</span>
                             </div>
-                        </div>-->
-                        <div class="col-md-12">
-                            <label class="form-control-label" for="text-input">NOMBRE(S)</label>
-                            <input type="text" v-model="est_nombreA" class="form-control" >
-                            
                         </div>
                     </div>
 
                      <div class="form-group row">
-                        <!--<div class="col-md-12">
+                        <div class="col-md-6">
                             <label class="form-control-label" for="text-input">AP. PATERNO</label>
                             <input type="text" v-model="est_paternoA" class="form-control" :class="{ 'is-invalid' : $v.est_paternoA.$error, 'is-valid':!$v.est_paternoA.$invalid }">
                             <div class="invalid-feedback">
                                 <span v-if="!$v.est_paternoA.required">Este campo es Requerido</span>
                             </div>
-                        </div>-->
-                        <div class="col-md-12">
-                            <label class="form-control-label" for="text-input">AP. PATERNO</label>
-                            <input type="text" v-model="est_paternoA" class="form-control" >
-                            
                         </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <!--<div class="col-md-12">
+                        <div class="col-md-6">
                             <label class="form-control-label" for="text-input">AP. MATERNO</label>
                             <input type="text" v-model="est_maternoA" class="form-control" :class="{ 'is-invalid' : $v.est_maternoA.$error, 'is-valid':!$v.est_maternoA.$invalid }">
                             <div class="invalid-feedback">
                                 <span v-if="!$v.est_maternoA.required">Este campo es Requerido</span>
                             </div>
-                        </div>-->
-                        <div class="col-md-12">
-                            <label class="form-control-label" for="text-input">AP. MATERNO</label>
-                            <input type="text" v-model="est_maternoA" class="form-control" >
-                            
                         </div>
                     </div>
+
+                    <!-- <div class="form-group row">
+                        
+                    </div> -->
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label class="form-control-label" for="text-input">OBSERVACIONES</label>
@@ -410,41 +338,41 @@
 <script>
 import { required, minLength, maxLength, alpha, numeric, email, sameAs} from "vuelidate/lib/validators";
 export default {
-  data() {
-    return {
-      arrayEstudiante : [],
-      criterio : 'est_rude',
-      buscar : '',
+    data() {
+        return {
+            arrayEstudiante : [],
+            criterio : 'est_rude',
+            buscar : '',
 
-      est_rude : '',
-      est_nombre : '',
-      est_paterno : '',
-      est_materno : '',
-      est_ci : '',
-      est_expedido : '',
-      est_observacion : '',
+            est_rude : '',
+            est_nombre : '',
+            est_paterno : '',
+            est_materno : '',
+            est_ci : '',
+            est_expedido : '',
+            est_observacion : '',
 
-      est_rudeA : '',
-      est_nombreA : '',
-      est_paternoA : '',
-      est_maternoA : '',
-      est_ciA : '',
-      est_expedidoA : '',
-      est_observacionA : '',
-     // page : 0,
-      pagination : {
-          'total' : 0,
-          'current_page' : 0,
-          'per_page' : 0,
-          'last_page' : 0,
-          'from' : 0,
-          'to' : 0,
-      },
-      offset : 3,
-    }
-  },
+            est_rudeA : '',
+            est_nombreA : '',
+            est_paternoA : '',
+            est_maternoA : '',
+            est_ciA : '',
+            est_expedidoA : '',
+            est_observacionA : '',
+            // page : 0,
+            pagination : {
+                'total' : 0,
+                'current_page' : 0,
+                'per_page' : 0,
+                'last_page' : 0,
+                'from' : 0,
+                'to' : 0,
+            },
+            offset : 3,
+        }
+    },
 
-   validations:{
+    validations:{
         /*
         nombre_den :{   required,
                         minLength: minLength(3),
@@ -472,54 +400,58 @@ export default {
         fecha_nacimiento : { required },
         id_lugar_trabajo : { required },*/
 
-        /*est_rude : { required, $autoDirty: true },
-        est_ci : { required, $autoDirty: true },
-        est_expedido : { required, $autoDirty: true },
-        est_nombre : { required, $autoDirty: true },
-        est_paterno : { required, $autoDirty: true },
-        est_materno : { required, $autoDirty: true },
+        est_rude : { required },
+        est_ci : { required },
+        est_expedido : { required },
+        est_nombre : { required },
+        est_paterno : { required },
+        est_materno : { required },
 
-        est_rudeA : { required, $autoDirty: true },
-        est_ciA : { required, $autoDirty: true },
-        est_expedidoA : { required, $autoDirty: true },
-        est_nombreA : { required, $autoDirty: true },
-        est_paternoA : { required, $autoDirty: true },
-        est_maternoA : { required, $autoDirty: true },*/
+        est_rudeA : { required },
+        est_ciA : { required },
+        est_expedidoA : { required },
+        est_nombreA : { required },
+        est_paternoA : { required },
+        est_maternoA : { required },
+
+        validationGroupReg: ['est_rude', 'est_ci', 'est_expedido', 'est_nombre', 'est_paterno', 'est_materno'],
+        validationGroupEdit: ['est_rudeA', 'est_ciA', 'est_expedidoA', 'est_nombreA', 'est_paternoA', 'est_maternoA'],
     },
 
-  mounted() {
-    this.listarEstudiantes(this.page,this.buscar,this.criterio);
-  },
-        computed:{
-            isActived: function(){
-                return this.pagination.current_page;
-            },
+    mounted() {
+        this.listarEstudiantes(this.page,this.buscar,this.criterio);
+    },
 
-            //Calcuar los elementos de la paginacion
-            pagesNumber: function() {
-                if(!this.pagination.to){
-                    return [];
-                }
-
-                var from = this.pagination.current_page - this.offset;
-                if(from < 1){
-                    from = 1;
-                }
-
-                var to = from + (this.offset *2);
-                if( to >= this.pagination.last_page){
-                    to = this.pagination.last_page;
-                }
-
-                var pagesArray = [];
-                while( from <= to){
-                    pagesArray.push(from);
-                    from ++;
-                }
-                return pagesArray;
-            }
+    computed:{
+        isActived: function(){
+            return this.pagination.current_page;
         },
-  methods: {
+
+        //Calcuar los elementos de la paginacion
+        pagesNumber: function() {
+            if(!this.pagination.to){
+                return [];
+            }
+
+            var from = this.pagination.current_page - this.offset;
+            if(from < 1){
+                from = 1;
+            }
+
+            var to = from + (this.offset *2);
+            if( to >= this.pagination.last_page){
+                to = this.pagination.last_page;
+            }
+
+            var pagesArray = [];
+            while( from <= to){
+                pagesArray.push(from);
+                from ++;
+            }
+            return pagesArray;
+        }
+    },
+    methods: {
 
     Cerrar(){
             this.$v.$reset()
@@ -561,9 +493,9 @@ export default {
                 
             });
         },
-
+        //ABRIR MODAL REGISTRO
         NuevoEstudiante(){
-            //this.$v.$reset(),
+            this.$v.$reset(),
             //PONER DE CERO EL MODAL ANTES DE REGISTRAR
             this.est_rude = '',
             this.est_nombre = '',
@@ -586,7 +518,8 @@ export default {
         },
 
         RegistrarEstudiante(){
-           // if(!this.$v.$invalid){
+            this.$v.$reset();
+            if(!this.$v.validationGroupReg.$invalid){
                 swal.fire({
                     title: 'Esta seguro de registrar a este ESTUDIANTE', // TITULO 
                     icon: 'question', //ICONO (success, warnning, error, info, question)
@@ -627,7 +560,7 @@ export default {
                         console.log('no empezamos');
                     }
                 })  
-            /*}else{
+            }else{
                 this.$v.$touch();
                 Swal.fire({
                     icon: 'warning',
@@ -636,12 +569,12 @@ export default {
                     timer: 2000
                 })
                 //this.$v.$reset();
-            }*/
+            }
         },
 
         abrirEditar(estudiante){
             let me =this;
-            //this.$v.$reset(),
+            this.$v.$reset(),
             this.est_id = estudiante.id,
             this.est_rudeA = estudiante.est_rude,
             this.est_ciA = estudiante.est_ci,
@@ -654,7 +587,8 @@ export default {
         },
 
         EditarEstudiante(){
-           // if(!this.$v.$invalid){
+            this.$v.$reset();
+            if(!this.$v.validationGroupEdit.$invalid){
                 swal.fire({
                     title: 'Esta seguro de modificar a esta ESTUDIANTE', // TITULO 
                     icon: 'question', //ICONO (success, warnning, error, info, question)
@@ -696,7 +630,7 @@ export default {
                         console.log('no empezamos');
                     }
                 })  
-           /* }else{
+            }else{
                 this.$v.$touch();
                 Swal.fire({
                     icon: 'warning',
@@ -705,7 +639,7 @@ export default {
                     timer: 2000
                 })
                 //this.$v.$reset();
-            }*/
+            }
         },
   },
 };

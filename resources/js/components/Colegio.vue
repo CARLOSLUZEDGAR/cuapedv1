@@ -249,35 +249,35 @@
 <script>
 import { required, minLength, maxLength, alpha, numeric, email, sameAs} from "vuelidate/lib/validators";
 export default {
-  data() {
-    return {
-      arrayColegio : [],
-      criterio : 'col_nombre',
-      buscar : '',
+    data() {
+        return {
+            arrayColegio : [],
+            criterio : 'col_nombre',
+            buscar : '',
 
-      col_nombre : '',
-      col_sie : '',
-      col_abreviatura : '',
-      col_observaciones : '',
+            col_nombre : '',
+            col_sie : '',
+            col_abreviatura : '',
+            col_observaciones : '',
 
-      col_nombreA : '',
-      col_sieA : '',
-      col_abreviaturaA : '',
-      col_observacionesA : '',
-     // page : 0,
-      pagination : {
-          'total' : 0,
-          'current_page' : 0,
-          'per_page' : 0,
-          'last_page' : 0,
-          'from' : 0,
-          'to' : 0,
-      },
-      offset : 3,
-    }
-  },
+            col_nombreA : '',
+            col_sieA : '',
+            col_abreviaturaA : '',
+            col_observacionesA : '',
+            // page : 0,
+            pagination : {
+                'total' : 0,
+                'current_page' : 0,
+                'per_page' : 0,
+                'last_page' : 0,
+                'from' : 0,
+                'to' : 0,
+            },
+            offset : 3,
+        }
+    },
 
-   validations:{
+    validations:{
         /*
         nombre_den :{   required,
                         minLength: minLength(3),
@@ -305,87 +305,92 @@ export default {
         fecha_nacimiento : { required },
         id_lugar_trabajo : { required },*/
 
-        col_nombre : { required, $autoDirty: true },
-        col_abreviatura : { required, $autoDirty: true },
-        col_sie : { required, $autoDirty: true },
+        col_nombre : { required },
+        col_abreviatura : { required },
+        col_sie : { required },
 
-        col_nombreA : { required, $autoDirty: true },
-        col_abreviaturaA : { required, $autoDirty: true },
-        col_sieA : { required, $autoDirty: true },
+        col_nombreA : { required },
+        col_abreviaturaA : { required },
+        col_sieA : { required },
+
+        validationGroupReg: ['col_nombre', 'col_abreviatura', 'col_sie'],
+        validationGroupEdit: ['col_nombreA', 'col_abreviaturaA', 'col_sieA'],
     },
 
-  mounted() {
-    this.listarColegios(this.page,this.buscar,this.criterio);
-  },
-        computed:{
-            isActived: function(){
-                return this.pagination.current_page;
-            },
+    mounted() {
+        this.listarColegios(this.page,this.buscar,this.criterio);
+    },
 
-            //Calcuar los elementos de la paginacion
-            pagesNumber: function() {
-                if(!this.pagination.to){
-                    return [];
-                }
-
-                var from = this.pagination.current_page - this.offset;
-                if(from < 1){
-                    from = 1;
-                }
-
-                var to = from + (this.offset *2);
-                if( to >= this.pagination.last_page){
-                    to = this.pagination.last_page;
-                }
-
-                var pagesArray = [];
-                while( from <= to){
-                    pagesArray.push(from);
-                    from ++;
-                }
-                return pagesArray;
-            }
+    computed:{
+        isActived: function(){
+            return this.pagination.current_page;
         },
-  methods: {
 
-      Cerrar(){
+        //Calcuar los elementos de la paginacion
+        pagesNumber: function() {
+            if(!this.pagination.to){
+                return [];
+            }
+
+            var from = this.pagination.current_page - this.offset;
+            if(from < 1){
+                from = 1;
+            }
+
+            var to = from + (this.offset *2);
+            if( to >= this.pagination.last_page){
+                to = this.pagination.last_page;
+            }
+
+            var pagesArray = [];
+            while( from <= to){
+                pagesArray.push(from);
+                from ++;
+            }
+            return pagesArray;
+        }
+    },
+    methods: {
+
+        Cerrar(){
             this.$v.$reset()
         },
 
-    listarColegios(page,buscar,criterio){
+        listarColegios(page,buscar,criterio){
             let me = this;
             axios
-          .post("/listarColegio", {
-            page : page,
-            buscar : buscar,
-            criterio : criterio,
-            
-          })
-          .then(function (response) {
-            console.log(response)
-            me.arrayColegio = response.data.colegio.data
-            me.pagination = response.data.pagination;
-          })
-          .catch(function (error) {
-            // handle error
-            console.log(error);
-          })
+            .post("/listarColegio", {
+                page : page,
+                buscar : buscar,
+                criterio : criterio,
+                
+            })
+            .then(function (response) {
+                console.log(response)
+                me.arrayColegio = response.data.colegio.data
+                me.pagination = response.data.pagination;
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
         },
+
         cambiarPagina(page, buscar, criterio){
-                let me = this;
-                //Actualiza la pagina actual
-                me.pagination.current_page= page;
-                //Envia la peticion para visualizar  la data de esa pagina
-                me.listarColegios(page, buscar, criterio);
-            },
+            let me = this;
+            //Actualiza la pagina actual
+            me.pagination.current_page= page;
+            //Envia la peticion para visualizar  la data de esa pagina
+            me.listarColegios(page, buscar, criterio);
+        },
+
         EnvioDatos(datos){
             this.$router.push({
                 name: "DestinosPersonal",
                 //ENVIO DE DATOS
                 params:{
                     d: datos
-                }
-                
+                } 
             });
         },
 
@@ -410,7 +415,8 @@ export default {
         },
 
         RegistrarColegio(){
-            if(!this.$v.$invalid){
+            this.$v.$reset();
+            if(!this.$v.validationGroupReg.$invalid){
                 swal.fire({
                     title: 'Esta seguro de registrar este UNIDAD EDUCATIVA', // TITULO 
                     icon: 'question', //ICONO (success, warnning, error, info, question)
@@ -448,7 +454,8 @@ export default {
                         console.log('no empezamos');
                     }
                 })  
-            }else{
+            }
+            else{
                 this.$v.$touch();
                 Swal.fire({
                     icon: 'warning',
@@ -472,7 +479,8 @@ export default {
         },
 
         EditarColegio(){
-            if(!this.$v.$invalid){
+            this.$v.$reset();
+            if(!this.$v.validationGroupEdit.$invalid){
                 swal.fire({
                     title: 'Esta seguro de modificar esta UNIDAD EDUCATIVA', // TITULO 
                     icon: 'question', //ICONO (success, warnning, error, info, question)
@@ -522,7 +530,7 @@ export default {
                 //this.$v.$reset();
             }
         },
-  },
+    },
 };
 
 </script>
