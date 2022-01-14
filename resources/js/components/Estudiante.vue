@@ -147,6 +147,11 @@
             </div>
             <div class="modal-body">
                     <div class="form-group row">
+                        <div class="col-md-12" style="text-align: center; font-size: 14pt; font-weight: bold;">
+                           DATOS DEL ESTUDIANTE
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <div class="col-md-12">
                             <label class="form-control-label" for="text-input">RUDE</label>
                             <input type="text" v-model="est_rude" class="form-control" :class="{ 'is-invalid' : $v.est_rude.$error, 'is-valid':!$v.est_rude.$invalid }">
@@ -182,9 +187,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="form-group row">
-                        
-                    </div> -->
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label class="form-control-label" for="text-input">NOMBRE(S)</label>
@@ -211,10 +213,59 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <div class="col-md-12" style="text-align: center; font-size: 14pt; font-weight: bold;">
+                           ASIGNACIÓN DE CURSO
+                        </div>
+                    </div>
 
-                    <!-- <div class="form-group row">
-                        
-                    </div> -->
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <label class="form-control-label" for="text-input">NIVEL</label>
+                            <!-- <input type="text" v-model="est_materno" class="form-control" :class="{ 'is-invalid' : $v.est_materno.$error, 'is-valid':!$v.est_materno.$invalid }"> -->
+                                <select class="form-control" v-model="desig_nivel" >
+                                    <option value="0" disabled>SELECCIONE</option>
+                                    <option v-for="niveles in arrayNiveles" :key="niveles.id" :value="niveles.id"  v-text="niveles.nivel_abreviatura"></option>
+                                </select>
+                            <!-- <div class="invalid-feedback">
+                                <span v-if="!$v.est_materno.required">Este campo es Requerido</span>
+                            </div> -->
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-control-label" for="text-input">CURSO</label>
+                            <!-- <input type="text" v-model="est_materno" class="form-control" :class="{ 'is-invalid' : $v.est_materno.$error, 'is-valid':!$v.est_materno.$invalid }"> -->
+                             <select class="form-control" v-model="desig_curso" >
+                                <option value="0" disabled>SELECCIONE</option>
+                                <option v-for="cursos in arrayCursos" :key="cursos.id" :value="cursos.id"  v-text="cursos.curso_sigla"></option>
+                            </select>
+                            <!-- <div class="invalid-feedback">
+                                <span v-if="!$v.est_materno.required">Este campo es Requerido</span>
+                            </div> -->
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-control-label" for="text-input">PARALELO</label>
+                            <!-- <input type="text" v-model="est_materno" class="form-control" :class="{ 'is-invalid' : $v.est_materno.$error, 'is-valid':!$v.est_materno.$invalid }"> -->
+                            <select class="form-control" v-model="desig_paralelo" >
+                                <option value="0" disabled>SELECCIONAR</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                    <option value="I">I</option>
+                            </select>
+                            <!-- <div class="invalid-feedback">
+                                <span v-if="!$v.est_materno.required">Este campo es Requerido</span>
+                            </div> -->
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-control-label" for="text-input">GESTIÓN</label>
+                            <input type="text" v-model="gestion" class="form-control">
+                        </div>
+                    </div>
 
                     <div class="form-group row">
                         <div class="col-md-12">
@@ -341,6 +392,8 @@ export default {
     data() {
         return {
             arrayEstudiante : [],
+            arrayNiveles : [],
+            arrayCursos : [],
             criterio : 'est_rude',
             buscar : '',
 
@@ -351,6 +404,10 @@ export default {
             est_ci : '',
             est_expedido : '',
             est_observacion : '',
+            desig_nivel : '',
+            desig_curso : '',
+            desig_paralelo : '',
+            gestion : '',
 
             est_rudeA : '',
             est_nombreA : '',
@@ -506,15 +563,45 @@ export default {
             this.est_observacion = ''
             //FIN PONER A CERO MODAL
             $('#NuevoEstudiante').modal('show');
-            /*this.obtenerPromocion()
-            this.selectDestinos_nivel1()
-            this.selectDestinos_nivel2()
-            this.selectDestinos_nivel3()
-            this.selectDestinos_nivel4()
-            this.selectbuscarDestinos_nivel2(this.perdest_destn1_codigo)
-            this.selectbuscarDestinos_nivel3(this.perdest_destn2_codigo)
-            this.selectbuscarDestinos_nivel4(this.perdest_destn3_codigo)
-            this.listarCargos()*/
+            // this.obtenerPromocion()
+            this.selectNiveles()
+            this.selectCursos()
+            // this.selectDestinos_nivel3()
+            // this.selectDestinos_nivel4()
+            // this.selectbuscarDestinos_nivel2(this.perdest_destn1_codigo)
+            // this.selectbuscarDestinos_nivel3(this.perdest_destn2_codigo)
+            // this.selectbuscarDestinos_nivel4(this.perdest_destn3_codigo)
+            // this.listarCargos()
+        },
+
+        selectNiveles(){
+            let me = this;
+            axios
+            .get('/selectNiveles')
+            .then(function (response) {
+        //Respuesta de la peticion
+            console.log(response);
+            me.arrayNiveles = response.data;
+            })
+            .catch(function (error) {
+            // handle error
+            console.log(error);
+            });
+        },
+
+        selectCursos(){
+            let me = this;
+            axios
+            .get('/selectCursos')
+            .then(function (response) {
+        //Respuesta de la peticion
+            console.log(response);
+            me.arrayCursos = response.data;
+            })
+            .catch(function (error) {
+            // handle error
+            console.log(error);
+            });
         },
 
         RegistrarEstudiante(){
@@ -544,6 +631,11 @@ export default {
                             est_paterno : me.est_paterno,
                             est_materno : me.est_materno,
                             est_observacion : me.est_observacion,
+                            // cod_col : me.desig_col,
+                            cod_nivel : me.desig_nivel,
+                            cod_curso : me.desig_curso,
+                            paralelo : me.desig_paralelo,
+                            gestion : me.gestion
                         })
                         .then(function (response) {
                             //Respuesta de la peticion

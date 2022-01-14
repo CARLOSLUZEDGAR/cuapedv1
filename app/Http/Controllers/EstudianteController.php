@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\EstudianteCursos;
 use App\Estudiantes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -79,6 +80,19 @@ class EstudianteController extends Controller
             'est_estado' => '1',
             'est_observacion' => $request->est_observacion,
             'est_sysuser' => 'ADMIN',   
+        ]);
+        $estudiante_curso = EstudianteCursos::create([
+            'cod_est' => $estudiante->id,
+            // 'cod_col' => $request->desig_col,
+            'cod_col' => 1,
+            'cod_nivel' => $request->cod_nivel,
+            'cod_curso' => $request->cod_curso,
+            'paralelo' => $request->paralelo,
+            'gestion' => $request->gestion,
+            'estc_estado' => 1,
+            'estc_flag' => 1,
+            'estc_observacion' => $request->est_observacion,
+            'estc_sysuser' => 'ADMIN',
         ]);
     }
 
