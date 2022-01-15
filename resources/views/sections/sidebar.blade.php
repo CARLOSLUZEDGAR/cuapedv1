@@ -46,12 +46,21 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <!--to='INDICA EL PATH EN ARCHIVO routes.js'-->
-                            <router-link class="nav-link" to='/listarColegios'><i class="fas fa-globe-americas"></i> &nbsp;&nbsp;<p>Colegios</p> </router-link>
+                            <!-- <router-link class="nav-link" to='/'><i class="far fa-address-card"></i> &nbsp;&nbsp;<p>Elegir Colegio</p> </router-link> -->
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-school"></i>
+                                    <p>
+                                        Elegir Colegio
+                                        <i class="fa fa-angle-left right"></i>
+                                    </p>
+                            </a>
+                            
                         </li>
-                        <!--<li class="nav-item">
-                            <router-link class="nav-link" to='/'><i class="far fa-address-card"></i> &nbsp;&nbsp;<p>Cargos</p> </router-link>
-                        </li> -->
+                        <li class="nav-item">
+                            <!--to='INDICA EL PATH EN ARCHIVO routes.js'-->
+                            <router-link class="nav-link" to='/listarColegios'><i class="fas fa-globe-americas"></i> &nbsp;&nbsp;<p>Registrar Colegio</p> </router-link>
+                        </li>
+                        
                     </ul>
                 </li>
                 <li class="nav-item has-treeview">

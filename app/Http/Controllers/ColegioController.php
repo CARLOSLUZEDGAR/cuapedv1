@@ -56,8 +56,7 @@ class ColegioController extends Controller
             ],
             'colegio' => $colegio
         ];
-
-        //return response()->json($colegio);
+        // return response()->json($colegio);
     }
 
     public function registrarColegio(Request $request)
