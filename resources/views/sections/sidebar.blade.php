@@ -45,20 +45,33 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <!-- <router-link class="nav-link" to='/'><i class="far fa-address-card"></i> &nbsp;&nbsp;<p>Elegir Colegio</p> </router-link> -->
+                        <!-- <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="fas fa-school"></i>
                                     <p>
                                         Elegir Colegio
                                         <i class="fa fa-angle-left right"></i>
                                     </p>
-                            </a>
-                            
-                        </li>
+                            </a> -->
+                            <!-- <ul class="nav nav-treeview"> -->
+                                <?php 
+                                // $conn = pg_pconnect("host=127.0.0.1 port=5432 dbname=cuaderno_pedagogico user=postgres password=lu12ed29");
+                                // $colegios = pg_query($conn,"select * from colegios where col_estado = 1 order by id");
+                                //     while($col = pg_fetch_array($colegios)){
+                                //         echo '<li class="nav-item">';
+                                //         echo '<router-link class="nav-link" to="/opcionColegio/'.$col['id'].'"><i class="fas fa-globe-americas"></i> &nbsp;&nbsp;<p>'.$col['col_abreviatura'].'</p> </router-link>';
+
+                                        // echo '<a href="#" class="nav-link">';
+                                        // echo '<p>'.$col['col_abreviatura'].'</p>';
+                                        // echo '</a>';
+                                    //     echo '</li>';
+                                    // }
+                                ?>
+                            <!-- </ul> -->
+                        <!-- </li> -->
                         <li class="nav-item">
                             <!--to='INDICA EL PATH EN ARCHIVO routes.js'-->
-                            <router-link class="nav-link" to='/listarColegios'><i class="fas fa-globe-americas"></i> &nbsp;&nbsp;<p>Registrar Colegio</p> </router-link>
+                            <router-link class="nav-link" to='/listarColegios'><i class="fas fa-globe-americas"></i> &nbsp;&nbsp;<p>Unidad Educativa</p> </router-link>
                         </li>
                         
                     </ul>

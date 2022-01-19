@@ -38,6 +38,12 @@ export default new Router ({
         },
 
         {
+            path: '/opcionColegio/:d',
+            name: 'OpcionColegios',
+            component: require('./components/OpcionColegios.vue').default
+        },
+
+        {
             path: '/destinosPersonal/:d',
             //name: "nombre_component"
             name: 'DestinosPersonal',

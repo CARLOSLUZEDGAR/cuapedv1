@@ -19,6 +19,8 @@ Route::post('/listarColegio', 'ColegioController@index');
 Route::post('/registrarColegio', 'ColegioController@registrarColegio');
 Route::put('/editarColegio', 'ColegioController@updateColegio');
 Route::get('/selectColegios','ColegioController@selectColegio');
+Route::post('/datosColegio', 'ColegioController@datosColegio');
+
 //FIN ROUTES COLEGIO
 
 //ROUTES NIVEL

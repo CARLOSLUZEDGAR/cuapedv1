@@ -94,4 +94,15 @@ class ColegioController extends Controller
         ->get();
         return response()->json($colegio);
     }
+
+    public function datosColegio(Request $request)
+    {
+        $col_id = $request->col_id;
+        $colegio = DB::table('colegios')
+        ->select('id','col_abreviatura','col_sie')
+        ->where('id',$col_id)
+        ->orderBy('col_abreviatura','asc')
+        ->first();
+        return response()->json(['colegio' => $colegio]);
+    }
 }

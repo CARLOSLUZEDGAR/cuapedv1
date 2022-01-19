@@ -2177,6 +2177,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2253,6 +2258,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.listarColegios(this.page, this.buscar, this.criterio);
+    this.datosColegio(this.col_id);
   },
   computed: {
     isActived: function isActived() {
@@ -2314,7 +2320,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     EnvioDatos: function EnvioDatos(datos) {
       this.$router.push({
-        name: "DestinosPersonal",
+        name: "OpcionColegios",
         //ENVIO DE DATOS
         params: {
           d: datos
@@ -5077,6 +5083,556 @@ __webpack_require__.r(__webpack_exports__);
           timer: 2000
         }); //this.$v.$reset();
       }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/OpcionColegios.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/OpcionColegios.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//import { required, minLength, between } from 'vuelidate/lib/validators'
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      //RECIBIMOS LA VARIABLE EN ESTE CASO (d)
+      col_id: this.$route.params.d,
+      arrayDatosColegio: [],
+      arrayPersonalEspecialidades: [],
+      arrayEspecialidad: [],
+      arraySubespecialidad: [],
+      errorEspecialidadActualizar: 0,
+      errorMostrarMsjEspecialidadActualizar: [],
+      ano_actual: '',
+      per_cmi: '',
+      per_cmil: '',
+      //VARIABLES MODAL
+      per_paterno: '',
+      per_materno: '',
+      per_nombre: '',
+      //VARIABLES REGISTRAR PER_ESPECIALIDAD
+      perespe_nrodoc: '',
+      perespe_tipodoc: '',
+      perespe_fechadoc: '',
+      perespe_especialidad: '',
+      perespe_subespecialidad: '',
+      perespe_observacion: '',
+      //VARIABLES EDITAR PER_ESPECIALIDAD
+      idPersonalEspecialidad: 0,
+      perespe_nrodocA: '',
+      perespe_tipodocA: '',
+      perespe_fechadocA: '',
+      perespe_especialidadA: '',
+      perespe_subespecialidadA: '',
+      perespe_observacionA: '',
+      rowId: 0
+    };
+  },
+  validations: {
+    perespe_nrodoc: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    perespe_tipodoc: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    perespe_fechadoc: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    perespe_especialidad: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    perespe_subespecialidad: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    perespe_nrodocA: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    perespe_tipodocA: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    perespe_fechadocA: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    perespe_especialidadA: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    perespe_subespecialidadA: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    validationGroupReg: ['perespe_nrodoc', 'perespe_tipodoc', 'perespe_fechadoc', 'perespe_especialidad', 'perespe_subespecialidad'],
+    validationGroupEdit: ['perespe_nrodocA', 'perespe_tipodocA', 'perespe_fechadocA', 'perespe_especialidadA', 'perespe_subespecialidadA']
+  },
+  mounted: function mounted() {
+    //this.ver();
+    this.listarPersonalEspecialidades(this.per_codigo);
+    this.datosColegio(this.col_id);
+  },
+  methods: {
+    listarPersonalEspecialidades: function listarPersonalEspecialidades(per_codigo) {
+      var me = this;
+      axios.post("/listarPersonalEspecialidad", {
+        per_codigo: per_codigo
+      }).then(function (response) {
+        console.log(response);
+        me.arrayPersonalEspecialidades = response.data.especialidad.data;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+    },
+    datosColegio: function datosColegio(col_id) {
+      var me = this;
+      axios.post("/datosColegio", {
+        col_id: col_id
+      }).then(function (response) {
+        console.log(response);
+        me.arrayDatosColegio = response.data.colegio;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+    },
+    changeItem1: function changeItem1(rowId, event) {
+      this.selected = "rowId: " + rowId + ", target.value: " + event.target.value;
+      this.selectbuscarSubespecialidad(event.target.value);
+    },
+    selectEspecialidad: function selectEspecialidad() {
+      var me = this;
+      var filtro = me.arrayDatosPersonal.subescid;
+      var url = '/especialidad/selectEspecialidad?filtro=' + filtro;
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayEspecialidad = respuesta.especialidad;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      }).then(function () {// always executed
+      });
+    },
+    selectSubespecialidad: function selectSubespecialidad() {
+      var me = this;
+      var url = '/subespecialidad/selectSubespecialidad';
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arraySubespecialidad = respuesta.subespecialidad;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      }).then(function () {// always executed
+      });
+    },
+    selectbuscarSubespecialidad: function selectbuscarSubespecialidad(depa) {
+      var me = this;
+      me.buscarD = depa;
+      me.arraySubespecialidad = []; //  me.prov_codigo=0;
+
+      var url = '/subespecialidad/selectbuscarSubespecialidad?buscar=' + depa;
+      me.selected = url;
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arraySubespecialidad = respuesta.subespecialidad;
+      })["catch"](function (error) {
+        // handle error 
+        me.selected = error;
+        console.log(error);
+      }).then(function () {// always executed
+      });
+    },
+    Cerrar: function Cerrar() {
+      this.$v.$reset();
+    },
+    NuevaEspecialidad: function NuevaEspecialidad() {
+      this.$v.$reset(), //PONER DE CERO EL MODAL ANTES DE REGISTRAR
+      this.idPersonalEspecialidad = 0, this.perespe_nrodoc = '', this.perespe_tipodoc = '', this.perespe_fechadoc = '', this.perespe_especialidad = '', this.perespe_subespecialidad = '', this.perespe_observacion = '', //FIN PONER A CERO MODAL
+      $('#NuevaEspecialidad').modal('show');
+      $(".modal-header").css("background-color", "#007bff");
+      $(".modal-header").css("color", "white");
+      $(".modal-title-registro").text("Registrar Nueva Especialidad");
+      this.selectEspecialidad();
+      this.selectSubespecialidad();
+      this.selectbuscarSubespecialidad(this.perespe_especialidad);
+    },
+    RegistrarEspecialidad: function RegistrarEspecialidad() {
+      var _this = this;
+
+      this.$v.$reset();
+
+      if (!this.$v.validationGroupReg.$invalid) {
+        swal.fire({
+          title: 'Se registrara la Especialidad',
+          // TITULO 
+          icon: 'warning',
+          //ICONO (success, warnning, error, info, question)
+          showCancelButton: true,
+          //HABILITACION DEL BOTON CANCELAR
+          confirmButtonColor: '#3085d6',
+          // COLOR DEL BOTON PARA CONFIRMAR
+          cancelButtonColor: '#d33',
+          // CLOR DEL BOTON CANCELAR
+          confirmButtonText: 'Registrar',
+          //TITULO DEL BOTON CONFIRMAR
+          cancelButtonText: 'Cancelar',
+          //TIUTLO DEL BOTON CANCELAR
+          buttonsStyling: true,
+          reverseButtons: true
+        }).then(function (result) {
+          if (result.value) {
+            //CODIGO HA SER VALIDADO
+            var me = _this;
+            axios.post("/registrarPerEspecialidad", {
+              //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
+              per_codigo: me.per_codigo,
+              espe_cod: me.perespe_especialidad,
+              subespe_cod: me.perespe_subespecialidad,
+              documento: me.perespe_tipodoc,
+              fecha_documento: me.perespe_fechadoc,
+              fecha: me.perespe_fechadoc,
+              nrodoc: me.perespe_nrodoc,
+              observacion: me.perespe_observacion,
+              filtro: me.arrayDatosPersonal.subescid
+            }).then(function (response) {
+              //Respuesta de la peticion
+              console.log(response);
+              Swal.fire({
+                icon: 'success',
+                title: 'Se ha registrado la nueva Especialidad',
+                showConfirmButton: false,
+                timer: 1500
+              });
+              $('#NuevaEspecialidad').modal('hide');
+              me.listarPersonalEspecialidades(me.per_codigo);
+            })["catch"](function (error) {
+              // handle error
+              console.log(error);
+            });
+          } else {
+            console.log('no empezamos');
+          }
+        });
+      } else {
+        this.$v.$touch();
+        Swal.fire({
+          icon: 'warning',
+          title: 'Ingrese todos los datos requeridos',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    },
+    abrirEditar: function abrirEditar(personalEspecialidad) {
+      var me = this;
+      this.$v.$reset(), this.idPersonalEspecialidad = personalEspecialidad.idpersonal_especialidades, this.perespe_nrodocA = personalEspecialidad.nrodoc, this.perespe_tipodocA = personalEspecialidad.documento, this.perespe_fechadocA = personalEspecialidad.fecha_documento, this.perespe_fechadocA = this.perespe_fechadocA.substring(0, 10);
+      var info10 = this.perespe_fechadocA.split('-');
+      this.perespe_fechadocA = info10[0] + '-' + info10[1] + '-' + info10[2];
+      this.perespe_especialidadA = personalEspecialidad.idespe, this.perespe_subespecialidadA = personalEspecialidad.idsubespe, this.perespe_observacionA = personalEspecialidad.observacion, $('#EditarEspecialidad').modal('show');
+      $(".modal-header").css("background-color", "#007bff");
+      $(".modal-header").css("color", "white");
+      $(".modal-title-edit").text("Editar Especialidad");
+      this.selectEspecialidad();
+      this.selectSubespecialidad();
+      this.selectbuscarSubespecialidad(this.perespe_especialidadA);
+    },
+    // validarEspecialidadActualizar(){
+    //     this.errorEspecialidadActualizar=0;
+    //     this.errorMostrarMsjEspecialidadActualizar =[];
+    //     if(!this.perespe_nrodocA) this.errorMostrarMsjEspecialidadActualizar.push("Ingresar Nro de Documento");
+    //     if(!this.perespe_tipodocA) this.errorMostrarMsjEspecialidadActualizar.push("Seleccione tipo de Documento");
+    //     if(!this.perespe_fechadocA) this.errorMostrarMsjEspecialidadActualizar.push("Registre la Fecha del Documento");
+    //     if(!this.perespe_especialidadA) this.errorMostrarMsjEspecialidadActualizar.push("Seleccione una Especialidad");
+    //     if(!this.perespe_subespecialidadA) this.errorMostrarMsjEspecialidadActualizar.push("Seleccione una Subespecialidad");  
+    //     if
+    //     (this.errorMostrarMsjEspecialidadActualizar.length) this.errorEspecialidadActualizar = 1;
+    //     return this.errorEspecialidadActualizar;
+    // },
+    EditarEspecialidad: function EditarEspecialidad() {
+      var _this2 = this;
+
+      this.$v.$reset();
+
+      if (!this.$v.validationGroupEdit.$invalid) {
+        swal.fire({
+          title: 'Se modificara esta Especialidad',
+          // TITULO 
+          icon: 'warning',
+          //ICONO (success, warnning, error, info, question)
+          showCancelButton: true,
+          //HABILITACION DEL BOTON CANCELAR
+          confirmButtonColor: '#3085d6',
+          // COLOR DEL BOTON PARA CONFIRMAR
+          cancelButtonColor: '#d33',
+          // CLOR DEL BOTON CANCELAR
+          confirmButtonText: 'Actualizar',
+          //TITULO DEL BOTON CONFIRMAR
+          cancelButtonText: 'Cancelar',
+          //TIUTLO DEL BOTON CANCELAR
+          buttonsStyling: true,
+          reverseButtons: true
+        }).then(function (result) {
+          if (result.value) {
+            //CODIGO HA SER VALIDADO
+            var me = _this2;
+            axios.put("/editarPerEspecialidad", {
+              //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
+              id: me.idPersonalEspecialidad,
+              per_codigo: me.per_codigo,
+              espe_cod: me.perespe_especialidadA,
+              subespe_cod: me.perespe_subespecialidadA,
+              documento: me.perespe_tipodocA,
+              fecha_documento: me.perespe_fechadocA,
+              nrodoc: me.perespe_nrodocA,
+              observacion: me.perespe_observacionA
+            }).then(function (response) {
+              //Respuesta de la peticion
+              console.log(response);
+              Swal.fire({
+                icon: 'success',
+                title: 'Se ha actualizado la Especialidad',
+                showConfirmButton: false,
+                timer: 1500
+              });
+              $('#EditarEspecialidad').modal('hide');
+              me.listarPersonalEspecialidades(me.per_codigo);
+            })["catch"](function (error) {
+              // handle error
+              console.log(error);
+            });
+          } else {
+            console.log('no empezamos');
+          }
+        });
+      } else {
+        this.$v.$touch();
+        Swal.fire({
+          icon: 'warning',
+          title: 'Ingrese todos los datos requeridos',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    },
+    desactivarPerEspecialidad: function desactivarPerEspecialidad(personalEspecialidad) {
+      var _this3 = this;
+
+      //if(!this.$v.$invalid){
+      swal.fire({
+        title: 'Esta seguro de eliminar esta especialidad',
+        // TITULO 
+        icon: 'warning',
+        //ICONO (success, warnning, error, info, question)
+        showCancelButton: true,
+        //HABILITACION DEL BOTON CANCELAR
+        confirmButtonColor: 'info',
+        // COLOR DEL BOTON PARA CONFIRMAR
+        cancelButtonColor: '#868077',
+        // CLOR DEL BOTON CANCELAR
+        confirmButtonText: 'Confirmar',
+        //TITULO DEL BOTON CONFIRMAR
+        cancelButtonText: 'Cancelar',
+        //TIUTLO DEL BOTON CANCELAR
+        buttonsStyling: true,
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          //CODIGO HA SER VALIDADO
+          var me = _this3;
+          _this3.idPersonalEspecialidad = personalEspecialidad.idpersonal_especialidades, _this3.perespe_fechadoc = personalEspecialidad.fecha_documento, axios.put('/desactivarPerEspecialidad', {
+            //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
+            idPersonalEspecialidad: me.idPersonalEspecialidad,
+            fecha_documento: me.perespe_fechadoc,
+            per_codigo: me.per_codigo
+          }).then(function (response) {
+            //Respuesta de la peticion
+            console.log(response);
+            me.listarPersonalEspecialidades(me.per_codigo);
+          })["catch"](function (error) {
+            // handle error
+            console.log(error);
+          });
+        } else {
+          console.log('no empezamos');
+        }
+      });
+    },
+    CurrComanjefe: function CurrComanjefe(per_codigo) {
+      window.open('http://127.0.0.1:8000/curriculumComanjefe?per_codigo=' + per_codigo); // window.open('http://sipefab.fab.bo/curriculumComanjefe?per_codigo='+per_codigo);
+    },
+    CurrExtendido: function CurrExtendido(per_codigo) {
+      window.open('http://127.0.0.1:8000/curriculumExtendido?per_codigo=' + per_codigo); // window.open('http://sipefab.fab.bo/curriculumExtendido?per_codigo='+per_codigo);
+    },
+    CurrResumen: function CurrResumen(per_codigo) {
+      window.open('http://127.0.0.1:8000/curriculumResumen?per_codigo=' + per_codigo); // window.open('http://sipefab.fab.bo/curriculumResumen?per_codigo='+per_codigo);
+    },
+    CertTrabajo: function CertTrabajo(per_codigo) {
+      window.open('http://127.0.0.1:8000/certificadoTrabajo?per_codigo=' + per_codigo); // window.open('http://sipefab.fab.bo/certificadoTrabajo?per_codigo='+per_codigo);
+    },
+    CurrVitae: function CurrVitae(per_codigo) {
+      window.open('http://127.0.0.1:8000/curriculumVitae?per_codigo=' + per_codigo); // window.open('http://sipefab.fab.bo/certificadoTrabajo?per_codigo='+per_codigo);
+    },
+    HojaVida: function HojaVida(per_codigo) {
+      window.open('http://127.0.0.1:8000/hojaVida?per_codigo=' + per_codigo); // window.open('http://sipefab.fab.bo/certificadoTrabajo?per_codigo='+per_codigo);
+    },
+    Atras: function Atras() {
+      this.$router.push({
+        name: "ListarPerCurriculum" //ENVIO DE DATOS
+        // params:{
+        //     d: datos
+        // }
+
+      });
     }
   }
 });
@@ -42287,7 +42843,9 @@ var render = function() {
                         _vm._v(" "),
                         _c("th", [_c("center", [_vm._v("SIE")])], 1),
                         _vm._v(" "),
-                        _c("th", [_c("center", [_vm._v("COLEGIO")])], 1)
+                        _c("th", [_c("center", [_vm._v("COLEGIO")])], 1),
+                        _vm._v(" "),
+                        _c("th", [_c("center", [_vm._v("OPCIONES")])], 1)
                       ])
                     ]),
                     _vm._v(" "),
@@ -42367,7 +42925,38 @@ var render = function() {
                             domProps: {
                               textContent: _vm._s(colegio.col_abreviatura)
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              staticStyle: {
+                                width: "100px",
+                                "text-align": "center"
+                              }
+                            },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-success btn-sm",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.EnvioDatos(colegio.id)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "fa fa-eye",
+                                    attrs: { "aria-hidden": "true" }
+                                  })
+                                ]
+                              ),
+                              _vm._v("  \n                              ")
+                            ]
+                          )
                         ])
                       }),
                       0
@@ -47399,6 +47988,378 @@ var staticRenderFns = [
           )
         ]
       )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/OpcionColegios.vue?vue&type=template&id=debb54c8&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/OpcionColegios.vue?vue&type=template&id=debb54c8& ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("section", { staticClass: "content" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "card card-primary card-outline" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-2" }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-md-10 d-flex align-items-center" },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "col-md-12 d-flex flex-column bd-highlight mb-3"
+                        },
+                        [
+                          _c("div", { staticClass: "row p-2 bd-highlight" }, [
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _c("dl", [
+                                _c("dt", { staticClass: "st" }, [
+                                  _vm._v("UNIDAD EDUCATIVA")
+                                ]),
+                                _vm._v(" "),
+                                _c("dd", { staticClass: "st" }, [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.arrayDatosColegio.col_abreviatura
+                                    )
+                                  )
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-4" }, [
+                              _c("dl", [
+                                _c("dt", { staticClass: "st" }, [
+                                  _vm._v("SIE")
+                                ]),
+                                _vm._v(" "),
+                                _c("dd", { staticClass: "st" }, [
+                                  _vm._v(_vm._s(_vm.arrayDatosColegio.col_sie))
+                                ])
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(1),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "row p-2 bd-highlight justify-content-center"
+                            },
+                            [
+                              _c("div", { staticClass: "col-md-3" }, [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "btn btn-secondary btn-sm btn-block",
+                                    staticStyle: { width: "100%" },
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.CurrComanjefe(_vm.per_codigo)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "i",
+                                      {
+                                        staticClass: "far fa-file-alt",
+                                        attrs: { "aria-hidden": "true" }
+                                      },
+                                      [_vm._v("  Curriculum COMANJEFE")]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(
+                                  "  \n                                      "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-3" }, [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "btn btn-secondary btn-sm btn-block",
+                                    staticStyle: { width: "100%" },
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.CurrExtendido(_vm.per_codigo)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "i",
+                                      {
+                                        staticClass: "far fa-file-alt",
+                                        attrs: { "aria-hidden": "true" }
+                                      },
+                                      [_vm._v("  Curriculum Extendido")]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(
+                                  "  \n                                      "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-3" }, [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "btn btn-secondary btn-sm btn-block",
+                                    staticStyle: { width: "100%" },
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.CurrResumen(_vm.per_codigo)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "i",
+                                      {
+                                        staticClass: "far fa-file-alt",
+                                        attrs: { "aria-hidden": "true" }
+                                      },
+                                      [_vm._v("  Curriculum Resumen")]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(
+                                  "  \n                                      "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-3" }, [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "btn btn-secondary btn-sm btn-block",
+                                    staticStyle: { width: "100%" },
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.CertTrabajo(_vm.per_codigo)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "i",
+                                      {
+                                        staticClass: "far fa-file-alt",
+                                        attrs: { "aria-hidden": "true" }
+                                      },
+                                      [_vm._v("  Certificado de Trabajo")]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(
+                                  "  \n                                      "
+                                )
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "row p-2 bd-highlight justify-content-center"
+                            },
+                            [
+                              _c("div", { staticClass: "col-md-3" }, [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "btn btn-secondary btn-sm btn-block",
+                                    staticStyle: { width: "100%" },
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.CurrVitae(_vm.per_codigo)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "i",
+                                      {
+                                        staticClass: "far fa-file-alt",
+                                        attrs: { "aria-hidden": "true" }
+                                      },
+                                      [_vm._v("  Curriculum Vitae")]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(
+                                  "  \n                                      "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-3" }, [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "btn btn-secondary btn-sm btn-block",
+                                    staticStyle: { width: "100%" },
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.HojaVida(_vm.per_codigo)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "i",
+                                      {
+                                        staticClass: "far fa-file-alt",
+                                        attrs: { "aria-hidden": "true" }
+                                      },
+                                      [_vm._v("  Hoja de Vida")]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(
+                                  "  \n                                      "
+                                )
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "row p-2 bd-highlight justify-content-center"
+                            },
+                            [
+                              _c("div", { staticClass: "col-md-4" }, [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "btn btn-danger btn-sm btn-block",
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.Atras()
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "i",
+                                      {
+                                        staticClass: "fas fa-reply",
+                                        attrs: { "aria-hidden": "true" }
+                                      },
+                                      [_vm._v(" Volver Atrás")]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(
+                                  "  \n                                      "
+                                )
+                              ])
+                            ]
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "content-header" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row mb-2" }, [
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h1", [
+              _c("i", { staticClass: "far fa-bookmark" }),
+              _vm._v("\n              Opciones Unidad Educativa\n          ")
+            ]),
+            _vm._v(" \n        ")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
+              _c("li", { staticClass: "breadcrumb-item" }, [
+                _c("a", { attrs: { href: "#" } }, [_vm._v("Inicio")])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "breadcrumb-item active" }, [
+                _vm._v("Opciones Unidad Educativa")
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row p-2 bd-highlight" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("dl", [_c("dt", { staticClass: "st" }, [_vm._v("DISTRITO")])])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("dl", [
+          _c("dt", { staticClass: "st" }, [_vm._v("ESPECIALIDAD ACTUAL")])
+        ])
+      ])
     ])
   }
 ]
@@ -73868,6 +74829,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/OpcionColegios.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/components/OpcionColegios.vue ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _OpcionColegios_vue_vue_type_template_id_debb54c8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OpcionColegios.vue?vue&type=template&id=debb54c8& */ "./resources/js/components/OpcionColegios.vue?vue&type=template&id=debb54c8&");
+/* harmony import */ var _OpcionColegios_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OpcionColegios.vue?vue&type=script&lang=js& */ "./resources/js/components/OpcionColegios.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _OpcionColegios_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _OpcionColegios_vue_vue_type_template_id_debb54c8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _OpcionColegios_vue_vue_type_template_id_debb54c8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/OpcionColegios.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/OpcionColegios.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/OpcionColegios.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OpcionColegios_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./OpcionColegios.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/OpcionColegios.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OpcionColegios_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/OpcionColegios.vue?vue&type=template&id=debb54c8&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/OpcionColegios.vue?vue&type=template&id=debb54c8& ***!
+  \***********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OpcionColegios_vue_vue_type_template_id_debb54c8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./OpcionColegios.vue?vue&type=template&id=debb54c8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/OpcionColegios.vue?vue&type=template&id=debb54c8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OpcionColegios_vue_vue_type_template_id_debb54c8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OpcionColegios_vue_vue_type_template_id_debb54c8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/routes.js":
 /*!********************************!*\
   !*** ./resources/js/routes.js ***!
@@ -73911,6 +74941,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
   }, {
     path: '/designarEstudiantes',
     component: __webpack_require__(/*! ./components/DesignacionCurso.vue */ "./resources/js/components/DesignacionCurso.vue")["default"]
+  }, {
+    path: '/opcionColegio/:d',
+    name: 'OpcionColegios',
+    component: __webpack_require__(/*! ./components/OpcionColegios.vue */ "./resources/js/components/OpcionColegios.vue")["default"]
   }, {
     path: '/destinosPersonal/:d',
     //name: "nombre_component"

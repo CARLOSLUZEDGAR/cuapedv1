@@ -64,8 +64,8 @@
                                 <th><center>OPCIONES</center></th>
                                 <th><center>SIE</center></th>
                                 <th><center>COLEGIO</center></th>
-                                <!--<th><center>AP. PATERNO</center></th>
-                                <th><center>AP. MATERNO</center></th>
+                                <th><center>OPCIONES</center></th>
+                                <!--<th><center>AP. MATERNO</center></th>
                                 <th><center>NOMBRES</center></th>-->
                             </tr>
                         </thead>
@@ -89,6 +89,11 @@
                                 <td v-text="colegio.col_sie" ></td>
                                 
                                 <td v-text="colegio.col_abreviatura" ></td>
+                                <td style="width:100px; text-align:center">
+                                  <button type="button" class="btn btn-success btn-sm" @click="EnvioDatos(colegio.id)">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                  </button> &nbsp;
+                                </td>
                                 <!--<td>{{personal.gra_abreviatura}}{{personal.estu_abreviatura}}</td>
                                 <td v-text="personal.per_paterno"></td>
                                 <td v-text="personal.per_materno"></td>
@@ -251,6 +256,7 @@ import { required, minLength, maxLength, alpha, numeric, email, sameAs} from "vu
 export default {
     data() {
         return {
+            
             arrayColegio : [],
             criterio : 'col_nombre',
             buscar : '',
@@ -319,6 +325,7 @@ export default {
 
     mounted() {
         this.listarColegios(this.page,this.buscar,this.criterio);
+        this.datosColegio(this.col_id);
     },
 
     computed:{
@@ -386,7 +393,7 @@ export default {
 
         EnvioDatos(datos){
             this.$router.push({
-                name: "DestinosPersonal",
+                name: "OpcionColegios",
                 //ENVIO DE DATOS
                 params:{
                     d: datos
