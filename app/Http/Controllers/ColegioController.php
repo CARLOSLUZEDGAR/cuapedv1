@@ -81,7 +81,7 @@ class ColegioController extends Controller
             file_put_contents($path, $decoded);
 
         } else {
-            $fileName = 'colegio.jpg';
+            $fileName = 'colegio.png';
         }
         $colegio = Colegios::create([
             //'CAMPO DE LA TABLA' => $request->NOMBRE Q VIENE DE LA VISTA
@@ -122,7 +122,7 @@ class ColegioController extends Controller
     {
         $col_id = $request->col_id;
         $colegio = DB::table('colegios')
-        ->select('id','col_abreviatura','col_sie')
+        ->select('id','col_abreviatura','col_sie','col_foto')
         ->where('id',$col_id)
         ->orderBy('col_abreviatura','asc')
         ->first();

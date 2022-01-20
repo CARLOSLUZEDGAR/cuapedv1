@@ -31,7 +31,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-2">
-                                <!-- <img v-bind:src="'../img/personal/'+arrayDatosPersonal.per_foto" class="rounded float-left img-fluid" width="150" height="150"> -->
+                                <img v-bind:src="'../img/colegio/'+arrayDatosColegio.col_foto" class="rounded float-left img-fluid" width="150" height="150" style="border: 2px solid blue;">
                             </div>
                     
                             <div class="col-md-10 d-flex align-items-center">
