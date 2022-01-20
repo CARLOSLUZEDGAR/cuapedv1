@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Colegios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ColegioController extends Controller
 {
@@ -61,11 +62,33 @@ class ColegioController extends Controller
 
     public function registrarColegio(Request $request)
     {
+        if ($request->col_foto != "") {
+            $exploded = explode(',', $request->col_foto);
+            $decoded = base64_decode($exploded[1]);
+            if (Str::contains($exploded[0], 'jpeg')) {
+                $extension = 'jpg';
+            } else {
+                $extension = 'png';
+            }
+            $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i=0; $i < 10; $i++) {
+               $randomString .= $characters[rand(0,$charactersLength - 1)];
+            }
+            $fileName = $randomString.($request->col_sie).$randomString.'.'.$extension;
+            $path = public_path().'/img/colegio/'.$fileName;
+            file_put_contents($path, $decoded);
+
+        } else {
+            $fileName = 'colegio.jpg';
+        }
         $colegio = Colegios::create([
             //'CAMPO DE LA TABLA' => $request->NOMBRE Q VIENE DE LA VISTA
             'col_nombre' => $request->col_nombre,
             'col_abreviatura' => $request->col_abreviatura,
             'col_sie' => $request->col_sie,
+            'col_foto' => $fileName,
             'col_estado' => '1',
             'col_observacion' => $request->col_observacion,
             'col_sysuser' => 'ADMIN',

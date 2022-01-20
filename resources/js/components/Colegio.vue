@@ -148,7 +148,15 @@
             </div>
             <div class="modal-body">
                     <div class="form-group row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
+                            <label for="celular">FOTO</label>
+                            <input type="file" class="form-control" @change="obtenerImagen" accept="image/*">
+                            <!-- <input type="file" class="form-control" @change="obtenerImagen" accept="image/*" :class="hasError('foto') ? 'is-invalid' : ''">
+                            <div v-if="hasError('foto')" class="invalid-feedback">
+                                <div class="error" v-if="!$v.formData.foto.required">Ingrese valor porfavor.</div>
+                            </div> -->
+                        </div>
+                        <div class="col-md-6">
                             <label class="form-control-label" for="text-input">NOMBRE COLEGIO</label>
                             <input type="text" v-model="col_nombre" class="form-control" :class="{ 'is-invalid' : $v.col_nombre.$error, 'is-valid':!$v.col_nombre.$invalid }">
                             <div class="invalid-feedback">
@@ -265,6 +273,7 @@ export default {
             col_sie : '',
             col_abreviatura : '',
             col_observaciones : '',
+            col_foto : '',
 
             col_nombreA : '',
             col_sieA : '',
@@ -325,7 +334,7 @@ export default {
 
     mounted() {
         this.listarColegios(this.page,this.buscar,this.criterio);
-        this.datosColegio(this.col_id);
+        // this.datosColegio(this.col_id);
     },
 
     computed:{
@@ -355,6 +364,10 @@ export default {
                 from ++;
             }
             return pagesArray;
+        },
+
+        imagen(){
+            return this.col_foto;
         }
     },
     methods: {
@@ -401,6 +414,20 @@ export default {
             });
         },
 
+        obtenerImagen(e){
+            try {
+                var fileReader = new FileReader();
+
+                fileReader.onload = (e) => {
+                    this.col_foto = e.target.result;
+                }
+                fileReader.readAsDataURL(e.target.files[0])
+                this.v = 1;
+            } catch (error) {
+                
+            }
+        },
+
         NuevoColegio(){
             this.$v.$reset(),
             //PONER DE CERO EL MODAL ANTES DE REGISTRAR
@@ -445,6 +472,7 @@ export default {
                             col_abreviatura : me.col_abreviatura,
                             col_sie : me.col_sie,
                             col_observaciones : me.col_observaciones,
+                            col_foto : me.col_foto
                         })
                         .then(function (response) {
                             //Respuesta de la peticion

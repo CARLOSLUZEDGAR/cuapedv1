@@ -2182,6 +2182,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2193,6 +2201,7 @@ __webpack_require__.r(__webpack_exports__);
       col_sie: '',
       col_abreviatura: '',
       col_observaciones: '',
+      col_foto: '',
       col_nombreA: '',
       col_sieA: '',
       col_abreviaturaA: '',
@@ -2257,8 +2266,7 @@ __webpack_require__.r(__webpack_exports__);
     validationGroupEdit: ['col_nombreA', 'col_abreviaturaA', 'col_sieA']
   },
   mounted: function mounted() {
-    this.listarColegios(this.page, this.buscar, this.criterio);
-    this.datosColegio(this.col_id);
+    this.listarColegios(this.page, this.buscar, this.criterio); // this.datosColegio(this.col_id);
   },
   computed: {
     isActived: function isActived() {
@@ -2290,6 +2298,9 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return pagesArray;
+    },
+    imagen: function imagen() {
+      return this.col_foto;
     }
   },
   methods: {
@@ -2327,6 +2338,20 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
+    obtenerImagen: function obtenerImagen(e) {
+      var _this = this;
+
+      try {
+        var fileReader = new FileReader();
+
+        fileReader.onload = function (e) {
+          _this.col_foto = e.target.result;
+        };
+
+        fileReader.readAsDataURL(e.target.files[0]);
+        this.v = 1;
+      } catch (error) {}
+    },
     NuevoColegio: function NuevoColegio() {
       this.$v.$reset(), //PONER DE CERO EL MODAL ANTES DE REGISTRAR
       this.col_nombre = '', this.col_sie = '', this.col_abreviatura = '', this.col_observaciones = ''; //FIN PONER A CERO MODAL
@@ -2343,7 +2368,7 @@ __webpack_require__.r(__webpack_exports__);
       this.listarCargos()*/
     },
     RegistrarColegio: function RegistrarColegio() {
-      var _this = this;
+      var _this2 = this;
 
       this.$v.$reset();
 
@@ -2368,13 +2393,14 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (result) {
           if (result.value) {
             //CODIGO HA SER VALIDADO
-            var me = _this;
+            var me = _this2;
             axios.post("/registrarColegio", {
               //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
               col_nombre: me.col_nombre,
               col_abreviatura: me.col_abreviatura,
               col_sie: me.col_sie,
-              col_observaciones: me.col_observaciones
+              col_observaciones: me.col_observaciones,
+              col_foto: me.col_foto
             }).then(function (response) {
               //Respuesta de la peticion
               console.log(response);
@@ -2404,7 +2430,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$v.$reset(), this.col_id = colegio.id, this.col_nombreA = colegio.col_nombre, this.col_abreviaturaA = colegio.col_abreviatura, this.col_sieA = colegio.col_sie, this.col_observacionesA = colegio.col_observacion, $('#EditarColegio').modal('show');
     },
     EditarColegio: function EditarColegio() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$v.$reset();
 
@@ -2429,7 +2455,7 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (result) {
           if (result.value) {
             //CODIGO HA SER VALIDADO
-            var me = _this2;
+            var me = _this3;
             axios.put("/editarColegio", {
               //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
               col_id: me.col_id,
@@ -5627,7 +5653,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     Atras: function Atras() {
       this.$router.push({
-        name: "ListarPerCurriculum" //ENVIO DE DATOS
+        name: "Colegios" //ENVIO DE DATOS
         // params:{
         //     d: datos
         // }
@@ -43086,7 +43112,17 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "modal-body" }, [
               _c("div", { staticClass: "form-group row" }, [
-                _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("label", { attrs: { for: "celular" } }, [_vm._v("FOTO")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: { type: "file", accept: "image/*" },
+                    on: { change: _vm.obtenerImagen }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
                   _c(
                     "label",
                     {
@@ -74934,6 +74970,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
    },*/
   {
     path: '/listarColegios',
+    name: 'Colegios',
     component: __webpack_require__(/*! ./components/Colegio.vue */ "./resources/js/components/Colegio.vue")["default"]
   }, {
     path: '/listarEstudiantes',

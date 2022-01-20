@@ -24,6 +24,7 @@ export default new Router ({
 
         {
             path: '/listarColegios',
+            name: 'Colegios',
             component: require('./components/Colegio.vue').default
         },
 

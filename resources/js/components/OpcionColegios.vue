@@ -562,7 +562,7 @@ export default {
 
         Atras(){
             this.$router.push({
-                name: "ListarPerCurriculum"
+                name: "Colegios"
                 //ENVIO DE DATOS
                 // params:{
                 //     d: datos
