@@ -64,6 +64,8 @@
                                 <th><center>OPCIONES</center></th>
                                 <th><center>SIE</center></th>
                                 <th><center>COLEGIO</center></th>
+                                <th><center>TURNO</center></th>
+                                <th><center>DEPENDENCIA</center></th>
                                 <th><center>OPCIONES</center></th>
                                 <!--<th><center>AP. MATERNO</center></th>
                                 <th><center>NOMBRES</center></th>-->
@@ -89,6 +91,8 @@
                                 <td v-text="colegio.col_sie" ></td>
                                 
                                 <td v-text="colegio.col_abreviatura" ></td>
+                                <td v-text="colegio.col_turno" ></td>
+                                <td v-text="colegio.col_dependencia" ></td>
                                 <td style="width:100px; text-align:center">
                                   <button type="button" class="btn btn-success btn-sm" @click="EnvioDatos(colegio.id)">
                                     <i class="fa fa-eye" aria-hidden="true"></i>
@@ -141,7 +145,7 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">REGISTRAR COLEGIO</h4>
+              <h4 class="modal-title">REGISTRAR UNIDAD EDUCATIVA</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="Cerrar()">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -149,7 +153,7 @@
             <div class="modal-body">
                     <div class="form-group row">
                         <div class="col-md-6">
-                            <label for="celular">FOTO</label>
+                            <label for="celular">INSIGNIA</label>
                             <input type="file" class="form-control" @change="obtenerImagen" accept="image/*">
                             <!-- <input type="file" class="form-control" @change="obtenerImagen" accept="image/*" :class="hasError('foto') ? 'is-invalid' : ''">
                             <div v-if="hasError('foto')" class="invalid-feedback">
@@ -157,16 +161,25 @@
                             </div> -->
                         </div>
                         <div class="col-md-6">
-                            <label class="form-control-label" for="text-input">NOMBRE COLEGIO</label>
+                            <label class="form-control-label" for="text-input">SIE</label>
+                            <input type="text" v-model="col_sie" class="form-control" :class="{ 'is-invalid' : $v.col_sie.$error, 'is-valid':!$v.col_sie.$invalid }">
+                            <div class="invalid-feedback">
+                                <span v-if="!$v.col_sie.required">Este campo es Requerido</span>
+                            </div>
+                        </div>   
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label class="form-control-label" for="text-input">NOMBRE</label>
                             <input type="text" v-model="col_nombre" class="form-control" :class="{ 'is-invalid' : $v.col_nombre.$error, 'is-valid':!$v.col_nombre.$invalid }">
                             <div class="invalid-feedback">
                                 <span v-if="!$v.col_nombre.required">Este campo es Requerido</span>
                             </div> 
-                        </div>
+                        </div>  
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <label class="form-control-label" for="text-input">ABREVIATURA COLEGIO</label>
+                            <label class="form-control-label" for="text-input">ABREVIATURA</label>
                             <input type="text" v-model="col_abreviatura" class="form-control" :class="{ 'is-invalid' : $v.col_abreviatura.$error, 'is-valid':!$v.col_abreviatura.$invalid }">
                             <div class="invalid-feedback">
                                 <span v-if="!$v.col_abreviatura.required">Este campo es Requerido</span>
@@ -175,10 +188,36 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <label class="form-control-label" for="text-input">SIE COLEGIO</label>
-                            <input type="text" v-model="col_sie" class="form-control" :class="{ 'is-invalid' : $v.col_sie.$error, 'is-valid':!$v.col_sie.$invalid }">
+                            <label class="form-control-label" for="text-input">DIRECTOR(A)</label>
+                            <input type="text" v-model="col_director" class="form-control" :class="{ 'is-invalid' : $v.col_abreviatura.$error, 'is-valid':!$v.col_abreviatura.$invalid }">
                             <div class="invalid-feedback">
-                                <span v-if="!$v.col_sie.required">Este campo es Requerido</span>
+                                <span v-if="!$v.col_director.required">Este campo es Requerido</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label class="form-control-label" for="text-input">TURNO</label>
+                            <select class="form-control" v-model="col_turno" :class="{ 'is-invalid' : $v.col_turno.$error, 'is-valid':!$v.col_turno.$invalid }">
+                                <option value="" disabled>SELECCIONAR</option>
+                                    <option value="MAÑANA">MAÑANA</option>
+                                    <option value="TARDE">TARDE</option>
+                                    <option value="NOCHE">NOCHE</option>
+                            </select>                           
+                            <div class="invalid-feedback">
+                                <span v-if="!$v.col_turno.required">Este campo es Requerido</span>
+                            </div> 
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-control-label" for="text-input">DEPENDENCIA</label>
+                            <select class="form-control" v-model="col_dependencia" :class="{ 'is-invalid' : $v.col_dependencia.$error, 'is-valid':!$v.col_dependencia.$invalid }">
+                                <option value="" disabled>SELECCIONAR</option>
+                                    <option value="PUBLICO">PUBLICO</option>
+                                    <option value="PARTICULAR">PARTICULAR</option>
+                                    <option value="CONVENIO">CONVENIO</option>
+                            </select>                            
+                            <div class="invalid-feedback">
+                                <span v-if="!$v.col_dependencia.required">Este campo es Requerido</span>
                             </div>
                         </div>
                     </div>
@@ -203,39 +242,82 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">EDITAR COLEGIO</h4>
+              <h4 class="modal-title">EDITAR UNIDAD EDUCATIVA</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="Cerrar()">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
                 <div class="form-group row">
-                        <div class="col-md-12">
-                            <label class="form-control-label" for="text-input">NOMBRE COLEGIO</label>
-                            <input type="text" v-model="col_nombreA" class="form-control" :class="{ 'is-invalid' : $v.col_nombreA.$error, 'is-valid':!$v.col_nombreA.$invalid }">
-                            <div class="invalid-feedback">
-                                <span v-if="!$v.col_nombreA.required">Este campo es Requerido</span>
-                            </div> 
+                    <div class="col-md-6">
+                        <label for="celular">INSIGNIA</label>
+                        <input type="file" class="form-control" @change="obtenerImagenA" accept="image/*">
+                        <!-- <input type="file" class="form-control" @change="obtenerImagen" accept="image/*" :class="hasError('foto') ? 'is-invalid' : ''">
+                        <div v-if="hasError('foto')" class="invalid-feedback">
+                            <div class="error" v-if="!$v.formData.foto.required">Ingrese valor porfavor.</div>
+                        </div> -->
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-control-label" for="text-input">SIE</label>
+                        <input type="text" v-model="col_sieA" class="form-control" :class="{ 'is-invalid' : $v.col_sieA.$error, 'is-valid':!$v.col_sieA.$invalid }">
+                        <div class="invalid-feedback">
+                            <span v-if="!$v.col_sieA.required">Este campo es Requerido</span>
+                        </div>
+                    </div>     
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <label class="form-control-label" for="text-input">NOMBRE</label>
+                        <input type="text" v-model="col_nombreA" class="form-control" :class="{ 'is-invalid' : $v.col_nombreA.$error, 'is-valid':!$v.col_nombreA.$invalid }">
+                        <div class="invalid-feedback">
+                            <span v-if="!$v.col_nombreA.required">Este campo es Requerido</span>
+                        </div> 
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <label class="form-control-label" for="text-input">ABREVIATURA</label>
+                        <input type="text" v-model="col_abreviaturaA" class="form-control" :class="{ 'is-invalid' : $v.col_abreviaturaA.$error, 'is-valid':!$v.col_abreviaturaA.$invalid }">
+                        <div class="invalid-feedback">
+                            <span v-if="!$v.col_abreviaturaA.required">Este campo es Requerido</span>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-md-12">
-                            <label class="form-control-label" for="text-input">ABREVIATURA COLEGIO</label>
-                            <input type="text" v-model="col_abreviaturaA" class="form-control" :class="{ 'is-invalid' : $v.col_abreviaturaA.$error, 'is-valid':!$v.col_abreviaturaA.$invalid }">
-                            <div class="invalid-feedback">
-                                <span v-if="!$v.col_abreviaturaA.required">Este campo es Requerido</span>
-                            </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <label class="form-control-label" for="text-input">DIRECTOR(A)</label>
+                        <input type="text" v-model="col_directorA" class="form-control" :class="{ 'is-invalid' : $v.col_directorA.$error, 'is-valid':!$v.col_directorA.$invalid }">
+                        <div class="invalid-feedback">
+                            <span v-if="!$v.col_directorA.required">Este campo es Requerido</span>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-md-12">
-                            <label class="form-control-label" for="text-input">SIE COLEGIO</label>
-                            <input type="text" v-model="col_sieA" class="form-control" :class="{ 'is-invalid' : $v.col_sieA.$error, 'is-valid':!$v.col_sieA.$invalid }">
-                            <div class="invalid-feedback">
-                                <span v-if="!$v.col_sieA.required">Este campo es Requerido</span>
-                            </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="form-control-label" for="text-input">TURNO</label>
+                        <select class="form-control" v-model="col_turnoA" :class="{ 'is-invalid' : $v.col_turnoA.$error, 'is-valid':!$v.col_turnoA.$invalid }">
+                            <option value="" disabled>SELECCIONAR</option>
+                                <option value="MAÑANA">MAÑANA</option>
+                                <option value="TARDE">TARDE</option>
+                                <option value="NOCHE">NOCHE</option>
+                        </select>                           
+                        <div class="invalid-feedback">
+                            <span v-if="!$v.col_turnoA.required">Este campo es Requerido</span>
+                        </div> 
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-control-label" for="text-input">DEPENDENCIA</label>
+                        <select class="form-control" v-model="col_dependenciaA" :class="{ 'is-invalid' : $v.col_dependenciaA.$error, 'is-valid':!$v.col_dependenciaA.$invalid }">
+                            <option value="" disabled>SELECCIONAR</option>
+                                <option value="PUBLICO">PUBLICO</option>
+                                <option value="PARTICULAR">PARTICULAR</option>
+                                <option value="CONVENIO">CONVENIO</option>
+                        </select>                            
+                        <div class="invalid-feedback">
+                            <span v-if="!$v.col_dependenciaA.required">Este campo es Requerido</span>
                         </div>
                     </div>
+                </div>
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label class="form-control-label" for="text-input">OBSERVACIONES</label>
@@ -268,16 +350,23 @@ export default {
             arrayColegio : [],
             criterio : 'col_nombre',
             buscar : '',
-
-            col_nombre : '',
-            col_sie : '',
-            col_abreviatura : '',
-            col_observaciones : '',
+    
             col_foto : '',
+            col_sie : '',
+            col_nombre : '',
+            col_abreviatura : '',
+            col_director : '',
+            col_turno : '',
+            col_dependencia : '',
+            col_observaciones : '',
 
-            col_nombreA : '',
+            col_fotoA : '',
             col_sieA : '',
+            col_nombreA : '',
             col_abreviaturaA : '',
+            col_directorA : '',
+            col_turnoA : '',
+            col_dependenciaA : '',
             col_observacionesA : '',
             // page : 0,
             pagination : {
@@ -323,13 +412,19 @@ export default {
         col_nombre : { required },
         col_abreviatura : { required },
         col_sie : { required },
+        col_director : { required },
+        col_turno : { required },
+        col_dependencia : { required },
 
         col_nombreA : { required },
         col_abreviaturaA : { required },
         col_sieA : { required },
+        col_directorA : { required },
+        col_turnoA : { required },
+        col_dependenciaA : { required },
 
-        validationGroupReg: ['col_nombre', 'col_abreviatura', 'col_sie'],
-        validationGroupEdit: ['col_nombreA', 'col_abreviaturaA', 'col_sieA'],
+        validationGroupReg: ['col_nombre', 'col_abreviatura', 'col_sie', 'col_director', 'col_turno', 'col_dependencia'],
+        validationGroupEdit: ['col_nombreA', 'col_abreviaturaA', 'col_sieA', 'col_directorA', 'col_turnoA', 'col_dependenciaA'],
     },
 
     mounted() {
@@ -428,12 +523,29 @@ export default {
             }
         },
 
+        obtenerImagenA(e){
+            try {
+                var fileReader = new FileReader();
+
+                fileReader.onload = (e) => {
+                    this.col_fotoA = e.target.result;
+                }
+                fileReader.readAsDataURL(e.target.files[0])
+                this.v = 1;
+            } catch (error) {
+                
+            }
+        },
+
         NuevoColegio(){
             this.$v.$reset(),
             //PONER DE CERO EL MODAL ANTES DE REGISTRAR
             this.col_nombre = '',
             this.col_sie = '',
             this.col_abreviatura = '',
+            this.col_director = '',
+            this.col_turno = '',
+            this.col_dependencia = '',
             this.col_observaciones = ''
             //FIN PONER A CERO MODAL
             $('#NuevoColegio').modal('show');
@@ -471,6 +583,9 @@ export default {
                             col_nombre : me.col_nombre,
                             col_abreviatura : me.col_abreviatura,
                             col_sie : me.col_sie,
+                            col_director : me.col_director,
+                            col_turno : me.col_turno,
+                            col_dependencia : me.col_dependencia,
                             col_observaciones : me.col_observaciones,
                             col_foto : me.col_foto
                         })
@@ -506,9 +621,13 @@ export default {
             let me =this;
             this.$v.$reset(),
             this.col_id = colegio.id,
+            this.col_fotoA = colegio.col_foto,
             this.col_nombreA = colegio.col_nombre,
             this.col_abreviaturaA = colegio.col_abreviatura,
             this.col_sieA = colegio.col_sie,
+            this.col_directorA = colegio.col_director,
+            this.col_turnoA = colegio.col_turno,
+            this.col_dependenciaA = colegio.col_dependencia,
             this.col_observacionesA = colegio.col_observacion,
             $('#EditarColegio').modal('show');
         },
@@ -537,6 +656,10 @@ export default {
                         col_nombre : me.col_nombreA,
                         col_abreviatura : me.col_abreviaturaA,
                         col_sie : me.col_sieA,
+                        col_foto : me.col_fotoA,
+                        col_director : me.col_directorA,
+                        col_turno : me.col_turnoA,
+                        col_dependencia : me.col_dependenciaA,
                         col_observaciones : me.col_observacionesA,
                     })
                     .then(function (response) {

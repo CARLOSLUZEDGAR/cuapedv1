@@ -22,6 +22,9 @@ class ColegioController extends Controller
                             'colegios.col_nombre',
                             'colegios.col_abreviatura',
                             'colegios.col_sie',
+                            'colegios.col_director',
+                            'colegios.col_turno',
+                            'colegios.col_dependencia',
                             'colegios.col_estado',
                             'colegios.col_observacion'
                         )
@@ -37,6 +40,9 @@ class ColegioController extends Controller
                             'colegios.col_nombre',
                             'colegios.col_abreviatura',
                             'colegios.col_sie',
+                            'colegios.col_director',
+                            'colegios.col_turno',
+                            'colegios.col_dependencia',
                             'colegios.col_estado',
                             'colegios.col_observacion'
                         )
@@ -89,10 +95,12 @@ class ColegioController extends Controller
             'col_abreviatura' => $request->col_abreviatura,
             'col_sie' => $request->col_sie,
             'col_foto' => $fileName,
+            'col_director' => $request->col_director,
+            'col_turno' => $request->col_turno,
+            'col_dependencia' => $request->col_dependencia,
             'col_estado' => '1',
             'col_observacion' => $request->col_observacion,
-            'col_sysuser' => 'ADMIN',
-            
+            'col_sysuser' => 'ADMIN',  
         ]);
     }
 
@@ -104,6 +112,9 @@ class ColegioController extends Controller
             'col_nombre' => $request->col_nombre,
             'col_abreviatura' => $request->col_abreviatura,
             'col_sie' => $request->col_sie,
+            'col_director' => $request->col_director,
+            'col_turno' => $request->col_turno,
+            'col_dependencia' => $request->col_dependencia,
             'col_observaciones' => $request->col_onservaciones,
         ]);
     }
