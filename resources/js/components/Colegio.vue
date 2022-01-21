@@ -152,7 +152,17 @@
             </div>
             <div class="modal-body">
                     <div class="form-group row">
-                        <div class="col-md-6">
+                        <div class="col-md-2">
+                            <div class="row">
+                                <template v-if="v == 0">
+                                    <img :src="'/img/colegio/colegio.png'" width="100%" height="100%" style="border: 2px solid black;">
+                                </template>
+                                <template v-else>
+                                    <img :src="imagen" width="100%" height="100%" style="border: 2px solid black;">
+                                </template> 
+                            </div>                       
+                        </div>
+                        <div class="col-md-10">
                             <label for="celular">INSIGNIA</label>
                             <input type="file" class="form-control" @change="obtenerImagen" accept="image/*">
                             <!-- <input type="file" class="form-control" @change="obtenerImagen" accept="image/*" :class="hasError('foto') ? 'is-invalid' : ''">
@@ -160,13 +170,16 @@
                                 <div class="error" v-if="!$v.formData.foto.required">Ingrese valor porfavor.</div>
                             </div> -->
                         </div>
-                        <div class="col-md-6">
+                          
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
                             <label class="form-control-label" for="text-input">SIE</label>
                             <input type="text" v-model="col_sie" class="form-control" :class="{ 'is-invalid' : $v.col_sie.$error, 'is-valid':!$v.col_sie.$invalid }">
                             <div class="invalid-feedback">
                                 <span v-if="!$v.col_sie.required">Este campo es Requerido</span>
                             </div>
-                        </div>   
+                        </div> 
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
@@ -249,21 +262,35 @@
             </div>
             <div class="modal-body">
                 <div class="form-group row">
-                    <div class="col-md-6">
+                    <div class="col-md-2">
+                        <div class="row">
+                            <template v-if="v == 0">
+                                <img class="rounded float-left img-fluid" width="100%" height="100%" :src="'/img/colegio/'+imagenA" alt="Fotografia" style="border: 2px solid black;">
+                                <!-- <img :src="'/img/personal/avatar.jpg'" width="100%" height="100%"> -->
+                            </template>
+                            <template v-else>
+                                <!-- <img :src="imagen" width="100%" height="100%"> -->
+                                <img class="rounded float-left img-fluid" :src="imagenA" width="100%" height="100%" alt="Fotografia" style="border: 2px solid black;">
+                            </template>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
                         <label for="celular">INSIGNIA</label>
-                        <input type="file" class="form-control" @change="obtenerImagenA" accept="image/*">
+                        <input type="file" class="form-control" @change="obtenerImagenA" accept="imageA/*">
                         <!-- <input type="file" class="form-control" @change="obtenerImagen" accept="image/*" :class="hasError('foto') ? 'is-invalid' : ''">
                         <div v-if="hasError('foto')" class="invalid-feedback">
                             <div class="error" v-if="!$v.formData.foto.required">Ingrese valor porfavor.</div>
                         </div> -->
-                    </div>
-                    <div class="col-md-6">
+                    </div>     
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12">
                         <label class="form-control-label" for="text-input">SIE</label>
                         <input type="text" v-model="col_sieA" class="form-control" :class="{ 'is-invalid' : $v.col_sieA.$error, 'is-valid':!$v.col_sieA.$invalid }">
                         <div class="invalid-feedback">
                             <span v-if="!$v.col_sieA.required">Este campo es Requerido</span>
                         </div>
-                    </div>     
+                    </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-md-12">
@@ -368,6 +395,8 @@ export default {
             col_turnoA : '',
             col_dependenciaA : '',
             col_observacionesA : '',
+
+            v: 0,
             // page : 0,
             pagination : {
                 'total' : 0,
@@ -463,6 +492,10 @@ export default {
 
         imagen(){
             return this.col_foto;
+        },
+
+        imagenA(){
+            return this.col_fotoA;
         }
     },
     methods: {
