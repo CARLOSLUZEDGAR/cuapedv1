@@ -78,12 +78,12 @@
                                         <i class="fas fa-edit"></i>
                                     </button> &nbsp;
                                     <template v-if="colegio.col_estado==1">
-                                        <button type="button" class="btn btn-danger btn-sm" @click="desactivarUsuario(usuario.id)" >
+                                        <button type="button" class="btn btn-danger btn-sm" @click="DesactivarColegio(colegio)" >
                                         <i class="far fa-trash-alt"></i>
                                     </button>
                                     </template>
                                     <template v-else>
-                                        <button type="button" class="btn btn-info btn-sm" @click="activarUsuario(usuario.id)">
+                                        <button type="button" class="btn btn-info btn-sm" @click="ActivarColegio(colegio)">
                                         <i class="far fa-check-square"></i>
                                     </button>
                                     </template>
@@ -264,7 +264,7 @@
                 <div class="form-group row">
                     <div class="col-md-2">
                         <div class="row">
-                            <template v-if="v == 0">
+                            <template v-if="vA == 0">
                                 <img class="rounded float-left img-fluid" width="100%" height="100%" :src="'/img/colegio/'+imagenA" alt="Fotografia" style="border: 2px solid black;">
                                 <!-- <img :src="'/img/personal/avatar.jpg'" width="100%" height="100%"> -->
                             </template>
@@ -396,7 +396,8 @@ export default {
             col_dependenciaA : '',
             col_observacionesA : '',
 
-            v: 0,
+            v : 0,
+            vA : 0,
             // page : 0,
             pagination : {
                 'total' : 0,
@@ -564,7 +565,7 @@ export default {
                     this.col_fotoA = e.target.result;
                 }
                 fileReader.readAsDataURL(e.target.files[0])
-                this.v = 1;
+                this.vA = 1;
             } catch (error) {
                 
             }
@@ -575,11 +576,13 @@ export default {
             //PONER DE CERO EL MODAL ANTES DE REGISTRAR
             this.col_nombre = '',
             this.col_sie = '',
+            this.col_foto = '',
             this.col_abreviatura = '',
             this.col_director = '',
             this.col_turno = '',
             this.col_dependencia = '',
-            this.col_observaciones = ''
+            this.col_observaciones = '',
+            this.v = 0,
             //FIN PONER A CERO MODAL
             $('#NuevoColegio').modal('show');
             /*this.obtenerPromocion()
@@ -662,6 +665,7 @@ export default {
             this.col_turnoA = colegio.col_turno,
             this.col_dependenciaA = colegio.col_dependencia,
             this.col_observacionesA = colegio.col_observacion,
+            this.vA = 0,
             $('#EditarColegio').modal('show');
         },
 
@@ -720,6 +724,41 @@ export default {
                 })
                 //this.$v.$reset();
             }
+        },
+
+        DesactivarColegio(colegio){
+            //if(!this.$v.$invalid){
+            swal.fire({
+                title: 'Esta seguro de desactivar la Unidad Educativa', // TITULO 
+                icon: 'question', //ICONO (success, warnning, error, info, question)
+                showCancelButton: true, //HABILITACION DEL BOTON CANCELAR
+                confirmButtonColor: 'info', // COLOR DEL BOTON PARA CONFIRMAR
+                cancelButtonColor: '#868077', // CLOR DEL BOTON CANCELAR
+                confirmButtonText: 'Confirmar', //TITULO DEL BOTON CONFIRMAR
+                cancelButtonText: 'Cancelar', //TIUTLO DEL BOTON CANCELAR
+                buttonsStyling: true,
+                reverseButtons: true
+                }).then((result) => {
+                if (result.value) {
+                    //CODIGO HA SER VALIDADO
+                    let me =this;
+                    axios
+                    .put('/desactivarColegio', {
+                //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
+                    col_id : colegio.id,
+                })
+                .then(function (response) {
+                    //Respuesta de la peticion
+                    me.listarColegios(me.page,me.buscar,me.criterio);
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                    });
+                }else{
+                    console.log('no empezamos');
+                }
+            })  
         },
     },
 };

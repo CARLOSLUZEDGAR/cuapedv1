@@ -108,8 +108,10 @@ class ColegioController extends Controller
 
     public function updateColegio(Request $request)
     {
-        if ($request->col_fotoA != "") {
-            $exploded = explode(',', $request->col_fotoA);
+        $unidad = Colegios::findOrFail($request->col_id);
+        $currentPhoto = $unidad->col_foto;
+        if($request->col_foto != $currentPhoto){
+            $exploded = explode(',', $request->col_foto);
             $decoded = base64_decode($exploded[1]);
             if (Str::contains($exploded[0], 'jpeg')) {
                 $extension = 'jpg';
@@ -119,15 +121,13 @@ class ColegioController extends Controller
             $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $charactersLength = strlen($characters);
             $randomString = '';
-            for ($i=0; $i < 10; $i++) {
-               $randomString .= $characters[rand(0,$charactersLength - 1)];
+            for ($i=0; $i < 10; $i++) { 
+               $randomString .= $characters[rand(0,$charactersLength - 1)]; 
             }
             $fileName = $randomString.($request->col_sie).$randomString.'.'.$extension;
             $path = public_path().'/img/colegio/'.$fileName;
             file_put_contents($path, $decoded);
-
-        } else {
-            $fileName = 'colegio.png';
+            $request->col_foto=$fileName; 
         }
         $colegio = Colegios::where('id',$request->col_id)
                     ->first();
@@ -135,12 +135,19 @@ class ColegioController extends Controller
             'col_nombre' => $request->col_nombre,
             'col_abreviatura' => $request->col_abreviatura,
             'col_sie' => $request->col_sie,
-            'col_foto' => $fileName,
+            'col_foto' => $request->col_foto,
             'col_director' => $request->col_director,
             'col_turno' => $request->col_turno,
             'col_dependencia' => $request->col_dependencia,
             'col_observacion' => $request->col_observaciones,
         ]);
+    }
+
+    public function desactivarColegio(Request $request)
+    {
+        $colegio = Colegios::findOrFail($request->col_id);
+        $colegio->col_estado = '0';
+        $colegio->save();
     }
 
     public function selectColegio(Request $request){

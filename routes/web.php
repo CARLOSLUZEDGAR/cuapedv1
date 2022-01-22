@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/listarColegio', 'ColegioController@index');
 Route::post('/registrarColegio', 'ColegioController@registrarColegio');
 Route::put('/editarColegio', 'ColegioController@updateColegio');
+Route::put('/desactivarColegio', 'ColegioController@desactivarColegio');
 Route::get('/selectColegios','ColegioController@selectColegio');
 Route::post('/datosColegio', 'ColegioController@datosColegio');
 
