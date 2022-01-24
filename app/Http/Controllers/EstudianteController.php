@@ -13,10 +13,14 @@ class EstudianteController extends Controller
     {
         $buscar = $request->buscar;
         $criterio = $request->criterio;
+        $colegio = $request->col_id;
 
         if($buscar=='')
         {
             $estudiante = DB::table('estudiantes')
+                        ->join('estudiante_cursos','estudiantes.id','estudiante_cursos.cod_est')
+                        ->join('niveles','estudiante_cursos.cod_nivel','niveles.id')
+                        ->join('cursos','estudiante_cursos.cod_curso','cursos.id')
                         ->select(
                             'estudiantes.id',
                             'estudiantes.est_rude',
@@ -26,8 +30,17 @@ class EstudianteController extends Controller
                             'estudiantes.est_ci',
                             'estudiantes.est_expedido',
                             'estudiantes.est_estado',
-                            'estudiantes.est_observacion'
+                            'estudiantes.est_observacion',
+                            'estudiante_cursos.id as estcurid',
+                            'estudiante_cursos.cod_nivel',
+                            'estudiante_cursos.cod_curso',
+                            'estudiante_cursos.paralelo',
+                            'estudiante_cursos.gestion',
+                            'niveles.nivel_abreviatura',
+                            'cursos.curso_sigla',
                         )
+                        ->where('estudiante_cursos.cod_col',$colegio)
+                        ->where('estudiante_cursos.estc_estado',1)
                         ->orderBy('estudiantes.est_paterno','asc')
                         ->take(1)
                         ->paginate(10);
@@ -35,6 +48,9 @@ class EstudianteController extends Controller
         else
         {
             $estudiante = DB::table('estudiantes')
+                        ->join('estudiante_cursos','estudiantes.id','estudiante_cursos.cod_est')
+                        ->join('niveles','estudiante_cursos.cod_nivel','niveles.id')
+                        ->join('cursos','estudiante_cursos.cod_curso','cursos.id')
                         ->select(
                             'estudiantes.id',
                             'estudiantes.est_rude',
@@ -44,9 +60,18 @@ class EstudianteController extends Controller
                             'estudiantes.est_ci',
                             'estudiantes.est_expedido',
                             'estudiantes.est_estado',
-                            'estudiantes.est_observacion'
+                            'estudiantes.est_observacion',
+                            'estudiante_cursos.id as estcurid',
+                            'estudiante_cursos.cod_nivel',
+                            'estudiante_cursos.cod_curso',
+                            'estudiante_cursos.paralelo',
+                            'estudiante_cursos.gestion',
+                            'niveles.nivel_abreviatura',
+                            'cursos.curso_sigla',
                         )
                         ->where($criterio,'like','%'.$buscar.'%')
+                        ->where('estudiante_cursos.cod_col',$colegio)
+                        ->where('estudiante_cursos.estc_estado',1)
                         ->orderBy('estudiantes.est_paterno','asc')
                         ->take(1)
                         ->paginate(10);
@@ -84,7 +109,7 @@ class EstudianteController extends Controller
         $estudiante_curso = EstudianteCursos::create([
             'cod_est' => $estudiante->id,
             // 'cod_col' => $request->desig_col,
-            'cod_col' => 1,
+            'cod_col' => $request->cod_col,
             'cod_nivel' => $request->cod_nivel,
             'cod_curso' => $request->cod_curso,
             'paralelo' => $request->paralelo,
@@ -108,6 +133,15 @@ class EstudianteController extends Controller
             'est_ci' => $request->est_ci,
             'est_expedido' => $request->est_expedido,
             'est_observacion' => $request->est_observacion,
+        ]);
+        $estudiante_curso = EstudianteCursos::where('id',$request->estcur_id)
+                            ->first();
+        $estudiante_curso -> update([
+            'cod_nivel' => $request->cod_nivel,
+            'cod_curso' => $request->cod_curso,
+            'paralelo' => $request->paralelo,
+            'gestion' => $request->gestion,
+            'estc_observacion' => $request->est_observacion,
         ]);
     }
 }

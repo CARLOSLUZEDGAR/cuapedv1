@@ -760,6 +760,41 @@ export default {
                 }
             })  
         },
+
+        ActivarColegio(colegio){
+            //if(!this.$v.$invalid){
+            swal.fire({
+                title: 'Esta seguro de activar la Unidad Educativa', // TITULO 
+                icon: 'question', //ICONO (success, warnning, error, info, question)
+                showCancelButton: true, //HABILITACION DEL BOTON CANCELAR
+                confirmButtonColor: 'info', // COLOR DEL BOTON PARA CONFIRMAR
+                cancelButtonColor: '#868077', // CLOR DEL BOTON CANCELAR
+                confirmButtonText: 'Confirmar', //TITULO DEL BOTON CONFIRMAR
+                cancelButtonText: 'Cancelar', //TIUTLO DEL BOTON CANCELAR
+                buttonsStyling: true,
+                reverseButtons: true
+                }).then((result) => {
+                if (result.value) {
+                    //CODIGO HA SER VALIDADO
+                    let me =this;
+                    axios
+                    .put('/activarColegio', {
+                //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
+                    col_id : colegio.id,
+                })
+                .then(function (response) {
+                    //Respuesta de la peticion
+                    me.listarColegios(me.page,me.buscar,me.criterio);
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                    });
+                }else{
+                    console.log('no empezamos');
+                }
+            })  
+        },
     },
 };
 

@@ -150,6 +150,13 @@ class ColegioController extends Controller
         $colegio->save();
     }
 
+    public function activarColegio(Request $request)
+    {
+        $colegio = Colegios::findOrFail($request->col_id);
+        $colegio->col_estado = '1';
+        $colegio->save();
+    }
+
     public function selectColegio(Request $request){
         // if(!$request->ajax()) return view('/');
         $colegio = DB::table('colegios')
@@ -164,9 +171,9 @@ class ColegioController extends Controller
     {
         $col_id = $request->col_id;
         $colegio = DB::table('colegios')
-        ->select('id','col_abreviatura','col_sie','col_foto')
+        ->select('id','col_abreviatura','col_sie','col_foto','col_director','col_turno','col_dependencia')
         ->where('id',$col_id)
-        ->orderBy('col_abreviatura','asc')
+        // ->orderBy('col_abreviatura','asc')
         ->first();
         return response()->json(['colegio' => $colegio]);
     }

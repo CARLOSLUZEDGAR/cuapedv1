@@ -80,17 +80,17 @@
                     <a href="#" class="nav-link">
                     <i class="fas fa-user-graduate"></i>
                         <p>
-                            ESTUDIANTES
+                            ACERCA DE
                             <i class="fa fa-angle-left right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <router-link class="nav-link" to='/listarEstudiantes'><i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;<p>Estudiantes</p></router-link>
                         </li>
                         <li class="nav-item">
                             <router-link class="nav-link" to='/designarEstudiantes'><i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;<p>Designación Estudiante</p></router-link>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
             </ul>

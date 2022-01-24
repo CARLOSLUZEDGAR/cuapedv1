@@ -2685,6 +2685,46 @@ __webpack_require__.r(__webpack_exports__);
           console.log('no empezamos');
         }
       });
+    },
+    ActivarColegio: function ActivarColegio(colegio) {
+      var _this6 = this;
+
+      //if(!this.$v.$invalid){
+      swal.fire({
+        title: 'Esta seguro de activar la Unidad Educativa',
+        // TITULO 
+        icon: 'question',
+        //ICONO (success, warnning, error, info, question)
+        showCancelButton: true,
+        //HABILITACION DEL BOTON CANCELAR
+        confirmButtonColor: 'info',
+        // COLOR DEL BOTON PARA CONFIRMAR
+        cancelButtonColor: '#868077',
+        // CLOR DEL BOTON CANCELAR
+        confirmButtonText: 'Confirmar',
+        //TITULO DEL BOTON CONFIRMAR
+        cancelButtonText: 'Cancelar',
+        //TIUTLO DEL BOTON CANCELAR
+        buttonsStyling: true,
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          //CODIGO HA SER VALIDADO
+          var me = _this6;
+          axios.put('/activarColegio', {
+            //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
+            col_id: colegio.id
+          }).then(function (response) {
+            //Respuesta de la peticion
+            me.listarColegios(me.page, me.buscar, me.criterio);
+          })["catch"](function (error) {
+            // handle error
+            console.log(error);
+          });
+        } else {
+          console.log('no empezamos');
+        }
+      });
     }
   }
 });
@@ -4968,12 +5008,77 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      col_id: this.$route.params.d,
       arrayEstudiante: [],
       arrayNiveles: [],
+      estcur_id: '',
       arrayCursos: [],
       criterio: 'est_rude',
       buscar: '',
@@ -4995,6 +5100,10 @@ __webpack_require__.r(__webpack_exports__);
       est_ciA: '',
       est_expedidoA: '',
       est_observacionA: '',
+      desig_nivelA: '',
+      desig_cursoA: '',
+      desig_paraleloA: '',
+      gestionA: '',
       // page : 0,
       pagination: {
         'total': 0,
@@ -5051,6 +5160,18 @@ __webpack_require__.r(__webpack_exports__);
     est_materno: {
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
     },
+    desig_nivel: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    desig_curso: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    desig_paralelo: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    gestion: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
     est_rudeA: {
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
     },
@@ -5069,11 +5190,23 @@ __webpack_require__.r(__webpack_exports__);
     est_maternoA: {
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
     },
-    validationGroupReg: ['est_rude', 'est_ci', 'est_expedido', 'est_nombre', 'est_paterno', 'est_materno'],
-    validationGroupEdit: ['est_rudeA', 'est_ciA', 'est_expedidoA', 'est_nombreA', 'est_paternoA', 'est_maternoA']
+    desig_nivelA: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    desig_cursoA: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    desig_paraleloA: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    gestionA: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    },
+    validationGroupReg: ['est_rude', 'est_ci', 'est_expedido', 'est_nombre', 'est_paterno', 'est_materno', 'desig_nivel', 'desig_curso', 'desig_paralelo', 'gestion'],
+    validationGroupEdit: ['est_rudeA', 'est_ciA', 'est_expedidoA', 'est_nombreA', 'est_paternoA', 'est_maternoA', 'desig_nivelA', 'desig_cursoA', 'desig_paraleloA', 'gestionA']
   },
   mounted: function mounted() {
-    this.listarEstudiantes(this.page, this.buscar, this.criterio);
+    this.listarEstudiantes(this.page, this.buscar, this.criterio, this.col_id);
   },
   computed: {
     isActived: function isActived() {
@@ -5111,12 +5244,13 @@ __webpack_require__.r(__webpack_exports__);
     Cerrar: function Cerrar() {
       this.$v.$reset();
     },
-    listarEstudiantes: function listarEstudiantes(page, buscar, criterio) {
+    listarEstudiantes: function listarEstudiantes(page, buscar, criterio, col_id) {
       var me = this;
       axios.post("/listarEstudiante", {
         page: page,
         buscar: buscar,
-        criterio: criterio
+        criterio: criterio,
+        col_id: col_id
       }).then(function (response) {
         console.log(response);
         me.arrayEstudiante = response.data.estudiante.data;
@@ -5131,7 +5265,7 @@ __webpack_require__.r(__webpack_exports__);
 
       me.pagination.current_page = page; //Envia la peticion para visualizar  la data de esa pagina
 
-      me.listarEstudiantes(page, buscar, criterio);
+      me.listarEstudiantes(page, buscar, criterio, col_id);
     },
     EnvioDatos: function EnvioDatos(datos) {
       this.$router.push({
@@ -5145,8 +5279,7 @@ __webpack_require__.r(__webpack_exports__);
     //ABRIR MODAL REGISTRO
     NuevoEstudiante: function NuevoEstudiante() {
       this.$v.$reset(), //PONER DE CERO EL MODAL ANTES DE REGISTRAR
-      this.est_rude = '', this.est_nombre = '', this.est_paterno = '', this.est_materno = '', this.est_ci = '', this.est_expedido = '', this.est_observacion = ''; //FIN PONER A CERO MODAL
-
+      this.est_rude = '', this.est_nombre = '', this.est_paterno = '', this.est_materno = '', this.est_ci = '', this.est_expedido = '', this.est_observacion = '', this.desig_nivel = '', this.desig_curso = '', this.desig_paralelo = '', this.gestion = '', //FIN PONER A CERO MODAL
       $('#NuevoEstudiante').modal('show'); // this.obtenerPromocion()
 
       this.selectNiveles();
@@ -5215,7 +5348,7 @@ __webpack_require__.r(__webpack_exports__);
               est_paterno: me.est_paterno,
               est_materno: me.est_materno,
               est_observacion: me.est_observacion,
-              // cod_col : me.desig_col,
+              cod_col: me.col_id,
               cod_nivel: me.desig_nivel,
               cod_curso: me.desig_curso,
               paralelo: me.desig_paralelo,
@@ -5224,7 +5357,7 @@ __webpack_require__.r(__webpack_exports__);
               //Respuesta de la peticion
               console.log(response);
               $('#NuevoEstudiante').modal('hide');
-              me.listarEstudiantes(me.page, me.buscar, me.criterio);
+              me.listarEstudiantes(me.page, me.buscar, me.criterio, me.col_id);
               this.$v.$reset();
             })["catch"](function (error) {
               // handle error
@@ -5246,7 +5379,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     abrirEditar: function abrirEditar(estudiante) {
       var me = this;
-      this.$v.$reset(), this.est_id = estudiante.id, this.est_rudeA = estudiante.est_rude, this.est_ciA = estudiante.est_ci, this.est_expedidoA = estudiante.est_expedido, this.est_nombreA = estudiante.est_nombre, this.est_paternoA = estudiante.est_paterno, this.est_maternoA = estudiante.est_materno, this.est_observacionA = estudiante.col_observacion, $('#EditarEstudiante').modal('show');
+      this.$v.$reset(), this.est_id = estudiante.id, this.estcur_id = estudiante.estcurid, this.est_rudeA = estudiante.est_rude, this.est_ciA = estudiante.est_ci, this.est_expedidoA = estudiante.est_expedido, this.est_nombreA = estudiante.est_nombre, this.est_paternoA = estudiante.est_paterno, this.est_maternoA = estudiante.est_materno, this.est_observacionA = estudiante.est_observacion, this.desig_nivelA = estudiante.cod_nivel, this.desig_cursoA = estudiante.cod_curso, this.desig_paraleloA = estudiante.paralelo, this.gestionA = estudiante.gestion, $('#EditarEstudiante').modal('show');
+      this.selectNiveles();
+      this.selectCursos();
     },
     EditarEstudiante: function EditarEstudiante() {
       var _this2 = this;
@@ -5284,12 +5419,17 @@ __webpack_require__.r(__webpack_exports__);
               est_nombre: me.est_nombreA,
               est_paterno: me.est_paternoA,
               est_materno: me.est_maternoA,
-              est_observacion: me.est_observacionA
+              est_observacion: me.est_observacionA,
+              estcur_id: me.estcur_id,
+              cod_nivel: me.desig_nivelA,
+              cod_curso: me.desig_cursoA,
+              paralelo: me.desig_paraleloA,
+              gestion: me.gestionA
             }).then(function (response) {
               //Respuesta de la peticion
               console.log(response);
               $('#EditarEstudiante').modal('hide');
-              me.listarEstudiantes(me.page, me.buscar, me.criterio);
+              me.listarEstudiantes(me.page, me.buscar, me.criterio, me.col_id);
               this.$v.$reset();
             })["catch"](function (error) {
               // handle error
@@ -5308,6 +5448,15 @@ __webpack_require__.r(__webpack_exports__);
           timer: 2000
         }); //this.$v.$reset();
       }
+    },
+    Atras: function Atras(datos) {
+      this.$router.push({
+        name: "OpcionColegios",
+        // ENVIO DE DATOS
+        params: {
+          d: datos
+        }
+      });
     }
   }
 });
@@ -5469,6 +5618,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 //import { required, minLength, between } from 'vuelidate/lib/validators'
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5476,89 +5631,71 @@ __webpack_require__.r(__webpack_exports__);
     return {
       //RECIBIMOS LA VARIABLE EN ESTE CASO (d)
       col_id: this.$route.params.d,
-      arrayDatosColegio: [],
-      arrayPersonalEspecialidades: [],
-      arrayEspecialidad: [],
-      arraySubespecialidad: [],
-      errorEspecialidadActualizar: 0,
-      errorMostrarMsjEspecialidadActualizar: [],
-      ano_actual: '',
-      per_cmi: '',
-      per_cmil: '',
+      arrayDatosColegio: [] // arrayPersonalEspecialidades : [],
+      // arrayEspecialidad : [],
+      // arraySubespecialidad : [],
+      // errorEspecialidadActualizar : 0,
+      // errorMostrarMsjEspecialidadActualizar : [],
+      // ano_actual : '',
+      // per_cmi : '',
+      // per_cmil : '',
       //VARIABLES MODAL
-      per_paterno: '',
-      per_materno: '',
-      per_nombre: '',
+      // per_paterno : '',
+      // per_materno : '',
+      // per_nombre : '',
       //VARIABLES REGISTRAR PER_ESPECIALIDAD
-      perespe_nrodoc: '',
-      perespe_tipodoc: '',
-      perespe_fechadoc: '',
-      perespe_especialidad: '',
-      perespe_subespecialidad: '',
-      perespe_observacion: '',
+      // perespe_nrodoc : '',
+      // perespe_tipodoc : '',
+      // perespe_fechadoc : '',
+      // perespe_especialidad : '',
+      // perespe_subespecialidad : '',
+      // perespe_observacion : '',
       //VARIABLES EDITAR PER_ESPECIALIDAD
-      idPersonalEspecialidad: 0,
-      perespe_nrodocA: '',
-      perespe_tipodocA: '',
-      perespe_fechadocA: '',
-      perespe_especialidadA: '',
-      perespe_subespecialidadA: '',
-      perespe_observacionA: '',
-      rowId: 0
+      // idPersonalEspecialidad : 0,
+      // perespe_nrodocA : '',
+      // perespe_tipodocA : '',
+      // perespe_fechadocA : '',
+      // perespe_especialidadA : '',
+      // perespe_subespecialidadA : '',
+      // perespe_observacionA : '',
+      // rowId : 0,
+
     };
   },
-  validations: {
-    perespe_nrodoc: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
-    },
-    perespe_tipodoc: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
-    },
-    perespe_fechadoc: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
-    },
-    perespe_especialidad: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
-    },
-    perespe_subespecialidad: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
-    },
-    perespe_nrodocA: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
-    },
-    perespe_tipodocA: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
-    },
-    perespe_fechadocA: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
-    },
-    perespe_especialidadA: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
-    },
-    perespe_subespecialidadA: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
-    },
-    validationGroupReg: ['perespe_nrodoc', 'perespe_tipodoc', 'perespe_fechadoc', 'perespe_especialidad', 'perespe_subespecialidad'],
-    validationGroupEdit: ['perespe_nrodocA', 'perespe_tipodocA', 'perespe_fechadocA', 'perespe_especialidadA', 'perespe_subespecialidadA']
+  validations: {// perespe_nrodoc : { required },
+    // perespe_tipodoc : { required },
+    // perespe_fechadoc : { required },
+    // perespe_especialidad : { required },
+    // perespe_subespecialidad : { required },
+    // perespe_nrodocA : { required },
+    // perespe_tipodocA : { required },
+    // perespe_fechadocA : { required },
+    // perespe_especialidadA : { required },
+    // perespe_subespecialidadA : { required },
+    // validationGroupReg: ['perespe_nrodoc', 'perespe_tipodoc', 'perespe_fechadoc', 'perespe_especialidad', 'perespe_subespecialidad'],
+    // validationGroupEdit: ['perespe_nrodocA', 'perespe_tipodocA', 'perespe_fechadocA', 'perespe_especialidadA', 'perespe_subespecialidadA']
   },
   mounted: function mounted() {
     //this.ver();
-    this.listarPersonalEspecialidades(this.per_codigo);
+    // this.listarPersonalEspecialidades(this.per_codigo);
     this.datosColegio(this.col_id);
   },
   methods: {
-    listarPersonalEspecialidades: function listarPersonalEspecialidades(per_codigo) {
-      var me = this;
-      axios.post("/listarPersonalEspecialidad", {
-        per_codigo: per_codigo
-      }).then(function (response) {
-        console.log(response);
-        me.arrayPersonalEspecialidades = response.data.especialidad.data;
-      })["catch"](function (error) {
-        // handle error
-        console.log(error);
-      });
-    },
+    // listarPersonalEspecialidades(per_codigo){
+    //     let me = this;
+    //     axios
+    //   .post("/listarPersonalEspecialidad", {
+    //     per_codigo : per_codigo,
+    //   })
+    //   .then(function (response) {
+    //     console.log(response)
+    //    me.arrayPersonalEspecialidades = response.data.especialidad.data
+    //   })
+    //   .catch(function (error) {
+    //     // handle error
+    //     console.log(error);
+    //   })
+    // },
     datosColegio: function datosColegio(col_id) {
       var me = this;
       axios.post("/datosColegio", {
@@ -5571,267 +5708,275 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    changeItem1: function changeItem1(rowId, event) {
-      this.selected = "rowId: " + rowId + ", target.value: " + event.target.value;
-      this.selectbuscarSubespecialidad(event.target.value);
-    },
-    selectEspecialidad: function selectEspecialidad() {
-      var me = this;
-      var filtro = me.arrayDatosPersonal.subescid;
-      var url = '/especialidad/selectEspecialidad?filtro=' + filtro;
-      axios.get(url).then(function (response) {
-        var respuesta = response.data;
-        me.arrayEspecialidad = respuesta.especialidad;
-      })["catch"](function (error) {
-        // handle error
-        console.log(error);
-      }).then(function () {// always executed
-      });
-    },
-    selectSubespecialidad: function selectSubespecialidad() {
-      var me = this;
-      var url = '/subespecialidad/selectSubespecialidad';
-      axios.get(url).then(function (response) {
-        var respuesta = response.data;
-        me.arraySubespecialidad = respuesta.subespecialidad;
-      })["catch"](function (error) {
-        // handle error
-        console.log(error);
-      }).then(function () {// always executed
-      });
-    },
-    selectbuscarSubespecialidad: function selectbuscarSubespecialidad(depa) {
-      var me = this;
-      me.buscarD = depa;
-      me.arraySubespecialidad = []; //  me.prov_codigo=0;
-
-      var url = '/subespecialidad/selectbuscarSubespecialidad?buscar=' + depa;
-      me.selected = url;
-      axios.get(url).then(function (response) {
-        var respuesta = response.data;
-        me.arraySubespecialidad = respuesta.subespecialidad;
-      })["catch"](function (error) {
-        // handle error 
-        me.selected = error;
-        console.log(error);
-      }).then(function () {// always executed
-      });
-    },
+    // changeItem1: function changeItem1(rowId, event) {
+    //     this.selected = "rowId: " + rowId + ", target.value: " + event.target.value;
+    //     this.selectbuscarSubespecialidad(event.target.value);
+    // },
+    // selectEspecialidad(){
+    //     let me =this;
+    //     var filtro = me.arrayDatosPersonal.subescid;
+    //     var url='/especialidad/selectEspecialidad?filtro='+ filtro;
+    //     axios.get(url).then(function (response) {
+    //         var respuesta = response.data;
+    //         me.arrayEspecialidad = respuesta.especialidad; 
+    //     })
+    //     .catch(function (error) {
+    //     // handle error
+    //     console.log(error);
+    //     })
+    //     .then(function () {
+    //     // always executed
+    //     });
+    // },
+    // selectSubespecialidad(){
+    //     let me =this;
+    //     var url='/subespecialidad/selectSubespecialidad';
+    //     axios.get(url).then(function (response) {
+    //         var respuesta = response.data;
+    //         me.arraySubespecialidad = respuesta.subespecialidad; 
+    //     })
+    //     .catch(function (error) {
+    //     // handle error
+    //     console.log(error);
+    //     })
+    //     .then(function () {
+    //     // always executed
+    //     });
+    // },
+    // selectbuscarSubespecialidad(depa)
+    // {
+    //     let me =this;
+    //     me.buscarD= depa;
+    //     me.arraySubespecialidad=[];
+    //   //  me.prov_codigo=0;
+    //     var url='/subespecialidad/selectbuscarSubespecialidad?buscar=' + depa;
+    //     me.selected = url;
+    //     axios.get(url).then(function (response) {
+    //         var respuesta = response.data;
+    //         me.arraySubespecialidad = respuesta.subespecialidad; 
+    //     })
+    //     .catch(function (error) {
+    //     // handle error 
+    //     me.selected =error;
+    //     console.log(error);
+    //     })
+    //     .then(function () {
+    //     // always executed
+    //     }); 
+    // },
     Cerrar: function Cerrar() {
       this.$v.$reset();
     },
-    NuevaEspecialidad: function NuevaEspecialidad() {
-      this.$v.$reset(), //PONER DE CERO EL MODAL ANTES DE REGISTRAR
-      this.idPersonalEspecialidad = 0, this.perespe_nrodoc = '', this.perespe_tipodoc = '', this.perespe_fechadoc = '', this.perespe_especialidad = '', this.perespe_subespecialidad = '', this.perespe_observacion = '', //FIN PONER A CERO MODAL
-      $('#NuevaEspecialidad').modal('show');
-      $(".modal-header").css("background-color", "#007bff");
-      $(".modal-header").css("color", "white");
-      $(".modal-title-registro").text("Registrar Nueva Especialidad");
-      this.selectEspecialidad();
-      this.selectSubespecialidad();
-      this.selectbuscarSubespecialidad(this.perespe_especialidad);
-    },
-    RegistrarEspecialidad: function RegistrarEspecialidad() {
-      var _this = this;
-
-      this.$v.$reset();
-
-      if (!this.$v.validationGroupReg.$invalid) {
-        swal.fire({
-          title: 'Se registrara la Especialidad',
-          // TITULO 
-          icon: 'warning',
-          //ICONO (success, warnning, error, info, question)
-          showCancelButton: true,
-          //HABILITACION DEL BOTON CANCELAR
-          confirmButtonColor: '#3085d6',
-          // COLOR DEL BOTON PARA CONFIRMAR
-          cancelButtonColor: '#d33',
-          // CLOR DEL BOTON CANCELAR
-          confirmButtonText: 'Registrar',
-          //TITULO DEL BOTON CONFIRMAR
-          cancelButtonText: 'Cancelar',
-          //TIUTLO DEL BOTON CANCELAR
-          buttonsStyling: true,
-          reverseButtons: true
-        }).then(function (result) {
-          if (result.value) {
-            //CODIGO HA SER VALIDADO
-            var me = _this;
-            axios.post("/registrarPerEspecialidad", {
-              //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
-              per_codigo: me.per_codigo,
-              espe_cod: me.perespe_especialidad,
-              subespe_cod: me.perespe_subespecialidad,
-              documento: me.perespe_tipodoc,
-              fecha_documento: me.perespe_fechadoc,
-              fecha: me.perespe_fechadoc,
-              nrodoc: me.perespe_nrodoc,
-              observacion: me.perespe_observacion,
-              filtro: me.arrayDatosPersonal.subescid
-            }).then(function (response) {
-              //Respuesta de la peticion
-              console.log(response);
-              Swal.fire({
-                icon: 'success',
-                title: 'Se ha registrado la nueva Especialidad',
-                showConfirmButton: false,
-                timer: 1500
-              });
-              $('#NuevaEspecialidad').modal('hide');
-              me.listarPersonalEspecialidades(me.per_codigo);
-            })["catch"](function (error) {
-              // handle error
-              console.log(error);
-            });
-          } else {
-            console.log('no empezamos');
-          }
-        });
-      } else {
-        this.$v.$touch();
-        Swal.fire({
-          icon: 'warning',
-          title: 'Ingrese todos los datos requeridos',
-          showConfirmButton: false,
-          timer: 2000
-        });
-      }
-    },
-    abrirEditar: function abrirEditar(personalEspecialidad) {
-      var me = this;
-      this.$v.$reset(), this.idPersonalEspecialidad = personalEspecialidad.idpersonal_especialidades, this.perespe_nrodocA = personalEspecialidad.nrodoc, this.perespe_tipodocA = personalEspecialidad.documento, this.perespe_fechadocA = personalEspecialidad.fecha_documento, this.perespe_fechadocA = this.perespe_fechadocA.substring(0, 10);
-      var info10 = this.perespe_fechadocA.split('-');
-      this.perespe_fechadocA = info10[0] + '-' + info10[1] + '-' + info10[2];
-      this.perespe_especialidadA = personalEspecialidad.idespe, this.perespe_subespecialidadA = personalEspecialidad.idsubespe, this.perespe_observacionA = personalEspecialidad.observacion, $('#EditarEspecialidad').modal('show');
-      $(".modal-header").css("background-color", "#007bff");
-      $(".modal-header").css("color", "white");
-      $(".modal-title-edit").text("Editar Especialidad");
-      this.selectEspecialidad();
-      this.selectSubespecialidad();
-      this.selectbuscarSubespecialidad(this.perespe_especialidadA);
-    },
-    // validarEspecialidadActualizar(){
-    //     this.errorEspecialidadActualizar=0;
-    //     this.errorMostrarMsjEspecialidadActualizar =[];
-    //     if(!this.perespe_nrodocA) this.errorMostrarMsjEspecialidadActualizar.push("Ingresar Nro de Documento");
-    //     if(!this.perespe_tipodocA) this.errorMostrarMsjEspecialidadActualizar.push("Seleccione tipo de Documento");
-    //     if(!this.perespe_fechadocA) this.errorMostrarMsjEspecialidadActualizar.push("Registre la Fecha del Documento");
-    //     if(!this.perespe_especialidadA) this.errorMostrarMsjEspecialidadActualizar.push("Seleccione una Especialidad");
-    //     if(!this.perespe_subespecialidadA) this.errorMostrarMsjEspecialidadActualizar.push("Seleccione una Subespecialidad");  
-    //     if
-    //     (this.errorMostrarMsjEspecialidadActualizar.length) this.errorEspecialidadActualizar = 1;
-    //     return this.errorEspecialidadActualizar;
+    // NuevaEspecialidad(){
+    //     this.$v.$reset(),
+    //     //PONER DE CERO EL MODAL ANTES DE REGISTRAR
+    //     this.idPersonalEspecialidad = 0,
+    //     this.perespe_nrodoc = '',
+    //     this.perespe_tipodoc = '',
+    //     this.perespe_fechadoc = '',
+    //     this.perespe_especialidad = '',
+    //     this.perespe_subespecialidad = '',
+    //     this.perespe_observacion = '',
+    //     //FIN PONER A CERO MODAL
+    //     $('#NuevaEspecialidad').modal('show');
+    //     $(".modal-header").css("background-color", "#007bff");
+    //     $(".modal-header").css("color", "white" );
+    //     $(".modal-title-registro").text("Registrar Nueva Especialidad");
+    //     this.selectEspecialidad()
+    //     this.selectSubespecialidad()
+    //     this.selectbuscarSubespecialidad(this.perespe_especialidad)
     // },
-    EditarEspecialidad: function EditarEspecialidad() {
-      var _this2 = this;
-
-      this.$v.$reset();
-
-      if (!this.$v.validationGroupEdit.$invalid) {
-        swal.fire({
-          title: 'Se modificara esta Especialidad',
-          // TITULO 
-          icon: 'warning',
-          //ICONO (success, warnning, error, info, question)
-          showCancelButton: true,
-          //HABILITACION DEL BOTON CANCELAR
-          confirmButtonColor: '#3085d6',
-          // COLOR DEL BOTON PARA CONFIRMAR
-          cancelButtonColor: '#d33',
-          // CLOR DEL BOTON CANCELAR
-          confirmButtonText: 'Actualizar',
-          //TITULO DEL BOTON CONFIRMAR
-          cancelButtonText: 'Cancelar',
-          //TIUTLO DEL BOTON CANCELAR
-          buttonsStyling: true,
-          reverseButtons: true
-        }).then(function (result) {
-          if (result.value) {
-            //CODIGO HA SER VALIDADO
-            var me = _this2;
-            axios.put("/editarPerEspecialidad", {
-              //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
-              id: me.idPersonalEspecialidad,
-              per_codigo: me.per_codigo,
-              espe_cod: me.perespe_especialidadA,
-              subespe_cod: me.perespe_subespecialidadA,
-              documento: me.perespe_tipodocA,
-              fecha_documento: me.perespe_fechadocA,
-              nrodoc: me.perespe_nrodocA,
-              observacion: me.perespe_observacionA
-            }).then(function (response) {
-              //Respuesta de la peticion
-              console.log(response);
-              Swal.fire({
-                icon: 'success',
-                title: 'Se ha actualizado la Especialidad',
-                showConfirmButton: false,
-                timer: 1500
-              });
-              $('#EditarEspecialidad').modal('hide');
-              me.listarPersonalEspecialidades(me.per_codigo);
-            })["catch"](function (error) {
-              // handle error
-              console.log(error);
-            });
-          } else {
-            console.log('no empezamos');
-          }
-        });
-      } else {
-        this.$v.$touch();
-        Swal.fire({
-          icon: 'warning',
-          title: 'Ingrese todos los datos requeridos',
-          showConfirmButton: false,
-          timer: 2000
-        });
-      }
-    },
-    desactivarPerEspecialidad: function desactivarPerEspecialidad(personalEspecialidad) {
-      var _this3 = this;
-
-      //if(!this.$v.$invalid){
-      swal.fire({
-        title: 'Esta seguro de eliminar esta especialidad',
-        // TITULO 
-        icon: 'warning',
-        //ICONO (success, warnning, error, info, question)
-        showCancelButton: true,
-        //HABILITACION DEL BOTON CANCELAR
-        confirmButtonColor: 'info',
-        // COLOR DEL BOTON PARA CONFIRMAR
-        cancelButtonColor: '#868077',
-        // CLOR DEL BOTON CANCELAR
-        confirmButtonText: 'Confirmar',
-        //TITULO DEL BOTON CONFIRMAR
-        cancelButtonText: 'Cancelar',
-        //TIUTLO DEL BOTON CANCELAR
-        buttonsStyling: true,
-        reverseButtons: true
-      }).then(function (result) {
-        if (result.value) {
-          //CODIGO HA SER VALIDADO
-          var me = _this3;
-          _this3.idPersonalEspecialidad = personalEspecialidad.idpersonal_especialidades, _this3.perespe_fechadoc = personalEspecialidad.fecha_documento, axios.put('/desactivarPerEspecialidad', {
-            //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
-            idPersonalEspecialidad: me.idPersonalEspecialidad,
-            fecha_documento: me.perespe_fechadoc,
-            per_codigo: me.per_codigo
-          }).then(function (response) {
-            //Respuesta de la peticion
-            console.log(response);
-            me.listarPersonalEspecialidades(me.per_codigo);
-          })["catch"](function (error) {
-            // handle error
-            console.log(error);
-          });
-        } else {
-          console.log('no empezamos');
-        }
-      });
-    },
+    // RegistrarEspecialidad(){
+    //     this.$v.$reset();
+    //     if(!this.$v.validationGroupReg.$invalid){
+    //         swal.fire({
+    //             title: 'Se registrara la Especialidad', // TITULO 
+    //             icon: 'warning', //ICONO (success, warnning, error, info, question)
+    //             showCancelButton: true, //HABILITACION DEL BOTON CANCELAR
+    //             confirmButtonColor: '#3085d6', // COLOR DEL BOTON PARA CONFIRMAR
+    //             cancelButtonColor: '#d33', // CLOR DEL BOTON CANCELAR
+    //             confirmButtonText: 'Registrar', //TITULO DEL BOTON CONFIRMAR
+    //             cancelButtonText: 'Cancelar', //TIUTLO DEL BOTON CANCELAR
+    //             buttonsStyling: true,
+    //             reverseButtons: true
+    //             }).then((result) => {
+    //             if (result.value) {
+    //                 //CODIGO HA SER VALIDADO
+    //                 let me = this;
+    //                 axios
+    //                 .post("/registrarPerEspecialidad", {
+    //                 //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
+    //                     per_codigo : me.per_codigo,
+    //                     espe_cod : me.perespe_especialidad,
+    //                     subespe_cod : me.perespe_subespecialidad,
+    //                     documento : me.perespe_tipodoc,
+    //                     fecha_documento : me.perespe_fechadoc,
+    //                     fecha : me.perespe_fechadoc,
+    //                     nrodoc : me.perespe_nrodoc,
+    //                     observacion : me.perespe_observacion,
+    //                     filtro : me.arrayDatosPersonal.subescid
+    //                 })
+    //                 .then(function (response) {
+    //                     //Respuesta de la peticion
+    //                     console.log(response);
+    //                     Swal.fire({
+    //                         icon    :   'success',
+    //                         title   :   'Se ha registrado la nueva Especialidad',
+    //                         showConfirmButton   : false,
+    //                         timer   :   1500
+    //                     })
+    //                     $('#NuevaEspecialidad').modal('hide');
+    //                     me.listarPersonalEspecialidades(me.per_codigo);
+    //                 })
+    //                 .catch(function (error) {
+    //                     // handle error
+    //                     console.log(error);
+    //                 });
+    //             }else{
+    //                 console.log('no empezamos');
+    //             }
+    //         })  
+    //     }else{
+    //         this.$v.$touch();
+    //         Swal.fire({
+    //             icon: 'warning',
+    //             title: 'Ingrese todos los datos requeridos',
+    //             showConfirmButton: false,
+    //             timer: 2000
+    //         })
+    //     }
+    // },
+    // abrirEditar(personalEspecialidad){
+    //     let me =this;
+    //     this.$v.$reset(),
+    //     this.idPersonalEspecialidad = personalEspecialidad.idpersonal_especialidades,
+    //     this.perespe_nrodocA = personalEspecialidad.nrodoc, 
+    //     this.perespe_tipodocA   = personalEspecialidad.documento,
+    //     this.perespe_fechadocA = personalEspecialidad.fecha_documento,
+    //     this.perespe_fechadocA = this.perespe_fechadocA.substring(0,10);
+    //                                 var info10 = this.perespe_fechadocA.split('-');
+    //                                 this.perespe_fechadocA = info10[0] + '-' + info10[1] + '-' + info10[2];
+    //     this.perespe_especialidadA = personalEspecialidad.idespe,
+    //     this.perespe_subespecialidadA = personalEspecialidad.idsubespe,
+    //     this.perespe_observacionA = personalEspecialidad.observacion,
+    //     $('#EditarEspecialidad').modal('show');
+    //     $(".modal-header").css("background-color", "#007bff");
+    //     $(".modal-header").css("color", "white" );
+    //     $(".modal-title-edit").text("Editar Especialidad");
+    //     this.selectEspecialidad()
+    //     this.selectSubespecialidad()
+    //     this.selectbuscarSubespecialidad(this.perespe_especialidadA)
+    // },
+    // // validarEspecialidadActualizar(){
+    // //     this.errorEspecialidadActualizar=0;
+    // //     this.errorMostrarMsjEspecialidadActualizar =[];
+    // //     if(!this.perespe_nrodocA) this.errorMostrarMsjEspecialidadActualizar.push("Ingresar Nro de Documento");
+    // //     if(!this.perespe_tipodocA) this.errorMostrarMsjEspecialidadActualizar.push("Seleccione tipo de Documento");
+    // //     if(!this.perespe_fechadocA) this.errorMostrarMsjEspecialidadActualizar.push("Registre la Fecha del Documento");
+    // //     if(!this.perespe_especialidadA) this.errorMostrarMsjEspecialidadActualizar.push("Seleccione una Especialidad");
+    // //     if(!this.perespe_subespecialidadA) this.errorMostrarMsjEspecialidadActualizar.push("Seleccione una Subespecialidad");  
+    // //     if
+    // //     (this.errorMostrarMsjEspecialidadActualizar.length) this.errorEspecialidadActualizar = 1;
+    // //     return this.errorEspecialidadActualizar;
+    // // },
+    // EditarEspecialidad(){
+    //     this.$v.$reset();
+    //     if(!this.$v.validationGroupEdit.$invalid){
+    //         swal.fire({
+    //             title: 'Se modificara esta Especialidad', // TITULO 
+    //             icon: 'warning', //ICONO (success, warnning, error, info, question)
+    //             showCancelButton: true, //HABILITACION DEL BOTON CANCELAR
+    //             confirmButtonColor: '#3085d6', // COLOR DEL BOTON PARA CONFIRMAR
+    //             cancelButtonColor: '#d33', // CLOR DEL BOTON CANCELAR
+    //             confirmButtonText: 'Actualizar', //TITULO DEL BOTON CONFIRMAR
+    //             cancelButtonText: 'Cancelar', //TIUTLO DEL BOTON CANCELAR
+    //             buttonsStyling: true,
+    //             reverseButtons: true
+    //             }).then((result) => {
+    //             if (result.value) {
+    //                 //CODIGO HA SER VALIDADO
+    //                 let me = this;
+    //                 axios
+    //                 .put("/editarPerEspecialidad", {
+    //             //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
+    //                 id : me.idPersonalEspecialidad,
+    //                 per_codigo : me.per_codigo,
+    //                 espe_cod : me.perespe_especialidadA,
+    //                 subespe_cod : me.perespe_subespecialidadA,
+    //                 documento : me.perespe_tipodocA,
+    //                 fecha_documento : me.perespe_fechadocA,
+    //                 nrodoc : me.perespe_nrodocA,
+    //                 observacion : me.perespe_observacionA,
+    //             })                                                                                                                                                                                            
+    //             .then(function (response) {
+    //                 //Respuesta de la peticion
+    //                 console.log(response);
+    //                 Swal.fire({
+    //                         icon    :   'success',
+    //                         title   :   'Se ha actualizado la Especialidad',
+    //                         showConfirmButton   : false,
+    //                         timer   :   1500
+    //                     })
+    //                 $('#EditarEspecialidad').modal('hide');
+    //                 me.listarPersonalEspecialidades(me.per_codigo);
+    //             })
+    //             .catch(function (error) {
+    //                 // handle error
+    //                 console.log(error);
+    //                 });
+    //             }else{
+    //                 console.log('no empezamos');
+    //             }
+    //         })  
+    //     }else{
+    //         this.$v.$touch();
+    //         Swal.fire({
+    //             icon: 'warning',
+    //             title: 'Ingrese todos los datos requeridos',
+    //             showConfirmButton: false,
+    //             timer: 2000
+    //         })
+    //     }
+    // },
+    // desactivarPerEspecialidad(personalEspecialidad){
+    //     //if(!this.$v.$invalid){
+    //         swal.fire({
+    //             title: 'Esta seguro de eliminar esta especialidad', // TITULO 
+    //             icon: 'warning', //ICONO (success, warnning, error, info, question)
+    //             showCancelButton: true, //HABILITACION DEL BOTON CANCELAR
+    //             confirmButtonColor: 'info', // COLOR DEL BOTON PARA CONFIRMAR
+    //             cancelButtonColor: '#868077', // CLOR DEL BOTON CANCELAR
+    //             confirmButtonText: 'Confirmar', //TITULO DEL BOTON CONFIRMAR
+    //             cancelButtonText: 'Cancelar', //TIUTLO DEL BOTON CANCELAR
+    //             buttonsStyling: true,
+    //             reverseButtons: true
+    //             }).then((result) => {
+    //             if (result.value) {
+    //                 //CODIGO HA SER VALIDADO
+    //                 let me =this;
+    //                 this.idPersonalEspecialidad = personalEspecialidad.idpersonal_especialidades,
+    //                 this.perespe_fechadoc = personalEspecialidad.fecha_documento,
+    //                 axios
+    //                 .put('/desactivarPerEspecialidad', {
+    //             //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
+    //                 idPersonalEspecialidad : me.idPersonalEspecialidad,
+    //                 fecha_documento : me.perespe_fechadoc,
+    //                 per_codigo : me.per_codigo,
+    //             })
+    //             .then(function (response) {
+    //                 //Respuesta de la peticion
+    //                 console.log(response);
+    //                 me.listarPersonalEspecialidades(me.per_codigo);
+    //             })
+    //             .catch(function (error) {
+    //                 // handle error
+    //                 console.log(error);
+    //                 });
+    //             }else{
+    //                 console.log('no empezamos');
+    //             }
+    //         })  
+    // },
     CurrComanjefe: function CurrComanjefe(per_codigo) {
       window.open('http://127.0.0.1:8000/curriculumComanjefe?per_codigo=' + per_codigo); // window.open('http://sipefab.fab.bo/curriculumComanjefe?per_codigo='+per_codigo);
     },
@@ -5857,6 +6002,15 @@ __webpack_require__.r(__webpack_exports__);
         //     d: datos
         // }
 
+      });
+    },
+    EnvioDatos: function EnvioDatos(datos) {
+      this.$router.push({
+        name: "ListarEstudiantes",
+        //ENVIO DE DATOS
+        params: {
+          d: datos
+        }
       });
     }
   }
@@ -47210,7 +47364,8 @@ var render = function() {
                             return _vm.listarEstudiantes(
                               1,
                               _vm.buscar,
-                              _vm.criterio
+                              _vm.criterio,
+                              _vm.col_id
                             )
                           },
                           input: function($event) {
@@ -47232,7 +47387,8 @@ var render = function() {
                               return _vm.listarEstudiantes(
                                 1,
                                 _vm.buscar,
-                                _vm.criterio
+                                _vm.criterio,
+                                _vm.col_id
                               )
                             }
                           }
@@ -47292,6 +47448,29 @@ var render = function() {
                           )
                         ]
                       ),
+                      _vm._v("  \n                              "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger btn-sm btn-block",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.Atras(_vm.col_id)
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "i",
+                            {
+                              staticClass: "fas fa-reply",
+                              attrs: { "aria-hidden": "true" }
+                            },
+                            [_vm._v(" Volver Atrás")]
+                          )
+                        ]
+                      ),
                       _vm._v("  \n                          ")
                     ])
                   ])
@@ -47315,7 +47494,11 @@ var render = function() {
                         _vm._v(" "),
                         _c("th", [_c("center", [_vm._v("AP. MATERNO")])], 1),
                         _vm._v(" "),
-                        _c("th", [_c("center", [_vm._v("NOMBRES")])], 1)
+                        _c("th", [_c("center", [_vm._v("NOMBRES")])], 1),
+                        _vm._v(" "),
+                        _c("th", [_c("center", [_vm._v("NIVEL")])], 1),
+                        _vm._v(" "),
+                        _c("th", [_c("center", [_vm._v("CURSO")])], 1)
                       ])
                     ]),
                     _vm._v(" "),
@@ -47340,24 +47523,7 @@ var render = function() {
                                 [_c("i", { staticClass: "fas fa-edit" })]
                               ),
                               _vm._v("  \n                                  "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-info btn-sm",
-                                  attrs: { type: "button" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.abrirEditar(estudiante)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("i", {
-                                    staticClass: "fas fa-globe-americas"
-                                  })
-                                ]
-                              ),
-                              _vm._v("  \n                                  "),
+                              _vm._v(" "),
                               estudiante.est_estado == 1
                                 ? [
                                     _c(
@@ -47367,7 +47533,7 @@ var render = function() {
                                         attrs: { type: "button" },
                                         on: {
                                           click: function($event) {
-                                            return _vm.desactivarUsuario(
+                                            return _vm.desactivarEstudiante(
                                               _vm.usuario.id
                                             )
                                           }
@@ -47435,7 +47601,22 @@ var render = function() {
                             domProps: {
                               textContent: _vm._s(estudiante.est_nombre)
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _c("td", {
+                            domProps: {
+                              textContent: _vm._s(estudiante.nivel_abreviatura)
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(estudiante.curso_sigla) +
+                                ' "' +
+                                _vm._s(estudiante.paralelo) +
+                                '"'
+                            )
+                          ])
                         ])
                       }),
                       0
@@ -47909,6 +48090,10 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
+                        class: {
+                          "is-invalid": _vm.$v.desig_nivel.$error,
+                          "is-valid": !_vm.$v.desig_nivel.$invalid
+                        },
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -47941,7 +48126,13 @@ var render = function() {
                         })
                       ],
                       2
-                    )
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      !_vm.$v.desig_nivel.required
+                        ? _c("span", [_vm._v("Este campo es Requerido")])
+                        : _vm._e()
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-3" }, [
@@ -47966,6 +48157,10 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
+                        class: {
+                          "is-invalid": _vm.$v.desig_curso.$error,
+                          "is-valid": !_vm.$v.desig_curso.$invalid
+                        },
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -47998,7 +48193,13 @@ var render = function() {
                         })
                       ],
                       2
-                    )
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      !_vm.$v.desig_curso.required
+                        ? _c("span", [_vm._v("Este campo es Requerido")])
+                        : _vm._e()
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-3" }, [
@@ -48023,6 +48224,10 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
+                        class: {
+                          "is-invalid": _vm.$v.desig_paralelo.$error,
+                          "is-valid": !_vm.$v.desig_paralelo.$invalid
+                        },
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -48041,7 +48246,7 @@ var render = function() {
                       },
                       [
                         _c("option", { attrs: { value: "0", disabled: "" } }, [
-                          _vm._v("SELECCIONAR")
+                          _vm._v("SELECCIONE")
                         ]),
                         _vm._v(" "),
                         _c("option", { attrs: { value: "A" } }, [_vm._v("A")]),
@@ -48062,7 +48267,13 @@ var render = function() {
                         _vm._v(" "),
                         _c("option", { attrs: { value: "I" } }, [_vm._v("I")])
                       ]
-                    )
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      !_vm.$v.desig_paralelo.required
+                        ? _c("span", [_vm._v("Este campo es Requerido")])
+                        : _vm._e()
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-3" }, [
@@ -48085,6 +48296,10 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.$v.gestion.$error,
+                        "is-valid": !_vm.$v.gestion.$invalid
+                      },
                       attrs: { type: "text" },
                       domProps: { value: _vm.gestion },
                       on: {
@@ -48096,6 +48311,12 @@ var render = function() {
                         }
                       }
                     })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "invalid-feedback" }, [
+                    !_vm.$v.gestion.required
+                      ? _c("span", [_vm._v("Este campo es Requerido")])
+                      : _vm._e()
                   ])
                 ]),
                 _vm._v(" "),
@@ -48523,6 +48744,261 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
+                _vm._m(4),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group row" }, [
+                  _c("div", { staticClass: "col-md-3" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-control-label",
+                        attrs: { for: "text-input" }
+                      },
+                      [_vm._v("NIVEL")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.desig_nivelA,
+                            expression: "desig_nivelA"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: {
+                          "is-invalid": _vm.$v.desig_nivelA.$error,
+                          "is-valid": !_vm.$v.desig_nivelA.$invalid
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.desig_nivelA = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "0", disabled: "" } }, [
+                          _vm._v("SELECCIONE")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.arrayNiveles, function(niveles) {
+                          return _c("option", {
+                            key: niveles.id,
+                            domProps: {
+                              value: niveles.id,
+                              textContent: _vm._s(niveles.nivel_abreviatura)
+                            }
+                          })
+                        })
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      !_vm.$v.desig_nivelA.required
+                        ? _c("span", [_vm._v("Este campo es Requerido")])
+                        : _vm._e()
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-3" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-control-label",
+                        attrs: { for: "text-input" }
+                      },
+                      [_vm._v("CURSO")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.desig_cursoA,
+                            expression: "desig_cursoA"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: {
+                          "is-invalid": _vm.$v.desig_cursoA.$error,
+                          "is-valid": !_vm.$v.desig_cursoA.$invalid
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.desig_cursoA = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "0", disabled: "" } }, [
+                          _vm._v("SELECCIONE")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.arrayCursos, function(cursos) {
+                          return _c("option", {
+                            key: cursos.id,
+                            domProps: {
+                              value: cursos.id,
+                              textContent: _vm._s(cursos.curso_sigla)
+                            }
+                          })
+                        })
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      !_vm.$v.desig_cursoA.required
+                        ? _c("span", [_vm._v("Este campo es Requerido")])
+                        : _vm._e()
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-3" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-control-label",
+                        attrs: { for: "text-input" }
+                      },
+                      [_vm._v("PARALELO")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.desig_paraleloA,
+                            expression: "desig_paraleloA"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: {
+                          "is-invalid": _vm.$v.desig_paraleloA.$error,
+                          "is-valid": !_vm.$v.desig_paraleloA.$invalid
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.desig_paraleloA = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "0", disabled: "" } }, [
+                          _vm._v("SELECCIONE")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "A" } }, [_vm._v("A")]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "B" } }, [_vm._v("B")]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "C" } }, [_vm._v("C")]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "D" } }, [_vm._v("D")]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "E" } }, [_vm._v("E")]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "F" } }, [_vm._v("F")]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "G" } }, [_vm._v("G")]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "H" } }, [_vm._v("H")]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "I" } }, [_vm._v("I")])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      !_vm.$v.desig_paraleloA.required
+                        ? _c("span", [_vm._v("Este campo es Requerido")])
+                        : _vm._e()
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-3" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-control-label",
+                        attrs: { for: "text-input" }
+                      },
+                      [_vm._v("GESTIÓN")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.gestionA,
+                          expression: "gestionA"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.$v.gestionA.$error,
+                        "is-valid": !_vm.$v.gestionA.$invalid
+                      },
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.gestionA },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.gestionA = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "invalid-feedback" }, [
+                    !_vm.$v.gestionA.required
+                      ? _c("span", [_vm._v("Este campo es Requerido")])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
                 _c("div", { staticClass: "form-group row" }, [
                   _c("div", { staticClass: "col-md-12" }, [
                     _c(
@@ -48686,6 +49162,29 @@ var staticRenderFns = [
         ]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group row" }, [
+      _c(
+        "div",
+        {
+          staticClass: "col-md-12",
+          staticStyle: {
+            "text-align": "center",
+            "font-size": "14pt",
+            "font-weight": "bold"
+          }
+        },
+        [
+          _vm._v(
+            "\n                         ASIGNACIÓN DE CURSO\n                      "
+          )
+        ]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -48772,7 +49271,39 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _vm._m(1),
+                          _c("div", { staticClass: "row p-2 bd-highlight" }, [
+                            _vm._m(1),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-4" }, [
+                              _c("dl", [
+                                _c("dt", { staticClass: "st" }, [
+                                  _vm._v("TURNO")
+                                ]),
+                                _vm._v(" "),
+                                _c("dd", { staticClass: "st" }, [
+                                  _vm._v(
+                                    _vm._s(_vm.arrayDatosColegio.col_turno)
+                                  )
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-4" }, [
+                              _c("dl", [
+                                _c("dt", { staticClass: "st" }, [
+                                  _vm._v("DEPENDENCIA")
+                                ]),
+                                _vm._v(" "),
+                                _c("dd", { staticClass: "st" }, [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.arrayDatosColegio.col_dependencia
+                                    )
+                                  )
+                                ])
+                              ])
+                            ])
+                          ]),
                           _vm._v(" "),
                           _c(
                             "div",
@@ -48791,7 +49322,7 @@ var render = function() {
                                     attrs: { type: "button" },
                                     on: {
                                       click: function($event) {
-                                        return _vm.CurrComanjefe(_vm.per_codigo)
+                                        return _vm.EnvioDatos(_vm.col_id)
                                       }
                                     }
                                   },
@@ -48802,7 +49333,7 @@ var render = function() {
                                         staticClass: "far fa-file-alt",
                                         attrs: { "aria-hidden": "true" }
                                       },
-                                      [_vm._v("  Curriculum COMANJEFE")]
+                                      [_vm._v("  REGISTRO DE ESTUDIANTES")]
                                     )
                                   ]
                                 ),
@@ -48832,7 +49363,7 @@ var render = function() {
                                         staticClass: "far fa-file-alt",
                                         attrs: { "aria-hidden": "true" }
                                       },
-                                      [_vm._v("  Curriculum Extendido")]
+                                      [_vm._v("  CARATULA")]
                                     )
                                   ]
                                 ),
@@ -49057,16 +49588,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row p-2 bd-highlight" }, [
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("dl", [_c("dt", { staticClass: "st" }, [_vm._v("DISTRITO")])])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("dl", [
-          _c("dt", { staticClass: "st" }, [_vm._v("ESPECIALIDAD ACTUAL")])
-        ])
-      ])
+    return _c("div", { staticClass: "col-md-4" }, [
+      _c("dl", [_c("dt", { staticClass: "st" }, [_vm._v("DISTRITO")])])
     ])
   }
 ]
@@ -75605,6 +76128,38 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/RegistroEstudiante.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/RegistroEstudiante.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/RegistroEstudiante.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/routes.js":
 /*!********************************!*\
   !*** ./resources/js/routes.js ***!
@@ -75644,8 +76199,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: 'Colegios',
     component: __webpack_require__(/*! ./components/Colegio.vue */ "./resources/js/components/Colegio.vue")["default"]
   }, {
-    path: '/listarEstudiantes',
+    path: '/listarEstudiantes/:d',
+    name: 'ListarEstudiantes',
     component: __webpack_require__(/*! ./components/Estudiante.vue */ "./resources/js/components/Estudiante.vue")["default"]
+  }, {
+    path: '/registroEstudiantes',
+    name: 'RegistroEstudiantes',
+    component: __webpack_require__(/*! ./components/RegistroEstudiante.vue */ "./resources/js/components/RegistroEstudiante.vue")["default"]
   }, {
     path: '/designarEstudiantes',
     component: __webpack_require__(/*! ./components/DesignacionCurso.vue */ "./resources/js/components/DesignacionCurso.vue")["default"]

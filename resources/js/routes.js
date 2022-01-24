@@ -29,8 +29,15 @@ export default new Router ({
         },
 
         {
-            path: '/listarEstudiantes',
+            path: '/listarEstudiantes/:d',
+            name: 'ListarEstudiantes',
             component: require('./components/Estudiante.vue').default
+        },
+
+        {
+            path: '/registroEstudiantes',
+            name: 'RegistroEstudiantes',
+            component: require('./components/RegistroEstudiante.vue').default
         },
 
         {

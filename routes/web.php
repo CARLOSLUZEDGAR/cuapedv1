@@ -19,6 +19,7 @@ Route::post('/listarColegio', 'ColegioController@index');
 Route::post('/registrarColegio', 'ColegioController@registrarColegio');
 Route::put('/editarColegio', 'ColegioController@updateColegio');
 Route::put('/desactivarColegio', 'ColegioController@desactivarColegio');
+Route::put('/activarColegio', 'ColegioController@activarColegio');
 Route::get('/selectColegios','ColegioController@selectColegio');
 Route::post('/datosColegio', 'ColegioController@datosColegio');
 
