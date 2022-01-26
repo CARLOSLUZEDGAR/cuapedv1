@@ -2731,6 +2731,858 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Curso.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Curso.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//import { required, minLength, between } from 'vuelidate/lib/validators'
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      //RECIBIMOS LA VARIABLE EN ESTE CASO (d)
+      per_codigo: this.$route.params.d,
+      arrayDatosPersonal: [],
+      arrayPerPromo: [],
+      arrayPerEspecialidad: [],
+      arrayPerGrado: [],
+      arrayPerDestino: [],
+      arrayGrados: [],
+      arrayEspecialidad: [],
+      arraySubespecialidad: [],
+      arrayDestinos_nivel1: [],
+      arrayDestinos_nivel2: [],
+      arrayDestinos_nivel3: [],
+      criterio: '',
+      promocion: '',
+      grado: 0,
+      especialidad: 0,
+      subespecialidad: 0,
+      entidad: 0,
+      gran_unidad: 0,
+      reparticion: 0,
+      pagination: {
+        'total': 0,
+        'current_page': 0,
+        'per_page': 0,
+        'last_page': 0,
+        'from': 0,
+        'to': 0
+      },
+      offset: 3,
+      rowId: 0 //VARIABLES  PARA CERTIFICACION
+      // notaAsc : '',
+      // criterio : '',
+
+    };
+  },
+  validations: {},
+  mounted: function mounted() {
+    //this.ver();
+    this.listarPerPromo(this.page, this.promocion, this.especialidad, this.subespecialidad); // this.datosPersonal(this.per_codigo);
+  },
+  computed: {
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    //Calcuar los elementos de la paginacion
+    pagesNumber: function pagesNumber() {
+      if (!this.pagination.to) {
+        return [];
+      }
+
+      var from = this.pagination.current_page - this.offset;
+
+      if (from < 1) {
+        from = 1;
+      }
+
+      var to = from + this.offset * 2;
+
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+
+      var pagesArray = [];
+
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+
+      return pagesArray;
+    }
+  },
+  methods: {
+    ver: function ver() {//console.log(this.per_codigo);
+      //console.log(this.personal_destinos)
+    },
+    // INICIO BUSCAR POR PROMOCION
+    listarPerPromo: function listarPerPromo(page, promocion, especialidad, subespecialidad) {
+      var me = this;
+      axios.post("/listarPerPromo", {
+        page: page,
+        promocion: promocion,
+        especialidad: especialidad,
+        subespecialidad: subespecialidad
+      }).then(function (response) {
+        me.arrayPerPromo = response.data.personal_especialidades.data;
+        me.pagination = response.data.pagination;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+    },
+    cambiarPagina: function cambiarPagina(page, promocion, especialidad, subespecialidad) {
+      var me = this; //Actualiza la pagina actual
+
+      me.pagination.current_page = page; //Envia la peticion para visualizar la data de esa pagina
+
+      me.listarPerPromo(page, promocion, especialidad, subespecialidad);
+    },
+    // FIN BUSCAR POR PROMOCION
+    // INICIO BUSCAR POR GRADO
+    selectEspeGrado: function selectEspeGrado() {
+      var me = this;
+      var url = '/gradoEspecialidad';
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayGrados = respuesta.grados;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      }).then(function () {// always executed
+      });
+    },
+    listarPerGrado: function listarPerGrado(page, grado, especialidad, subespecialidad) {
+      var me = this;
+      axios.post("/listarPerGrado", {
+        page: page,
+        grado: grado,
+        especialidad: especialidad,
+        subespecialidad: subespecialidad
+      }).then(function (response) {
+        me.arrayPerGrado = response.data.personal_especialidades.data;
+        me.pagination = response.data.pagination;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+    },
+    cambiarPaginaGrado: function cambiarPaginaGrado(page, grado, especialidad, subespecialidad) {
+      var me = this; //Actualiza la pagina actual
+
+      me.pagination.current_page = page; //Envia la peticion para visualizar la data de esa pagina
+
+      me.listarPerGrado(page, grado, especialidad, subespecialidad);
+    },
+    // FIN BUSCAR POR GRADO
+    //INICIO BUSQUEDA POR ESPECIALIDAD Y SUBESPECIALIDAD
+    listarPerEspecialidad: function listarPerEspecialidad(page, especialidad, subespecialidad) {
+      var me = this;
+      axios.post("/listarPerEspecialidad", {
+        page: page,
+        especialidad: especialidad,
+        subespecialidad: subespecialidad
+      }).then(function (response) {
+        me.arrayPerEspecialidad = response.data.personal_especialidades.data;
+        me.pagination = response.data.pagination;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+    },
+    selectEspeEspecialidad: function selectEspeEspecialidad() {
+      var me = this;
+      var url = '/especialidad/selectEspecialidad';
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayEspecialidad = respuesta.especialidad;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      }).then(function () {// always executed
+      });
+    },
+    selectSubespecialidad: function selectSubespecialidad() {
+      var me = this;
+      var url = '/subespecialidad/selectSubespecialidad';
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arraySubespecialidad = respuesta.subespecialidad;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      }).then(function () {// always executed
+      });
+    },
+    changeItemEspe: function changeItemEspe(rowId, event) {
+      this.selected = "rowId: " + rowId + ", target.value: " + event.target.value;
+      this.selectbuscarSubespecialidad(event.target.value);
+    },
+    selectbuscarSubespecialidad: function selectbuscarSubespecialidad(depa) {
+      var me = this;
+      me.buscarD = depa;
+      me.arraySubespecialidad = []; //  me.prov_codigo=0;
+
+      var url = '/subespecialidad/selectbuscarSubespecialidad?buscar=' + depa;
+      me.selected = url;
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arraySubespecialidad = respuesta.subespecialidad;
+      })["catch"](function (error) {
+        // handle error 
+        me.selected = error;
+        console.log(error);
+      }).then(function () {// always executed
+      });
+    },
+    cambiarPaginaEspecialidad: function cambiarPaginaEspecialidad(page, especialidad, subespecialidad) {
+      var me = this; //Actualiza la pagina actual
+
+      me.pagination.current_page = page; //Envia la peticion para visualizar la data de esa pagina
+
+      me.listarPerEspecialidad(page, especialidad, subespecialidad);
+    },
+    //FIN BUSQUEDA POR ESPECIALIDAD Y SUBESPECIALIDAD
+    // INICIO BUSQUEDA POR DESTINO
+    listarPerDestino: function listarPerDestino(page, entidad, gran_unidad, reparticion, especialidad, subespecialidad) {
+      var me = this;
+      axios.post("/listarPerDestino", {
+        page: page,
+        entidad: entidad,
+        gran_unidad: gran_unidad,
+        reparticion: reparticion,
+        especialidad: especialidad,
+        subespecialidad: subespecialidad
+      }).then(function (response) {
+        me.arrayPerDestino = response.data.personal_especialidades.data;
+        me.pagination = response.data.pagination;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+    },
+    changeItemEntidad: function changeItemEntidad(rowId, event) {
+      this.selected = "rowId: " + rowId + ", target.value: " + event.target.value;
+      this.selectbuscarDestinos_nivel2(event.target.value);
+    },
+    changeItemGranunidad: function changeItemGranunidad(rowId, event) {
+      this.selected = "rowId: " + rowId + ", target.value: " + event.target.value;
+      this.selectbuscarDestinos_nivel3(event.target.value);
+    },
+    selectDestinos_nivel1: function selectDestinos_nivel1() {
+      var me = this;
+      var url = '/destinos_nivel1/selectDestinos_nivel1';
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayDestinos_nivel1 = respuesta.destino1;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      }).then(function () {// always executed
+      });
+    },
+    selectDestinos_nivel2: function selectDestinos_nivel2() {
+      var me = this;
+      var url = '/destinos_nivel2/selectDestinos_nivel2';
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayDestinos_nivel2 = respuesta.destinos2;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      }).then(function () {// always executed
+      });
+    },
+    selectDestinos_nivel3: function selectDestinos_nivel3() {
+      var me = this;
+      var url = '/destinos_nivel3/selectDestinos_nivel3';
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayDestinos_nivel3 = respuesta.destino3;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      }).then(function () {// always executed
+      });
+    },
+    selectbuscarDestinos_nivel2: function selectbuscarDestinos_nivel2(depa) {
+      var me = this;
+      me.buscarD = depa;
+      me.arrayDestinos_nivel2 = []; //  me.prov_codigo=0;
+
+      var url = '/destinos_nivel2/selectbuscarDestinos_nivel2?buscar=' + depa;
+      me.selected = url;
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayDestinos_nivel2 = respuesta.destinos2;
+      })["catch"](function (error) {
+        // handle error 
+        me.selected = error;
+        console.log(error);
+      }).then(function () {// always executed
+      });
+    },
+    selectbuscarDestinos_nivel3: function selectbuscarDestinos_nivel3(depa) {
+      var me = this;
+      me.buscarD = depa;
+      me.arrayDestinos_nivel3 = []; //  me.prov_codigo=0;
+
+      var url = '/destinos_nivel3/selectbuscarDestinos_nivel3?buscar=' + depa;
+      me.selected = url;
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayDestinos_nivel3 = respuesta.destino3;
+      })["catch"](function (error) {
+        // handle error 
+        me.selected = error;
+        console.log(error);
+      }).then(function () {// always executed
+      });
+    },
+    cambiarPaginaDestino: function cambiarPaginaDestino(page, entidad, gran_unidad, reparticion, especialidad, subespecialidad) {
+      var me = this; //Actualiza la pagina actual
+
+      me.pagination.current_page = page; //Envia la peticion para visualizar la data de esa pagina
+
+      me.listarPerDestino(page, entidad, gran_unidad, reparticion, especialidad, subespecialidad);
+    },
+    // FIN BUSQUEDA POR DESTINO
+    Atras: function Atras() {
+      this.$router.push({
+        name: "ListarPersonalEspecialidades" //ENVIO DE DATOS
+        // params:{
+        //     d: datos
+        // }   
+
+      });
+    },
+    reset: function reset() {
+      var me = this;
+      me.promocion = '';
+      me.grado = 0;
+      me.especialidad = 0;
+      me.subespecialidad = 0;
+      me.entidad = 0;
+      me.gran_unidad = 0;
+      me.reparticion = 0;
+    },
+    RepPromEspe: function RepPromEspe(promocion, especialidad, subespecialidad) {
+      window.open('http://127.0.0.1:8000/reporteEspecialidadPromocion?promocion=' + promocion + '&especialidad=' + especialidad + '&subespecialidad=' + subespecialidad); // let me = this;
+      // axios
+      // .post("/registrarReporte", {
+      // //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
+      //     rep_reporte : 'CERTIFICADO DESTINOS ASCENSO',
+      //     rep_per_codigo : me.per_codigo,
+      //     rep_observacion : me.notaAsc,
+      // })
+      // .then(function (response) {
+      //     //Respuesta de la peticion
+      // })
+      // .catch(function (error) {
+      //     // handle error
+      //     console.log(error);
+      // });
+    },
+    RepGraEspe: function RepGraEspe(grado, especialidad, subespecialidad) {
+      window.open('http://127.0.0.1:8000/reporteEspecialidadGrado?grado=' + grado + '&especialidad=' + especialidad + '&subespecialidad=' + subespecialidad);
+    },
+    RepEspeEspe: function RepEspeEspe(especialidad, subespecialidad) {
+      window.open('http://127.0.0.1:8000/reporteEspecialidadEspecialidad?especialidad=' + especialidad + '&subespecialidad=' + subespecialidad);
+    },
+    RepDestEspe: function RepDestEspe(entidad, gran_unidad, reparticion, especialidad, subespecialidad) {
+      window.open('http://127.0.0.1:8000/reporteEspecialidadDestino?entidad=' + entidad + '&gran_unidad=' + gran_unidad + '&reparticion=' + reparticion + '&especialidad=' + especialidad + '&subespecialidad=' + subespecialidad);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DesignacionCurso.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DesignacionCurso.vue?vue&type=script&lang=js& ***!
@@ -6007,6 +6859,15 @@ __webpack_require__.r(__webpack_exports__);
     EnvioDatos: function EnvioDatos(datos) {
       this.$router.push({
         name: "ListarEstudiantes",
+        //ENVIO DE DATOS
+        params: {
+          d: datos
+        }
+      });
+    },
+    EnvioDatosCurso: function EnvioDatosCurso(datos) {
+      this.$router.push({
+        name: "ListarCursos",
         //ENVIO DE DATOS
         params: {
           d: datos
@@ -44427,6 +45288,2161 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Curso.vue?vue&type=template&id=0882697e&":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Curso.vue?vue&type=template&id=0882697e& ***!
+  \********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("section", { staticClass: "content" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "card card-primary card-outline" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c(
+                        "div",
+                        { staticClass: "input-group" },
+                        [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "form-control-label col-md-4",
+                              attrs: { for: "text-input" }
+                            },
+                            [_vm._v("CURSOS:")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.criterio,
+                                  expression: "criterio"
+                                }
+                              ],
+                              staticClass: "form-control col-md-6",
+                              on: {
+                                click: function($event) {
+                                  _vm.selectEspeEspecialidad(),
+                                    _vm.selectEspeGrado(),
+                                    _vm.selectDestinos_nivel1(),
+                                    _vm.reset()
+                                },
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.criterio = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "option",
+                                { attrs: { value: "", disabled: "" } },
+                                [_vm._v("SELECCIONE")]
+                              ),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "promocion" } }, [
+                                _vm._v('1RO. INICIAL "A"')
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "grado" } }, [
+                                _vm._v('2DO. INICIAL "A"')
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "option",
+                                { attrs: { value: "especialidad" } },
+                                [_vm._v("POR ESPECIALIDAD")]
+                              ),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "destino" } }, [
+                                _vm._v("POR DESTINO")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "general" } }, [
+                                _vm._v("POR GENERO")
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _vm.criterio == "promocion"
+                            ? [
+                                _c("div", { staticClass: "input-group" }, [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "form-control-label col-md-4",
+                                      attrs: { for: "text-input" }
+                                    },
+                                    [_vm._v("PROMOCIÓN:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.promocion,
+                                        expression: "promocion"
+                                      }
+                                    ],
+                                    staticClass: "form-control col-md-6",
+                                    staticStyle: {
+                                      "text-transform": "uppercase"
+                                    },
+                                    attrs: {
+                                      type: "text",
+                                      placeholder:
+                                        "INSERTAR 5 PRIMEROS DIGITOS DEL CM"
+                                    },
+                                    domProps: { value: _vm.promocion },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.promocion = $event.target.value
+                                      }
+                                    }
+                                  })
+                                ])
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.criterio == "grado"
+                            ? [
+                                _c("div", { staticClass: "input-group" }, [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "form-control-label col-md-4",
+                                      attrs: { for: "text-input" }
+                                    },
+                                    [_vm._v("GRADO:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.grado,
+                                          expression: "grado"
+                                        }
+                                      ],
+                                      staticClass: "form-control col-md-6",
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.grado = $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        { attrs: { value: "0", disabled: "" } },
+                                        [_vm._v("SELECCIONE")]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.arrayGrados, function(grados) {
+                                        return _c("option", {
+                                          key: grados.id,
+                                          domProps: {
+                                            value: grados.id,
+                                            textContent: _vm._s(grados.nombre)
+                                          }
+                                        })
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ])
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.criterio == "destino"
+                            ? [
+                                _c("div", { staticClass: "input-group" }, [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "form-control-label col-md-4",
+                                      attrs: { for: "text-input" }
+                                    },
+                                    [_vm._v("ENTIDAD:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.entidad,
+                                          expression: "entidad"
+                                        }
+                                      ],
+                                      staticClass: "form-control col-md-6",
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.entidad = $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          },
+                                          function($event) {
+                                            return _vm.changeItemEntidad(
+                                              _vm.rowId,
+                                              $event
+                                            )
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        { attrs: { value: "0", disabled: "" } },
+                                        [_vm._v("SELECCIONE")]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.arrayDestinos_nivel1, function(
+                                        destinos_nivel1
+                                      ) {
+                                        return _c("option", {
+                                          key: destinos_nivel1.id,
+                                          domProps: {
+                                            value: destinos_nivel1.id,
+                                            textContent: _vm._s(
+                                              destinos_nivel1.descripcion
+                                            )
+                                          }
+                                        })
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ]),
+                                _c("br"),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "input-group" }, [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "form-control-label col-md-4",
+                                      attrs: { for: "text-input" }
+                                    },
+                                    [_vm._v("GRAN UNIDAD:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.gran_unidad,
+                                          expression: "gran_unidad"
+                                        }
+                                      ],
+                                      staticClass: "form-control col-md-6",
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.gran_unidad = $event.target
+                                              .multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          },
+                                          function($event) {
+                                            return _vm.changeItemGranunidad(
+                                              _vm.rowId,
+                                              $event
+                                            )
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    [
+                                      _c("option", { attrs: { value: "0" } }, [
+                                        _vm._v("SELECCIONE")
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.arrayDestinos_nivel2, function(
+                                        destinos_nivel2
+                                      ) {
+                                        return _c("option", {
+                                          key: destinos_nivel2.id,
+                                          domProps: {
+                                            value: destinos_nivel2.id,
+                                            textContent: _vm._s(
+                                              destinos_nivel2.descripcion
+                                            )
+                                          }
+                                        })
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ]),
+                                _c("br"),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "input-group" }, [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "form-control-label col-md-4",
+                                      attrs: { for: "text-input" }
+                                    },
+                                    [_vm._v("REPARTICIÓN:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.reparticion,
+                                          expression: "reparticion"
+                                        }
+                                      ],
+                                      staticClass: "form-control col-md-6",
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.reparticion = $event.target
+                                            .multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("option", { attrs: { value: "0" } }, [
+                                        _vm._v("SELECCIONE")
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.arrayDestinos_nivel3, function(
+                                        destinos_nivel3
+                                      ) {
+                                        return _c("option", {
+                                          key: destinos_nivel3.id,
+                                          domProps: {
+                                            value: destinos_nivel3.id,
+                                            textContent: _vm._s(
+                                              destinos_nivel3.descripcion
+                                            )
+                                          }
+                                        })
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ])
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.criterio == "general" ? [_vm._m(2)] : _vm._e(),
+                          _vm._v(" "),
+                          _vm.criterio == "especialidad" ||
+                          _vm.criterio == "promocion" ||
+                          _vm.criterio == "grado" ||
+                          _vm.criterio == "destino"
+                            ? [
+                                _c("div", { staticClass: "input-group" }, [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "form-control-label col-md-4",
+                                      attrs: { for: "text-input" }
+                                    },
+                                    [_vm._v("ESPECIALIDAD:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.especialidad,
+                                          expression: "especialidad"
+                                        }
+                                      ],
+                                      staticClass: "form-control col-md-6",
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.especialidad = $event.target
+                                              .multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          },
+                                          function($event) {
+                                            return _vm.changeItemEspe(
+                                              _vm.rowId,
+                                              $event
+                                            )
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    [
+                                      _c("option", { attrs: { value: "0" } }, [
+                                        _vm._v("SELECCIONE")
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.arrayEspecialidad, function(
+                                        especialidad
+                                      ) {
+                                        return _c("option", {
+                                          key: especialidad.id,
+                                          domProps: {
+                                            value: especialidad.id,
+                                            textContent: _vm._s(
+                                              especialidad.nombre
+                                            )
+                                          }
+                                        })
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ]),
+                                _c("br"),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "input-group" }, [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "form-control-label col-md-4",
+                                      attrs: { for: "text-input" }
+                                    },
+                                    [_vm._v("SUBESPECIALIDAD:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.subespecialidad,
+                                          expression: "subespecialidad"
+                                        }
+                                      ],
+                                      staticClass: "form-control col-md-6",
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.subespecialidad = $event.target
+                                            .multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("option", { attrs: { value: "0" } }, [
+                                        _vm._v("SELECCIONE")
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.arraySubespecialidad, function(
+                                        subespecialidad
+                                      ) {
+                                        return _c("option", {
+                                          key: subespecialidad.id,
+                                          domProps: {
+                                            value: subespecialidad.id,
+                                            textContent: _vm._s(
+                                              subespecialidad.nombre
+                                            )
+                                          }
+                                        })
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ])
+                              ]
+                            : _vm._e()
+                        ],
+                        2
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "row p-2 bd-highlight justify-content-center"
+                    },
+                    [
+                      _vm.criterio == "promocion"
+                        ? [
+                            _c("div", { staticClass: "col-md-4" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-primary btn-sm btn-block",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.listarPerPromo(
+                                        1,
+                                        _vm.promocion,
+                                        _vm.especialidad,
+                                        _vm.subespecialidad
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "i",
+                                    {
+                                      staticClass: "fas fa-plus",
+                                      attrs: { "aria-hidden": "true" }
+                                    },
+                                    [_vm._v("  MOSTRAR")]
+                                  )
+                                ]
+                              )
+                            ])
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.criterio == "grado"
+                        ? [
+                            _c("div", { staticClass: "col-md-4" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-primary btn-sm btn-block",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.listarPerGrado(
+                                        1,
+                                        _vm.grado,
+                                        _vm.especialidad,
+                                        _vm.subespecialidad
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "i",
+                                    {
+                                      staticClass: "fas fa-plus",
+                                      attrs: { "aria-hidden": "true" }
+                                    },
+                                    [_vm._v("  MOSTRAR")]
+                                  )
+                                ]
+                              )
+                            ])
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.criterio == "especialidad"
+                        ? [
+                            _c("div", { staticClass: "col-md-4" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-primary btn-sm btn-block",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.listarPerEspecialidad(
+                                        1,
+                                        _vm.especialidad,
+                                        _vm.subespecialidad
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "i",
+                                    {
+                                      staticClass: "fas fa-plus",
+                                      attrs: { "aria-hidden": "true" }
+                                    },
+                                    [_vm._v("  MOSTRAR")]
+                                  )
+                                ]
+                              )
+                            ])
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.criterio == "destino"
+                        ? [
+                            _c("div", { staticClass: "col-md-4" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-primary btn-sm btn-block",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.listarPerDestino(
+                                        1,
+                                        _vm.entidad,
+                                        _vm.gran_unidad,
+                                        _vm.reparticion,
+                                        _vm.especialidad,
+                                        _vm.subespecialidad
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "i",
+                                    {
+                                      staticClass: "fas fa-plus",
+                                      attrs: { "aria-hidden": "true" }
+                                    },
+                                    [_vm._v("  MOSTRAR")]
+                                  )
+                                ]
+                              )
+                            ])
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.criterio == "general"
+                        ? [
+                            _c("div", { staticClass: "col-md-4" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-primary btn-sm btn-block",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.listarPerGeneral(1, _vm.grado)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "i",
+                                    {
+                                      staticClass: "fas fa-plus",
+                                      attrs: { "aria-hidden": "true" }
+                                    },
+                                    [_vm._v("  MOSTRAR")]
+                                  )
+                                ]
+                              )
+                            ])
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger btn-sm btn-block",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                return _vm.Atras()
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "i",
+                              {
+                                staticClass: "fas fa-reply",
+                                attrs: { "aria-hidden": "true" }
+                              },
+                              [_vm._v("  ATRAS")]
+                            )
+                          ]
+                        )
+                      ])
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _vm.criterio == "promocion"
+                    ? [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "table-wrapper-scroll-y my-custom-scrollbar",
+                            staticStyle: { "font-size": "16px" },
+                            attrs: { id: "myTable" }
+                          },
+                          [
+                            _vm.arrayPerPromo.length
+                              ? [
+                                  _c(
+                                    "table",
+                                    {
+                                      staticClass:
+                                        "table table-bordered table-striped table-sm"
+                                    },
+                                    [
+                                      _c("thead", [
+                                        _c("tr", [
+                                          _c(
+                                            "th",
+                                            [
+                                              _c("center", [
+                                                _vm._v("CARNET MILITAR")
+                                              ])
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [_c("center", [_vm._v("GRADO")])],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [_c("center", [_vm._v("NOMBRES")])],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [
+                                              _c("center", [
+                                                _vm._v("AP. PATERNO")
+                                              ])
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [
+                                              _c("center", [
+                                                _vm._v("AP. MATERNO")
+                                              ])
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [
+                                              _c("center", [
+                                                _vm._v("ESPECIALIDAD")
+                                              ])
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [
+                                              _c("center", [
+                                                _vm._v("SUBESPECIALIDAD")
+                                              ])
+                                            ],
+                                            1
+                                          )
+                                        ])
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "tbody",
+                                        _vm._l(_vm.arrayPerPromo, function(
+                                          promoEspecialidades
+                                        ) {
+                                          return _c(
+                                            "tr",
+                                            { key: promoEspecialidades.id },
+                                            [
+                                              _c("td", {
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    promoEspecialidades.per_cm
+                                                  )
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("td", [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    promoEspecialidades.grado
+                                                  ) +
+                                                    _vm._s(
+                                                      promoEspecialidades.complemento
+                                                    )
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("td", {
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    promoEspecialidades.per_nombre
+                                                  )
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("td", {
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    promoEspecialidades.per_paterno
+                                                  )
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("td", {
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    promoEspecialidades.per_materno
+                                                  )
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("td", {
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    promoEspecialidades.nomespe
+                                                  )
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("td", {
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    promoEspecialidades.nomsubespe
+                                                  )
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        }),
+                                        0
+                                      )
+                                    ]
+                                  )
+                                ]
+                              : [_vm._m(3)]
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group row" }, [
+                          _c("nav", [
+                            _c(
+                              "ul",
+                              { staticClass: "pagination" },
+                              [
+                                _vm.pagination.current_page > 1
+                                  ? _c("li", { staticClass: "page-item" }, [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "page-link",
+                                          attrs: { href: "#" },
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              return _vm.cambiarPagina(
+                                                _vm.pagination.current_page - 1,
+                                                _vm.promocion,
+                                                _vm.especialidad,
+                                                _vm.subespecialidad
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Ant")]
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm._l(_vm.pagesNumber, function(page) {
+                                  return _c(
+                                    "li",
+                                    {
+                                      key: page,
+                                      staticClass: "page-item",
+                                      class: [
+                                        page == _vm.isActived ? "active" : ""
+                                      ]
+                                    },
+                                    [
+                                      _c("a", {
+                                        staticClass: "page-link",
+                                        attrs: { href: "#" },
+                                        domProps: { textContent: _vm._s(page) },
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            return _vm.cambiarPagina(
+                                              page,
+                                              _vm.promocion,
+                                              _vm.especialidad,
+                                              _vm.subespecialidad
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ]
+                                  )
+                                }),
+                                _vm._v(" "),
+                                _vm.pagination.current_page <
+                                _vm.pagination.last_page
+                                  ? _c("li", { staticClass: "page-item" }, [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "page-link",
+                                          attrs: { href: "#" },
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              return _vm.cambiarPagina(
+                                                _vm.pagination.current_page + 1,
+                                                _vm.promocion,
+                                                _vm.especialidad,
+                                                _vm.subespecialidad
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Sig")]
+                                      )
+                                    ])
+                                  : _vm._e()
+                              ],
+                              2
+                            )
+                          ])
+                        ])
+                      ]
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.criterio == "grado"
+                    ? [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "table-wrapper-scroll-y my-custom-scrollbar",
+                            staticStyle: { "font-size": "16px" },
+                            attrs: { id: "myTable" }
+                          },
+                          [
+                            _vm.arrayPerGrado.length
+                              ? [
+                                  _c(
+                                    "table",
+                                    {
+                                      staticClass:
+                                        "table table-bordered table-striped table-sm"
+                                    },
+                                    [
+                                      _c("thead", [
+                                        _c("tr", [
+                                          _c(
+                                            "th",
+                                            [
+                                              _c("center", [
+                                                _vm._v("CARNET MILITAR")
+                                              ])
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [_c("center", [_vm._v("GRADO")])],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [_c("center", [_vm._v("NOMBRES")])],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [
+                                              _c("center", [
+                                                _vm._v("AP. PATERNO")
+                                              ])
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [
+                                              _c("center", [
+                                                _vm._v("AP. MATERNO")
+                                              ])
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [
+                                              _c("center", [
+                                                _vm._v("ESPECIALIDAD")
+                                              ])
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [
+                                              _c("center", [
+                                                _vm._v("SUBESPECIALIDAD")
+                                              ])
+                                            ],
+                                            1
+                                          )
+                                        ])
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "tbody",
+                                        _vm._l(_vm.arrayPerGrado, function(
+                                          gradoEspecialidades
+                                        ) {
+                                          return _c(
+                                            "tr",
+                                            { key: gradoEspecialidades.id },
+                                            [
+                                              _c("td", {
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    gradoEspecialidades.per_cm
+                                                  )
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("td", [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    gradoEspecialidades.grado
+                                                  ) +
+                                                    _vm._s(
+                                                      gradoEspecialidades.complemento
+                                                    )
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("td", {
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    gradoEspecialidades.per_nombre
+                                                  )
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("td", {
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    gradoEspecialidades.per_paterno
+                                                  )
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("td", {
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    gradoEspecialidades.per_materno
+                                                  )
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("td", {
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    gradoEspecialidades.nomespe
+                                                  )
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("td", {
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    gradoEspecialidades.nomsubespe
+                                                  )
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        }),
+                                        0
+                                      )
+                                    ]
+                                  )
+                                ]
+                              : [_vm._m(4)]
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group row" }, [
+                          _c("nav", [
+                            _c(
+                              "ul",
+                              { staticClass: "pagination" },
+                              [
+                                _vm.pagination.current_page > 1
+                                  ? _c("li", { staticClass: "page-item" }, [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "page-link",
+                                          attrs: { href: "#" },
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              return _vm.cambiarPaginaGrado(
+                                                _vm.pagination.current_page - 1,
+                                                _vm.grado,
+                                                _vm.especialidad,
+                                                _vm.subespecialidad
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Ant")]
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm._l(_vm.pagesNumber, function(page) {
+                                  return _c(
+                                    "li",
+                                    {
+                                      key: page,
+                                      staticClass: "page-item",
+                                      class: [
+                                        page == _vm.isActived ? "active" : ""
+                                      ]
+                                    },
+                                    [
+                                      _c("a", {
+                                        staticClass: "page-link",
+                                        attrs: { href: "#" },
+                                        domProps: { textContent: _vm._s(page) },
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            return _vm.cambiarPaginaGrado(
+                                              page,
+                                              _vm.grado,
+                                              _vm.especialidad,
+                                              _vm.subespecialidad
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ]
+                                  )
+                                }),
+                                _vm._v(" "),
+                                _vm.pagination.current_page <
+                                _vm.pagination.last_page
+                                  ? _c("li", { staticClass: "page-item" }, [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "page-link",
+                                          attrs: { href: "#" },
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              return _vm.cambiarPaginaGrado(
+                                                _vm.pagination.current_page + 1,
+                                                _vm.grado,
+                                                _vm.especialidad,
+                                                _vm.subespecialidad
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Sig")]
+                                      )
+                                    ])
+                                  : _vm._e()
+                              ],
+                              2
+                            )
+                          ])
+                        ])
+                      ]
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.criterio == "especialidad"
+                    ? [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "table-wrapper-scroll-y my-custom-scrollbar",
+                            staticStyle: { "font-size": "16px" },
+                            attrs: { id: "myTable" }
+                          },
+                          [
+                            _vm.arrayPerEspecialidad.length
+                              ? [
+                                  _c(
+                                    "table",
+                                    {
+                                      staticClass:
+                                        "table table-bordered table-striped table-sm"
+                                    },
+                                    [
+                                      _c("thead", [
+                                        _c("tr", [
+                                          _c(
+                                            "th",
+                                            [
+                                              _c("center", [
+                                                _vm._v("CARNET MILITAR")
+                                              ])
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [_c("center", [_vm._v("GRADO")])],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [_c("center", [_vm._v("NOMBRES")])],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [
+                                              _c("center", [
+                                                _vm._v("AP. PATERNO")
+                                              ])
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [
+                                              _c("center", [
+                                                _vm._v("AP. MATERNO")
+                                              ])
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [
+                                              _c("center", [
+                                                _vm._v("ESPECIALIDAD")
+                                              ])
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [
+                                              _c("center", [
+                                                _vm._v("SUBESPECIALIDAD")
+                                              ])
+                                            ],
+                                            1
+                                          )
+                                        ])
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "tbody",
+                                        _vm._l(
+                                          _vm.arrayPerEspecialidad,
+                                          function(perEspecialidades) {
+                                            return _c(
+                                              "tr",
+                                              { key: perEspecialidades.id },
+                                              [
+                                                _c("td", {
+                                                  domProps: {
+                                                    textContent: _vm._s(
+                                                      perEspecialidades.per_cm
+                                                    )
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c("td", [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      perEspecialidades.grado
+                                                    ) +
+                                                      _vm._s(
+                                                        perEspecialidades.complemento
+                                                      )
+                                                  )
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("td", {
+                                                  domProps: {
+                                                    textContent: _vm._s(
+                                                      perEspecialidades.per_nombre
+                                                    )
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c("td", {
+                                                  domProps: {
+                                                    textContent: _vm._s(
+                                                      perEspecialidades.per_paterno
+                                                    )
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c("td", {
+                                                  domProps: {
+                                                    textContent: _vm._s(
+                                                      perEspecialidades.per_materno
+                                                    )
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c("td", {
+                                                  domProps: {
+                                                    textContent: _vm._s(
+                                                      perEspecialidades.nomespe
+                                                    )
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c("td", {
+                                                  domProps: {
+                                                    textContent: _vm._s(
+                                                      perEspecialidades.nomsubespe
+                                                    )
+                                                  }
+                                                })
+                                              ]
+                                            )
+                                          }
+                                        ),
+                                        0
+                                      )
+                                    ]
+                                  )
+                                ]
+                              : [_vm._m(5)]
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group row" }, [
+                          _c("nav", [
+                            _c(
+                              "ul",
+                              { staticClass: "pagination" },
+                              [
+                                _vm.pagination.current_page > 1
+                                  ? _c("li", { staticClass: "page-item" }, [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "page-link",
+                                          attrs: { href: "#" },
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              return _vm.cambiarPaginaEspecialidad(
+                                                _vm.pagination.current_page - 1,
+                                                _vm.especialidad,
+                                                _vm.subespecialidad
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Ant")]
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm._l(_vm.pagesNumber, function(page) {
+                                  return _c(
+                                    "li",
+                                    {
+                                      key: page,
+                                      staticClass: "page-item",
+                                      class: [
+                                        page == _vm.isActived ? "active" : ""
+                                      ]
+                                    },
+                                    [
+                                      _c("a", {
+                                        staticClass: "page-link",
+                                        attrs: { href: "#" },
+                                        domProps: { textContent: _vm._s(page) },
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            return _vm.cambiarPaginaEspecialidad(
+                                              page,
+                                              _vm.especialidad,
+                                              _vm.subespecialidad
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ]
+                                  )
+                                }),
+                                _vm._v(" "),
+                                _vm.pagination.current_page <
+                                _vm.pagination.last_page
+                                  ? _c("li", { staticClass: "page-item" }, [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "page-link",
+                                          attrs: { href: "#" },
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              return _vm.cambiarPaginaEspecialidad(
+                                                _vm.pagination.current_page + 1,
+                                                _vm.especialidad,
+                                                _vm.subespecialidad
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Sig")]
+                                      )
+                                    ])
+                                  : _vm._e()
+                              ],
+                              2
+                            )
+                          ])
+                        ])
+                      ]
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.criterio == "destino"
+                    ? [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "table-wrapper-scroll-y my-custom-scrollbar",
+                            staticStyle: { "font-size": "16px" },
+                            attrs: { id: "myTable" }
+                          },
+                          [
+                            _vm.arrayPerDestino.length
+                              ? [
+                                  _c(
+                                    "table",
+                                    {
+                                      staticClass:
+                                        "table table-bordered table-striped table-sm"
+                                    },
+                                    [
+                                      _c("thead", [
+                                        _c("tr", [
+                                          _c(
+                                            "th",
+                                            [
+                                              _c("center", [
+                                                _vm._v("CARNET MILITAR")
+                                              ])
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [_c("center", [_vm._v("GRADO")])],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [_c("center", [_vm._v("NOMBRES")])],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [
+                                              _c("center", [
+                                                _vm._v("AP. PATERNO")
+                                              ])
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [
+                                              _c("center", [
+                                                _vm._v("AP. MATERNO")
+                                              ])
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [
+                                              _c("center", [
+                                                _vm._v("ESPECIALIDAD")
+                                              ])
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "th",
+                                            [
+                                              _c("center", [
+                                                _vm._v("SUBESPECIALIDAD")
+                                              ])
+                                            ],
+                                            1
+                                          )
+                                        ])
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "tbody",
+                                        _vm._l(_vm.arrayPerDestino, function(
+                                          destEspecialidades
+                                        ) {
+                                          return _c(
+                                            "tr",
+                                            { key: destEspecialidades.id },
+                                            [
+                                              _c("td", {
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    destEspecialidades.per_cm
+                                                  )
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("td", [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    destEspecialidades.grado
+                                                  ) +
+                                                    _vm._s(
+                                                      destEspecialidades.complemento
+                                                    )
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("td", {
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    destEspecialidades.per_nombre
+                                                  )
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("td", {
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    destEspecialidades.per_paterno
+                                                  )
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("td", {
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    destEspecialidades.per_materno
+                                                  )
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("td", {
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    destEspecialidades.nomespe
+                                                  )
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("td", {
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    destEspecialidades.nomsubespe
+                                                  )
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        }),
+                                        0
+                                      )
+                                    ]
+                                  )
+                                ]
+                              : [_vm._m(6)]
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group row" }, [
+                          _c("nav", [
+                            _c(
+                              "ul",
+                              { staticClass: "pagination" },
+                              [
+                                _vm.pagination.current_page > 1
+                                  ? _c("li", { staticClass: "page-item" }, [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "page-link",
+                                          attrs: { href: "#" },
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              return _vm.cambiarPaginaDestino(
+                                                _vm.pagination.current_page - 1,
+                                                _vm.entidad,
+                                                _vm.gran_unidad,
+                                                _vm.reparticion,
+                                                _vm.especialidad,
+                                                _vm.subespecialidad
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Ant")]
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm._l(_vm.pagesNumber, function(page) {
+                                  return _c(
+                                    "li",
+                                    {
+                                      key: page,
+                                      staticClass: "page-item",
+                                      class: [
+                                        page == _vm.isActived ? "active" : ""
+                                      ]
+                                    },
+                                    [
+                                      _c("a", {
+                                        staticClass: "page-link",
+                                        attrs: { href: "#" },
+                                        domProps: { textContent: _vm._s(page) },
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            return _vm.cambiarPaginaDestino(
+                                              page,
+                                              _vm.entidad,
+                                              _vm.gran_unidad,
+                                              _vm.reparticion,
+                                              _vm.especialidad,
+                                              _vm.subespecialidad
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ]
+                                  )
+                                }),
+                                _vm._v(" "),
+                                _vm.pagination.current_page <
+                                _vm.pagination.last_page
+                                  ? _c("li", { staticClass: "page-item" }, [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "page-link",
+                                          attrs: { href: "#" },
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              return _vm.cambiarPaginaDestino(
+                                                _vm.pagination.current_page + 1,
+                                                _vm.entidad,
+                                                _vm.gran_unidad,
+                                                _vm.reparticion,
+                                                _vm.especialidad,
+                                                _vm.subespecialidad
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Sig")]
+                                      )
+                                    ])
+                                  : _vm._e()
+                              ],
+                              2
+                            )
+                          ])
+                        ])
+                      ]
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "row p-2 bd-highlight justify-content-center"
+                    },
+                    [
+                      _vm.criterio == "promocion"
+                        ? [
+                            _c("div", { staticClass: "col-md-4" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-secondary btn-sm btn-block",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.RepPromEspe(
+                                        _vm.promocion,
+                                        _vm.especialidad,
+                                        _vm.subespecialidad
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "i",
+                                    {
+                                      staticClass: "far fa-file-alt",
+                                      attrs: { "aria-hidden": "true" }
+                                    },
+                                    [_vm._v("  GENERAR REPORTE")]
+                                  )
+                                ]
+                              )
+                            ])
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.criterio == "grado"
+                        ? [
+                            _c("div", { staticClass: "col-md-4" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-secondary btn-sm btn-block",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.RepGraEspe(
+                                        _vm.grado,
+                                        _vm.especialidad,
+                                        _vm.subespecialidad
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "i",
+                                    {
+                                      staticClass: "far fa-file-alt",
+                                      attrs: { "aria-hidden": "true" }
+                                    },
+                                    [_vm._v("  GENERAR REPORTE")]
+                                  )
+                                ]
+                              )
+                            ])
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.criterio == "especialidad"
+                        ? [
+                            _c("div", { staticClass: "col-md-4" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-secondary btn-sm btn-block",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.RepEspeEspe(
+                                        _vm.especialidad,
+                                        _vm.subespecialidad
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "i",
+                                    {
+                                      staticClass: "far fa-file-alt",
+                                      attrs: { "aria-hidden": "true" }
+                                    },
+                                    [_vm._v("  GENERAR REPORTE")]
+                                  )
+                                ]
+                              )
+                            ])
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.criterio == "destino"
+                        ? [
+                            _c("div", { staticClass: "col-md-4" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-secondary btn-sm btn-block",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.RepDestEspe(
+                                        _vm.entidad,
+                                        _vm.gran_unidad,
+                                        _vm.reparticion,
+                                        _vm.especialidad,
+                                        _vm.subespecialidad
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "i",
+                                    {
+                                      staticClass: "far fa-file-alt",
+                                      attrs: { "aria-hidden": "true" }
+                                    },
+                                    [_vm._v("  GENERAR REPORTE")]
+                                  )
+                                ]
+                              )
+                            ])
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger btn-sm btn-block",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                return _vm.Atras()
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "i",
+                              {
+                                staticClass: "fas fa-reply",
+                                attrs: { "aria-hidden": "true" }
+                              },
+                              [_vm._v("  ATRAS")]
+                            )
+                          ]
+                        )
+                      ])
+                    ],
+                    2
+                  )
+                ],
+                2
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "content-header" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row mb-2" }, [
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h1", [
+              _c("i", { staticClass: "far fa-bookmark" }),
+              _vm._v("\n              Cursos\n          ")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
+              _c("li", { staticClass: "breadcrumb-item" }, [
+                _c("a", { attrs: { href: "#" } }, [_vm._v("Home")])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "breadcrumb-item active" }, [
+                _vm._v("Cursos")
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [
+        _c("i", { staticClass: "fas fa-globe-americas" }),
+        _vm._v(" "),
+        _c("strong", [_vm._v("CURSOS")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group" }, [
+      _c(
+        "label",
+        {
+          staticClass: "form-control-label col-md-4",
+          attrs: { for: "text-input" }
+        },
+        [_vm._v("GENERO:")]
+      ),
+      _vm._v(" "),
+      _c("select", { staticClass: "form-control col-md-6" }, [
+        _c("option", { attrs: { value: "" } }, [_vm._v("MASCULINO")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "" } }, [_vm._v("FEMENINO")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "callout callout-info" }, [
+      _c("h5", [
+        _c("i", { staticClass: "fas fa-exclamation-triangle x-lg-2" }),
+        _vm._v(" No se encontraron resultados...")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "callout callout-info" }, [
+      _c("h5", [
+        _c("i", { staticClass: "fas fa-exclamation-triangle x-lg-2" }),
+        _vm._v(" No se encontraron resultados...")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "callout callout-info" }, [
+      _c("h5", [
+        _c("i", { staticClass: "fas fa-exclamation-triangle x-lg-2" }),
+        _vm._v(" No se encontraron resultados...")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "callout callout-info" }, [
+      _c("h5", [
+        _c("i", { staticClass: "fas fa-exclamation-triangle x-lg-2" }),
+        _vm._v(" No se encontraron resultados...")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DesignacionCurso.vue?vue&type=template&id=7a548782&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DesignacionCurso.vue?vue&type=template&id=7a548782& ***!
@@ -49352,7 +52368,7 @@ var render = function() {
                                     attrs: { type: "button" },
                                     on: {
                                       click: function($event) {
-                                        return _vm.CurrExtendido(_vm.per_codigo)
+                                        return _vm.EnvioDatosCurso(_vm.col_id)
                                       }
                                     }
                                   },
@@ -49363,7 +52379,7 @@ var render = function() {
                                         staticClass: "far fa-file-alt",
                                         attrs: { "aria-hidden": "true" }
                                       },
-                                      [_vm._v("  CARATULA")]
+                                      [_vm._v("  CURSOS")]
                                     )
                                   ]
                                 ),
@@ -75852,6 +78868,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Curso.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/components/Curso.vue ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Curso_vue_vue_type_template_id_0882697e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Curso.vue?vue&type=template&id=0882697e& */ "./resources/js/components/Curso.vue?vue&type=template&id=0882697e&");
+/* harmony import */ var _Curso_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Curso.vue?vue&type=script&lang=js& */ "./resources/js/components/Curso.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Curso_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Curso_vue_vue_type_template_id_0882697e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Curso_vue_vue_type_template_id_0882697e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Curso.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Curso.vue?vue&type=script&lang=js&":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/Curso.vue?vue&type=script&lang=js& ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Curso_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Curso.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Curso.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Curso_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Curso.vue?vue&type=template&id=0882697e&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/Curso.vue?vue&type=template&id=0882697e& ***!
+  \**************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Curso_vue_vue_type_template_id_0882697e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Curso.vue?vue&type=template&id=0882697e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Curso.vue?vue&type=template&id=0882697e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Curso_vue_vue_type_template_id_0882697e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Curso_vue_vue_type_template_id_0882697e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/DesignacionCurso.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/DesignacionCurso.vue ***!
@@ -76128,38 +79213,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/RegistroEstudiante.vue":
-/*!********************************************************!*\
-  !*** ./resources/js/components/RegistroEstudiante.vue ***!
-  \********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-var render, staticRenderFns
-var script = {}
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
-  script,
-  render,
-  staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-component.options.__file = "resources/js/components/RegistroEstudiante.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
 /***/ "./resources/js/routes.js":
 /*!********************************!*\
   !*** ./resources/js/routes.js ***!
@@ -76203,9 +79256,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: 'ListarEstudiantes',
     component: __webpack_require__(/*! ./components/Estudiante.vue */ "./resources/js/components/Estudiante.vue")["default"]
   }, {
-    path: '/registroEstudiantes',
-    name: 'RegistroEstudiantes',
-    component: __webpack_require__(/*! ./components/RegistroEstudiante.vue */ "./resources/js/components/RegistroEstudiante.vue")["default"]
+    path: '/listarCursos/:d',
+    name: 'ListarCursos',
+    component: __webpack_require__(/*! ./components/Curso.vue */ "./resources/js/components/Curso.vue")["default"]
   }, {
     path: '/designarEstudiantes',
     component: __webpack_require__(/*! ./components/DesignacionCurso.vue */ "./resources/js/components/DesignacionCurso.vue")["default"]

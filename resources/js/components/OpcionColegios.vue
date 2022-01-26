@@ -81,8 +81,8 @@
                                             </button> &nbsp;
                                         </div>
                                         <div class="col-md-3"> 
-                                            <button  type="button" class="btn btn-secondary btn-sm btn-block" @click="CurrExtendido(per_codigo)" style="width: 100%;">
-                                                <i class="far fa-file-alt" aria-hidden="true">  CARATULA</i>
+                                            <button  type="button" class="btn btn-secondary btn-sm btn-block" @click="EnvioDatosCurso(col_id)" style="width: 100%;">
+                                                <i class="far fa-file-alt" aria-hidden="true">  CURSOS</i>
                                             </button> &nbsp;
                                         </div>
                                         <div class="col-md-3">
@@ -586,6 +586,18 @@ export default {
                 } 
             });
         },
+        
+        EnvioDatosCurso(datos){
+            this.$router.push({
+                name: "ListarCursos",
+                //ENVIO DE DATOS
+                params:{
+                    d: datos
+                } 
+            });
+        },
+
+
 
     },
 }
