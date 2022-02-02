@@ -55,17 +55,14 @@
                             <div class="input-group">
                             <!-- select combo patr abuscar-->
                             <label class="form-control-label col-md-4" for="text-input">CURSOS:</label>
-                                <select class="form-control col-md-6" v-model="criterio" @click="selectEspeEspecialidad(),selectEspeGrado(),selectDestinos_nivel1(),reset()">
+                                <!-- <select class="form-control col-md-6" v-model="cursos" @click="cursosColegio(col_id),reset()"> -->
+                                <select class="form-control col-md-6" v-model="cursos">
                                     <!-- values como la base de datos -->
-                                    <option value="" disabled>SELECCIONE</option>
-                                    <option value="promocion">1RO. INICIAL "A"</option>
-                                    <option value="grado" >2DO. INICIAL "A"</option>
-                                    <option value="especialidad">POR ESPECIALIDAD</option>
-                                    <option value="destino">POR DESTINO</option>
-                                    <option value="general">POR GENERO</option>
+                                    <option value="0" disabled>SELECCIONE</option>
+                                    <option v-for="cursos in arrayCursosColegio" :key="cursos.cod_col" :value="cursos.nivel_abreviatura"  v-text="niveles.nivel_abreviatura"></option>
                                     <!-- <option value="per_paterno">APELLIDO PATERNO</option> -->
                                 </select>
-                                <template v-if="criterio == 'promocion'">
+                                <!-- <template v-if="criterio == 'promocion'">
                                     <div class="input-group">
                                         <label class="form-control-label col-md-4" for="text-input">PROMOCIÓN:</label>
                                         <input type="text" v-model="promocion" class="form-control col-md-6" placeholder="INSERTAR 5 PRIMEROS DIGITOS DEL CM" style="text-transform:uppercase" >
@@ -111,8 +108,8 @@
                                             <option value="">FEMENINO</option>
                                         </select>
                                     </div>
-                                </template>
-                                 <template v-if="criterio == 'especialidad' || criterio == 'promocion' || criterio == 'grado' || criterio == 'destino'">
+                                </template> -->
+                                 <!-- <template v-if="criterio == 'especialidad' || criterio == 'promocion' || criterio == 'grado' || criterio == 'destino'">
                                     <div class="input-group">
                                         <label class="form-control-label col-md-4" for="text-input">ESPECIALIDAD:</label>
                                         <select class="form-control col-md-6" v-model="especialidad" v-on:change="changeItemEspe(rowId, $event)">
@@ -127,7 +124,7 @@
                                             <option v-for="subespecialidad in arraySubespecialidad" :key="subespecialidad.id" :value="subespecialidad.id"  v-text="subespecialidad.nombre"></option>
                                         </select>
                                     </div>
-                                </template>
+                                </template> -->
                                 <!-- <input type="text" v-model="buscar" @keyup.enter="listarPersonal(1,buscar,criterio)" class="form-control" placeholder="TEXTO A BUSCAR" style="text-transform:uppercase" > -->
                                 <!-- <button type="submit" @click="listarPersonal(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> BUSCAR</button> -->
                             </div>
@@ -138,7 +135,7 @@
                             </button> &nbsp;
                             </div> -->
                     </div>
-                    <div class="row p-2 bd-highlight justify-content-center">
+                    <!-- <div class="row p-2 bd-highlight justify-content-center">
                         <template v-if="criterio == 'promocion'">
                             <div class="col-md-4">
                             <button type="button" class="btn btn-primary btn-sm btn-block" @click="listarPerPromo(1,promocion,especialidad,subespecialidad)">
@@ -179,31 +176,31 @@
                             <i class="fas fa-reply" aria-hidden="true">  ATRAS</i>
                         </button>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- INICIO MOSTRAR DATOS POR PROMOCION -->
-                    <template v-if="criterio == 'promocion'">
+                    <!-- <template v-if="criterio == 'promocion'">
                         <div class="table-wrapper-scroll-y my-custom-scrollbar" id="myTable" style="font-size: 16px;">
                             <template v-if="arrayPerPromo.length"> 
                                 <table class="table table-bordered table-striped table-sm">
                                     <thead>
                                         <tr>
                                             <!-- <th><center>NRO.</center></th> -->
-                                            <th><center>CARNET MILITAR</center></th>
+                                            <!-- <th><center>CARNET MILITAR</center></th>
                                             <th><center>GRADO</center></th>
                                             <th><center>NOMBRES</center></th>
                                             <th><center>AP. PATERNO</center></th>  
                                             <th><center>AP. MATERNO</center></th>  
                                             <th><center>ESPECIALIDAD</center></th>  
-                                            <th><center>SUBESPECIALIDAD</center></th> 
+                                            <th><center>SUBESPECIALIDAD</center></th>  -->
                                             <!-- <th><center>OBSERVACION</center></th>    -->
-                                        </tr>
+                                        <!-- </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="promoEspecialidades in arrayPerPromo" :key="promoEspecialidades.id">
+                                        <tr v-for="promoEspecialidades in arrayPerPromo" :key="promoEspecialidades.id"> -->
                                             <!-- moment("D/MM/YYYY") cambiar formato de fecha -->
                                             <!-- <td ><center>{{sitPersonal.sitper_fecha_documento | moment("D/MM/YYYY")}}</center></td> -->
-                                            <td v-text="promoEspecialidades.per_cm" ></td>
+                                            <!-- <td v-text="promoEspecialidades.per_cm" ></td>
                                             <td>{{promoEspecialidades.grado}}{{promoEspecialidades.complemento}}</td>
                                             <td v-text="promoEspecialidades.per_nombre" ></td>
                                             <td v-text="promoEspecialidades.per_paterno" ></td>
@@ -213,12 +210,12 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                            </template>
-                            <template v-else>
+                            </template> -->
+                            <!-- <template v-else>
                                 <div class="callout callout-info">
                                     <h5><i class="fas fa-exclamation-triangle x-lg-2"></i> No se encontraron resultados...</h5>
                                 </div>
-                            </template>   
+                            </template>    -->
                         </div>
                         <div class="form-group row">
                             <nav>
@@ -238,7 +235,7 @@
                                 <!-- fin paginacion -->
                             </nav>
                         </div>
-                    </template>
+                    </template> -->
                     <!-- FIN MOSTRAR DATOS POR PROMOCION -->
 
                     <!-- INICIO MOSTRAR DATOS POR GRADO -->
@@ -482,19 +479,19 @@ export default {
     data() {
         return {
             //RECIBIMOS LA VARIABLE EN ESTE CASO (d)
-            per_codigo: this.$route.params.d,
-            arrayDatosPersonal : [],
-            arrayPerPromo : [],
-            arrayPerEspecialidad : [],
-            arrayPerGrado : [],
-            arrayPerDestino : [],
-            arrayGrados : [],
-            arrayEspecialidad : [],
-            arraySubespecialidad : [],
-            arrayDestinos_nivel1 : [],
-            arrayDestinos_nivel2 : [],
-            arrayDestinos_nivel3 : [],
-            criterio : '',
+            col_id: this.$route.params.d,
+            arrayCursosColegio : [],
+            // arrayPerPromo : [],
+            // arrayPerEspecialidad : [],
+            // arrayPerGrado : [],
+            // arrayPerDestino : [],
+            // arrayGrados : [],
+            // arrayEspecialidad : [],
+            // arraySubespecialidad : [],
+            // arrayDestinos_nivel1 : [],
+            // arrayDestinos_nivel2 : [],
+            // arrayDestinos_nivel3 : [],
+            cursos : '',
             promocion : '',
             grado :  0,
             especialidad : 0,
@@ -526,7 +523,8 @@ export default {
 
     mounted() {
         //this.ver();
-        this.listarPerPromo(this.page,this.promocion,this.especialidad,this.subespecialidad);
+        // this.listarPerPromo(this.page,this.promocion,this.especialidad,this.subespecialidad);
+        this.cursosColegio(this.col_id);
         // this.datosPersonal(this.per_codigo);
     },
     computed:{
@@ -665,20 +663,35 @@ export default {
           })
         },
 
-        selectEspeEspecialidad(){
-            let me =this;
-            var url='/especialidad/selectEspecialidad';
-            axios.get(url).then(function (response) {
-                var respuesta = response.data;
-                me.arrayEspecialidad = respuesta.especialidad; 
+        cursosColegio(col_id){
+            let me = this;
+            axios
+            .post('/cursosColegio', {
+                col_id : col_id
+            })
+            .then(function (response) {
+                console.log(response)
+                me.arrayCursosColegio = respuesta.cursos_colegios; 
             })
             .catch(function (error) {
-            // handle error
-            console.log(error);
+                // handle error
+                console.log(error);
             })
-            .then(function () {
-            // always executed
-            });
+
+
+            // let me =this;
+            // var url='/cursosColegio';
+            // axios.get(url).then(function (response) {
+            //     var respuesta = response.data;
+            //     me.arrayCursosColegio = respuesta.cursos_colegios; 
+            // })
+            // .catch(function (error) {
+            // // handle error
+            // console.log(error);
+            // })
+            // .then(function () {
+            // // always executed
+            // });
         },
 
         selectSubespecialidad(){

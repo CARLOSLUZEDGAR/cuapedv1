@@ -31,6 +31,7 @@ Route::get('/selectNiveles','NivelController@selectNivel');
 
 //ROUTES CURSO
 Route::get('/selectCursos','CursoController@selectCurso');
+Route::post('/cursosColegio','CursoController@cursosColegio');
 //FIN ROUTES CURSO
 
 //ROUTES ESTUDIANTE
