@@ -27,6 +27,7 @@ Route::post('/datosColegio', 'ColegioController@datosColegio');
 
 //ROUTES NIVEL
 Route::get('/selectNiveles','NivelController@selectNivel');
+Route::post('/nivelesColegio','NivelController@selectBuscarNivel');
 //FIN ROUTES NIVEL
 
 //ROUTES CURSO

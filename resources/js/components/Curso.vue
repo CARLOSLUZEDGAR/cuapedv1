@@ -33,190 +33,54 @@
                   <strong>CURSOS</strong>
                 </h3>
               </div>
-              <div class="card-body">
-                  <!-- <div class="form-group row">
-                        <img v-bind:src="'/destinosPersonal/../img/personal/'+arrayDatosPersonal.per_foto" class="img-responsive" height="100" width="90">
-                    </div>
-                    <div class="form-group row">
-                        <div>
-                            <label class="col-md-12 form-control-label">
-                                <template v-if="arrayDatosPersonal.per_sexo=='MASCULINO'">
-                                        DEL SEÑOR: {{arrayDatosPersonal.gra_abreviatura}}{{arrayDatosPersonal.estu_abreviatura}} {{arrayDatosPersonal.per_nombre}} {{arrayDatosPersonal.per_paterno}} {{arrayDatosPersonal.per_materno}}
-                                </template>
-                                <template v-else>
-                                        DE LA SEÑORA: {{arrayDatosPersonal.gra_abreviatura}}{{arrayDatosPersonal.estu_abreviatura}} {{arrayDatosPersonal.per_nombre}} {{arrayDatosPersonal.per_paterno}} {{arrayDatosPersonal.per_materno}}
-                                </template>
-                            </label>
-                        </div>   
-                    </div> -->
+              <div class="card-body">               
                     <!-- @click="selectEspeGrado()" -->
                     <div class="form-group row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="input-group">
                             <!-- select combo patr abuscar-->
-                            <label class="form-control-label col-md-4" for="text-input">CURSOS:</label>
+                            <label class="form-control-label col-md-4" for="text-input">NIVEL:</label>
                                 <!-- <select class="form-control col-md-6" v-model="cursos" @click="cursosColegio(col_id),reset()"> -->
                                 <select class="form-control col-md-6" v-model="cursos">
                                     <!-- values como la base de datos -->
                                     <option value="0" disabled>SELECCIONE</option>
-                                    <option v-for="cursos in arrayCursosColegio" :key="cursos.cod_col" :value="cursos.nivel_abreviatura"  v-text="niveles.nivel_abreviatura"></option>
+                                    <option v-for="nivel in arrayNiveles" :key="nivel.cod_col" :value="nivel.nivel_abreviatura"  v-text="nivel.nivel_abreviatura"></option>
                                     <!-- <option value="per_paterno">APELLIDO PATERNO</option> -->
                                 </select>
-                                <!-- <template v-if="criterio == 'promocion'">
-                                    <div class="input-group">
-                                        <label class="form-control-label col-md-4" for="text-input">PROMOCIÓN:</label>
-                                        <input type="text" v-model="promocion" class="form-control col-md-6" placeholder="INSERTAR 5 PRIMEROS DIGITOS DEL CM" style="text-transform:uppercase" >
-                                    </div>
-                                </template>
-                                <template v-if="criterio == 'grado'">
-                                    <div class="input-group">
-                                        <label class="form-control-label col-md-4" for="text-input">GRADO:</label>
-                                        <select class="form-control col-md-6" v-model="grado" >
-                                            <option value="0" disabled>SELECCIONE</option>
-                                            <option v-for="grados in arrayGrados" :key="grados.id" :value="grados.id"  v-text="grados.nombre"></option>
-                                        </select>
-                                    </div>
-                                </template>
-                                <template v-if="criterio == 'destino'">
-                                    <div class="input-group">
-                                        <label class="form-control-label col-md-4" for="text-input">ENTIDAD:</label>
-                                        <select class="form-control col-md-6" v-model="entidad" v-on:change="changeItemEntidad(rowId, $event)">
-                                            <option value="0" disabled>SELECCIONE</option>
-                                            <option v-for="destinos_nivel1 in arrayDestinos_nivel1" :key="destinos_nivel1.id" :value="destinos_nivel1.id"  v-text="destinos_nivel1.descripcion"></option>
-                                        </select>
-                                    </div><br>
-                                    <div class="input-group">
-                                        <label class="form-control-label col-md-4" for="text-input">GRAN UNIDAD:</label>
-                                        <select class="form-control col-md-6" v-model="gran_unidad" v-on:change="changeItemGranunidad(rowId, $event)">
-                                            <option value="0">SELECCIONE</option>
-                                            <option v-for="destinos_nivel2 in arrayDestinos_nivel2" :key="destinos_nivel2.id" :value="destinos_nivel2.id"  v-text="destinos_nivel2.descripcion"></option>                        
-                                        </select>
-                                    </div><br>
-                                    <div class="input-group">
-                                        <label class="form-control-label col-md-4" for="text-input">REPARTICIÓN:</label>
-                                         <select class="form-control col-md-6" v-model="reparticion">
-                                            <option value="0">SELECCIONE</option>
-                                            <option v-for="destinos_nivel3 in arrayDestinos_nivel3" :key="destinos_nivel3.id" :value="destinos_nivel3.id"  v-text="destinos_nivel3.descripcion"></option>
-                                        </select>
-                                    </div>
-                                </template>
-                                <template v-if="criterio == 'general'">
-                                    <div class="input-group">
-                                        <label class="form-control-label col-md-4" for="text-input">GENERO:</label>
-                                        <select class="form-control col-md-6">
-                                            <option value="">MASCULINO</option>
-                                            <option value="">FEMENINO</option>
-                                        </select>
-                                    </div>
-                                </template> -->
-                                 <!-- <template v-if="criterio == 'especialidad' || criterio == 'promocion' || criterio == 'grado' || criterio == 'destino'">
-                                    <div class="input-group">
-                                        <label class="form-control-label col-md-4" for="text-input">ESPECIALIDAD:</label>
-                                        <select class="form-control col-md-6" v-model="especialidad" v-on:change="changeItemEspe(rowId, $event)">
-                                            <option value="0">SELECCIONE</option>
-                                            <option v-for="especialidad in arrayEspecialidad" :key="especialidad.id" :value="especialidad.id"  v-text="especialidad.nombre"></option>
-                                        </select>
-                                    </div><br>
-                                    <div class="input-group">
-                                        <label class="form-control-label col-md-4" for="text-input">SUBESPECIALIDAD:</label>
-                                        <select class="form-control col-md-6" v-model="subespecialidad">
-                                            <option value="0">SELECCIONE</option>
-                                            <option v-for="subespecialidad in arraySubespecialidad" :key="subespecialidad.id" :value="subespecialidad.id"  v-text="subespecialidad.nombre"></option>
-                                        </select>
-                                    </div>
-                                </template> -->
-                                <!-- <input type="text" v-model="buscar" @keyup.enter="listarPersonal(1,buscar,criterio)" class="form-control" placeholder="TEXTO A BUSCAR" style="text-transform:uppercase" > -->
-                                <!-- <button type="submit" @click="listarPersonal(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> BUSCAR</button> -->
                             </div>
                         </div>
-                            <!-- <div class="col-md-6">
-                            <button type="button" class="btn btn-secondary btn-sm" @click="reportesEspe()">
-                                <i class="far fa-file-alt" aria-hidden="true">  REPORTES ESPECIALIDAD</i>
-                            </button> &nbsp;
-                            </div> -->
-                    </div>
-                    <!-- <div class="row p-2 bd-highlight justify-content-center">
-                        <template v-if="criterio == 'promocion'">
-                            <div class="col-md-4">
-                            <button type="button" class="btn btn-primary btn-sm btn-block" @click="listarPerPromo(1,promocion,especialidad,subespecialidad)">
-                                <i class="fas fa-plus" aria-hidden="true">  MOSTRAR</i>
-                            </button>
-                            </div>
-                        </template>
-                        <template v-if="criterio == 'grado'">
-                            <div class="col-md-4">
-                            <button type="button" class="btn btn-primary btn-sm btn-block" @click="listarPerGrado(1,grado,especialidad,subespecialidad)">
-                                <i class="fas fa-plus" aria-hidden="true">  MOSTRAR</i>
-                            </button>
-                            </div>
-                        </template>
-                        <template v-if="criterio == 'especialidad'">
-                            <div class="col-md-4">
-                            <button type="button" class="btn btn-primary btn-sm btn-block" @click="listarPerEspecialidad(1,especialidad,subespecialidad)">
-                                <i class="fas fa-plus" aria-hidden="true">  MOSTRAR</i>
-                            </button>
-                            </div>
-                        </template>
-                        <template v-if="criterio == 'destino'">
-                            <div class="col-md-4">
-                            <button type="button" class="btn btn-primary btn-sm btn-block" @click="listarPerDestino(1,entidad,gran_unidad,reparticion,especialidad,subespecialidad)">
-                                <i class="fas fa-plus" aria-hidden="true">  MOSTRAR</i>
-                            </button>
-                            </div>
-                        </template>
-                        <template v-if="criterio == 'general'">
-                            <div class="col-md-4">
-                            <button type="button" class="btn btn-primary btn-sm btn-block" @click="listarPerGeneral(1,grado)">
-                                <i class="fas fa-plus" aria-hidden="true">  MOSTRAR</i>
-                            </button>
-                            </div>
-                        </template>
                         <div class="col-md-4">
-                        <button type="button" class="btn btn-danger btn-sm btn-block" @click="Atras()">
-                            <i class="fas fa-reply" aria-hidden="true">  ATRAS</i>
-                        </button>
+                            <div class="input-group">
+                            <!-- select combo patr abuscar-->
+                            <label class="form-control-label col-md-4" for="text-input">CURSO:</label>
+                                <!-- <select class="form-control col-md-6" v-model="cursos" @click="cursosColegio(col_id),reset()"> -->
+                                <select class="form-control col-md-6" v-model="cursos">
+                                    <!-- values como la base de datos -->
+                                    <option value="0" disabled>SELECCIONE</option>
+                                    <option v-for="nivel in arrayNiveles" :key="nivel.cod_col" :value="nivel.nivel_abreviatura"  v-text="nivel.nivel_abreviatura"></option>
+                                    <!-- <option value="per_paterno">APELLIDO PATERNO</option> -->
+                                </select>
+                            </div>
                         </div>
-                    </div> -->
+                        <div class="col-md-4">
+                            <div class="input-group">
+                            <!-- select combo patr abuscar-->
+                            <label class="form-control-label col-md-4" for="text-input">PARALELO:</label>
+                                <!-- <select class="form-control col-md-6" v-model="cursos" @click="cursosColegio(col_id),reset()"> -->
+                                <select class="form-control col-md-6" v-model="cursos">
+                                    <!-- values como la base de datos -->
+                                    <option value="0" disabled>SELECCIONE</option>
+                                    <option v-for="nivel in arrayNiveles" :key="nivel.cod_col" :value="nivel.nivel_abreviatura"  v-text="nivel.nivel_abreviatura"></option>
+                                    <!-- <option value="per_paterno">APELLIDO PATERNO</option> -->
+                                </select>
+                            </div>
+                        </div>     
+                    </div>
+                    
 
                     <!-- INICIO MOSTRAR DATOS POR PROMOCION -->
-                    <!-- <template v-if="criterio == 'promocion'">
-                        <div class="table-wrapper-scroll-y my-custom-scrollbar" id="myTable" style="font-size: 16px;">
-                            <template v-if="arrayPerPromo.length"> 
-                                <table class="table table-bordered table-striped table-sm">
-                                    <thead>
-                                        <tr>
-                                            <!-- <th><center>NRO.</center></th> -->
-                                            <!-- <th><center>CARNET MILITAR</center></th>
-                                            <th><center>GRADO</center></th>
-                                            <th><center>NOMBRES</center></th>
-                                            <th><center>AP. PATERNO</center></th>  
-                                            <th><center>AP. MATERNO</center></th>  
-                                            <th><center>ESPECIALIDAD</center></th>  
-                                            <th><center>SUBESPECIALIDAD</center></th>  -->
-                                            <!-- <th><center>OBSERVACION</center></th>    -->
-                                        <!-- </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr v-for="promoEspecialidades in arrayPerPromo" :key="promoEspecialidades.id"> -->
-                                            <!-- moment("D/MM/YYYY") cambiar formato de fecha -->
-                                            <!-- <td ><center>{{sitPersonal.sitper_fecha_documento | moment("D/MM/YYYY")}}</center></td> -->
-                                            <!-- <td v-text="promoEspecialidades.per_cm" ></td>
-                                            <td>{{promoEspecialidades.grado}}{{promoEspecialidades.complemento}}</td>
-                                            <td v-text="promoEspecialidades.per_nombre" ></td>
-                                            <td v-text="promoEspecialidades.per_paterno" ></td>
-                                            <td v-text="promoEspecialidades.per_materno" ></td>
-                                            <td v-text="promoEspecialidades.nomespe" ></td>
-                                            <td v-text="promoEspecialidades.nomsubespe" ></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </template> -->
-                            <!-- <template v-else>
-                                <div class="callout callout-info">
-                                    <h5><i class="fas fa-exclamation-triangle x-lg-2"></i> No se encontraron resultados...</h5>
-                                </div>
-                            </template>    -->
-                        </div>
+                   
+                        
                         <div class="form-group row">
                             <nav>
                                 <!-- inicio para paginacion -->
@@ -235,226 +99,14 @@
                                 <!-- fin paginacion -->
                             </nav>
                         </div>
-                    </template> -->
-                    <!-- FIN MOSTRAR DATOS POR PROMOCION -->
-
-                    <!-- INICIO MOSTRAR DATOS POR GRADO -->
-                    <template v-if="criterio == 'grado'">
-                        <div class="table-wrapper-scroll-y my-custom-scrollbar" id="myTable" style="font-size: 16px;">
-                            <template v-if="arrayPerGrado.length"> 
-                                <table class="table table-bordered table-striped table-sm">
-                                    <thead>
-                                        <tr>
-                                            <!-- <th><center>NRO.</center></th> -->
-                                            <th><center>CARNET MILITAR</center></th>
-                                            <th><center>GRADO</center></th>
-                                            <th><center>NOMBRES</center></th>
-                                            <th><center>AP. PATERNO</center></th>  
-                                            <th><center>AP. MATERNO</center></th>  
-                                            <th><center>ESPECIALIDAD</center></th>  
-                                            <th><center>SUBESPECIALIDAD</center></th> 
-                                            <!-- <th><center>OBSERVACION</center></th>    -->
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        
-                                        <tr v-for="gradoEspecialidades in arrayPerGrado" :key="gradoEspecialidades.id">
-
-                                            <!-- moment("D/MM/YYYY") cambiar formato de fecha -->
-                                            <!-- <td ><center>{{sitPersonal.sitper_fecha_documento | moment("D/MM/YYYY")}}</center></td> -->
-                                            <td v-text="gradoEspecialidades.per_cm" ></td>
-                                            <td>{{gradoEspecialidades.grado}}{{gradoEspecialidades.complemento}}</td>
-                                            <td v-text="gradoEspecialidades.per_nombre" ></td>
-                                            <td v-text="gradoEspecialidades.per_paterno" ></td>
-                                            <td v-text="gradoEspecialidades.per_materno" ></td>
-                                            <td v-text="gradoEspecialidades.nomespe" ></td>
-                                            <td v-text="gradoEspecialidades.nomsubespe" ></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </template>
-                            <template v-else>
-                                <div class="callout callout-info">
-                                    <h5><i class="fas fa-exclamation-triangle x-lg-2"></i> No se encontraron resultados...</h5>
-                                </div>
-                            </template>
-                        </div>
-                        <div class="form-group row">
-                            <nav>
-                                <!-- inicio para paginacion -->
-                                <ul class="pagination">
-                                    <li class="page-item" v-if="pagination.current_page > 1">
-                                        <a class="page-link" href="#" @click.prevent="cambiarPaginaGrado(pagination.current_page - 1,grado,especialidad,subespecialidad)">Ant</a>
-                                    </li>
-                                    <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
-                                        <a class="page-link" href="#" @click.prevent="cambiarPaginaGrado(page,grado,especialidad,subespecialidad)" v-text="page"></a>
-                                    </li>
-                                
-                                    <li class="page-item" v-if="pagination.current_page < pagination.last_page">
-                                        <a class="page-link" href="#" @click.prevent="cambiarPaginaGrado(pagination.current_page + 1,grado,especialidad,subespecialidad)">Sig</a>
-                                    </li>
-                                </ul>
-                                <!-- fin paginacion -->
-                            </nav>
-                        </div>
-                    </template>
-                    <!-- FIN MOSTRAR DATOS POR GRADO -->
-
-                    <!-- INICIO MOSTRAR DATOS POR ESPECIALIDAD -->
-                    <template v-if="criterio == 'especialidad'">
-                        <div class="table-wrapper-scroll-y my-custom-scrollbar" id="myTable" style="font-size: 16px;">
-                            <template v-if="arrayPerEspecialidad.length"> 
-                                <table class="table table-bordered table-striped table-sm">
-                                    <thead>
-                                        <tr>
-                                            <!-- <th><center>NRO.</center></th> -->
-                                            <th><center>CARNET MILITAR</center></th>
-                                            <th><center>GRADO</center></th>
-                                            <th><center>NOMBRES</center></th>
-                                            <th><center>AP. PATERNO</center></th>  
-                                            <th><center>AP. MATERNO</center></th>  
-                                            <th><center>ESPECIALIDAD</center></th>  
-                                            <th><center>SUBESPECIALIDAD</center></th> 
-                                            <!-- <th><center>OBSERVACION</center></th>    -->
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr v-for="perEspecialidades in arrayPerEspecialidad" :key="perEspecialidades.id">
-                                            <!-- moment("D/MM/YYYY") cambiar formato de fecha -->
-                                            <!-- <td ><center>{{sitPersonal.sitper_fecha_documento | moment("D/MM/YYYY")}}</center></td> -->
-                                            <td v-text="perEspecialidades.per_cm" ></td>
-                                            <td>{{perEspecialidades.grado}}{{perEspecialidades.complemento}}</td>
-                                            <td v-text="perEspecialidades.per_nombre" ></td>
-                                            <td v-text="perEspecialidades.per_paterno" ></td>
-                                            <td v-text="perEspecialidades.per_materno" ></td>
-                                            <td v-text="perEspecialidades.nomespe" ></td>
-                                            <td v-text="perEspecialidades.nomsubespe" ></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </template>
-                            <template v-else>
-                                <div class="callout callout-info">
-                                    <h5><i class="fas fa-exclamation-triangle x-lg-2"></i> No se encontraron resultados...</h5>
-                                </div>
-                            </template>   
-                        </div>
-                        <div class="form-group row">
-                            <nav>
-                                <!-- inicio para paginacion -->
-                                <ul class="pagination">
-                                    <li class="page-item" v-if="pagination.current_page > 1">
-                                        <a class="page-link" href="#" @click.prevent="cambiarPaginaEspecialidad(pagination.current_page - 1,especialidad,subespecialidad)">Ant</a>
-                                    </li>
-                                    <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
-                                        <a class="page-link" href="#" @click.prevent="cambiarPaginaEspecialidad(page,especialidad,subespecialidad)" v-text="page"></a>
-                                    </li>
-                                
-                                    <li class="page-item" v-if="pagination.current_page < pagination.last_page">
-                                        <a class="page-link" href="#" @click.prevent="cambiarPaginaEspecialidad(pagination.current_page + 1,especialidad,subespecialidad)">Sig</a>
-                                    </li>
-                                </ul>
-                                <!-- fin paginacion -->
-                            </nav>
-                        </div>
-                    </template>
-                    <!-- FIN MOSTRAR DATOS POR ESPECIALIDAD -->
-
-                    <!-- INICIO MOSTRAR DATOS POR DESTINO -->
-                    <template v-if="criterio == 'destino'">
-                        <div class="table-wrapper-scroll-y my-custom-scrollbar" id="myTable" style="font-size: 16px;">
-                            <template v-if="arrayPerDestino.length"> 
-                                <table class="table table-bordered table-striped table-sm">
-                                    <thead>
-                                        <tr>
-                                            <!-- <th><center>NRO.</center></th> -->
-                                            <th><center>CARNET MILITAR</center></th>
-                                            <th><center>GRADO</center></th>
-                                            <th><center>NOMBRES</center></th>
-                                            <th><center>AP. PATERNO</center></th>  
-                                            <th><center>AP. MATERNO</center></th>  
-                                            <th><center>ESPECIALIDAD</center></th>  
-                                            <th><center>SUBESPECIALIDAD</center></th> 
-                                            <!-- <th><center>OBSERVACION</center></th>    -->
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr v-for="destEspecialidades in arrayPerDestino" :key="destEspecialidades.id">
-                                            <!-- moment("D/MM/YYYY") cambiar formato de fecha -->
-                                            <!-- <td ><center>{{sitPersonal.sitper_fecha_documento | moment("D/MM/YYYY")}}</center></td> -->
-                                            <td v-text="destEspecialidades.per_cm" ></td>
-                                            <td>{{destEspecialidades.grado}}{{destEspecialidades.complemento}}</td>
-                                            <td v-text="destEspecialidades.per_nombre" ></td>
-                                            <td v-text="destEspecialidades.per_paterno" ></td>
-                                            <td v-text="destEspecialidades.per_materno" ></td>
-                                            <td v-text="destEspecialidades.nomespe" ></td>
-                                            <td v-text="destEspecialidades.nomsubespe" ></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </template>
-                            <template v-else>
-                                <div class="callout callout-info">
-                                    <h5><i class="fas fa-exclamation-triangle x-lg-2"></i> No se encontraron resultados...</h5>
-                                </div>
-                            </template>   
-                        </div>
-                        <div class="form-group row">
-                            <nav>
-                                <!-- inicio para paginacion -->
-                                <ul class="pagination">
-                                    <li class="page-item" v-if="pagination.current_page > 1">
-                                        <a class="page-link" href="#" @click.prevent="cambiarPaginaDestino(pagination.current_page - 1,entidad,gran_unidad,reparticion,especialidad,subespecialidad)">Ant</a>
-                                    </li>
-                                    <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
-                                        <a class="page-link" href="#" @click.prevent="cambiarPaginaDestino(page,entidad,gran_unidad,reparticion,especialidad,subespecialidad)" v-text="page"></a>
-                                    </li>
-                                
-                                    <li class="page-item" v-if="pagination.current_page < pagination.last_page">
-                                        <a class="page-link" href="#" @click.prevent="cambiarPaginaDestino(pagination.current_page + 1,entidad,gran_unidad,reparticion,especialidad,subespecialidad)">Sig</a>
-                                    </li>
-                                </ul>
-                                <!-- fin paginacion -->
-                            </nav>
-                        </div>
-                    </template>
-                    <!-- FIN MOSTRAR DATOS POR DESTINO -->
-
                     
-
+                    <!-- FIN MOSTRAR DATOS POR PROMOCION -->
                 <div class="row p-2 bd-highlight justify-content-center">
-                    <template v-if="criterio == 'promocion'">
-                        <div class="col-md-4">
-                        <button type="button" class="btn btn-secondary btn-sm btn-block" @click="RepPromEspe(promocion,especialidad,subespecialidad)">
-                            <i class="far fa-file-alt" aria-hidden="true">  GENERAR REPORTE</i>
-                        </button>
-                        </div> 
-                    </template>
-                    <template v-if="criterio == 'grado'">
-                        <div class="col-md-4">
-                        <button type="button" class="btn btn-secondary btn-sm btn-block" @click="RepGraEspe(grado,especialidad,subespecialidad)">
-                            <i class="far fa-file-alt" aria-hidden="true">  GENERAR REPORTE</i>
-                        </button>
-                        </div> 
-                    </template>
-                    <template v-if="criterio == 'especialidad'">
-                        <div class="col-md-4">
-                        <button type="button" class="btn btn-secondary btn-sm btn-block" @click="RepEspeEspe(especialidad,subespecialidad)">
-                            <i class="far fa-file-alt" aria-hidden="true">  GENERAR REPORTE</i>
-                        </button>
-                        </div> 
-                    </template>
-                    <template v-if="criterio == 'destino'">
-                        <div class="col-md-4">
-                        <button type="button" class="btn btn-secondary btn-sm btn-block" @click="RepDestEspe(entidad,gran_unidad,reparticion,especialidad,subespecialidad)">
-                            <i class="far fa-file-alt" aria-hidden="true">  GENERAR REPORTE</i>
-                        </button>
-                        </div> 
-                    </template>
+                    
                     <div class="col-md-4">
-                    <button type="button" class="btn btn-danger btn-sm btn-block" @click="Atras()">
-                        <i class="fas fa-reply" aria-hidden="true">  ATRAS</i>
-                    </button>
+                        <button type="button" class="btn btn-danger btn-sm btn-block" @click="Atras(col_id)">
+                            <i class="fas fa-reply" aria-hidden="true">  ATRAS</i>
+                        </button>
                     </div> 
                 </div>
               </div>
@@ -481,6 +133,9 @@ export default {
             //RECIBIMOS LA VARIABLE EN ESTE CASO (d)
             col_id: this.$route.params.d,
             arrayCursosColegio : [],
+            arrayNiveles : [],
+            arrayCursos : [],
+            arrayParalelos : [],
             // arrayPerPromo : [],
             // arrayPerEspecialidad : [],
             // arrayPerGrado : [],
@@ -491,8 +146,8 @@ export default {
             // arrayDestinos_nivel1 : [],
             // arrayDestinos_nivel2 : [],
             // arrayDestinos_nivel3 : [],
-            cursos : '',
-            promocion : '',
+            nivel_cod : '',
+            curso_cod : '',
             grado :  0,
             especialidad : 0,
             subespecialidad : 0,
@@ -524,7 +179,11 @@ export default {
     mounted() {
         //this.ver();
         // this.listarPerPromo(this.page,this.promocion,this.especialidad,this.subespecialidad);
-        this.cursosColegio(this.col_id);
+        // this.cursosColegio(this.col_id);
+        this.selectBuscarNivel(this.col_id);
+        this.selectBuscarCurso(this.col_id,this.nivel_cod);
+        this.selectBuscarParalelo(this.col_id,this.nivel_cod,this.curso_cod)
+
         // this.datosPersonal(this.per_codigo);
     },
     computed:{
@@ -594,23 +253,23 @@ export default {
         // FIN BUSCAR POR PROMOCION
 
         // INICIO BUSCAR POR GRADO
-        selectEspeGrado(){
-            let me =this;
-            var url='/gradoEspecialidad';
-            axios.get(url).then(function (response) {
+        // selectEspeGrado(){
+        //     let me =this;
+        //     var url='/gradoEspecialidad';
+        //     axios.get(url).then(function (response) {
 
-                var respuesta = response.data;
-                me.arrayGrados = respuesta.grados; 
+        //         var respuesta = response.data;
+        //         me.arrayGrados = respuesta.grados; 
               
-            })
-            .catch(function (error) {
-            // handle error
-            console.log(error);
-            })
-            .then(function () {
-            // always executed
-            });
-        },
+        //     })
+        //     .catch(function (error) {
+        //     // handle error
+        //     console.log(error);
+        //     })
+        //     .then(function () {
+        //     // always executed
+        //     });
+        // },
 
         listarPerGrado(page,grado,especialidad,subespecialidad){
             let me = this;
@@ -643,56 +302,95 @@ export default {
         // FIN BUSCAR POR GRADO
 
         //INICIO BUSQUEDA POR ESPECIALIDAD Y SUBESPECIALIDAD
-        listarPerEspecialidad(page,especialidad,subespecialidad){
-            let me = this;
-            axios
+        // listarPerEspecialidad(page,especialidad,subespecialidad){
+        //     let me = this;
+        //     axios
         
-          .post("/listarPerEspecialidad", {
-            page : page,
-            especialidad : especialidad,
-            subespecialidad : subespecialidad
-          })
-          .then(function (response) {
+        //   .post("/listarPerEspecialidad", {
+        //     page : page,
+        //     especialidad : especialidad,
+        //     subespecialidad : subespecialidad
+        //   })
+        //   .then(function (response) {
             
-            me.arrayPerEspecialidad = response.data.personal_especialidades.data
-            me.pagination = response.data.pagination;
-          })
-          .catch(function (error) {
-            // handle error
-            console.log(error);
-          })
-        },
+        //     me.arrayPerEspecialidad = response.data.personal_especialidades.data
+        //     me.pagination = response.data.pagination;
+        //   })
+        //   .catch(function (error) {
+        //     // handle error
+        //     console.log(error);
+        //   })
+        // },
 
-        cursosColegio(col_id){
+        selectBuscarNivel(col_id){
             let me = this;
             axios
-            .post('/cursosColegio', {
+            .post('/nivelesColegio', {
                 col_id : col_id
             })
             .then(function (response) {
                 console.log(response)
-                me.arrayCursosColegio = respuesta.cursos_colegios; 
+                me.arrayNiveles = response.data; 
             })
             .catch(function (error) {
                 // handle error
                 console.log(error);
             })
-
-
-            // let me =this;
-            // var url='/cursosColegio';
-            // axios.get(url).then(function (response) {
-            //     var respuesta = response.data;
-            //     me.arrayCursosColegio = respuesta.cursos_colegios; 
-            // })
-            // .catch(function (error) {
-            // // handle error
-            // console.log(error);
-            // })
-            // .then(function () {
-            // // always executed
-            // });
         },
+
+        selectBuscarCurso(col_id,nivel_cod){
+            let me = this;
+            axios
+            .post('/cursosColegio',{
+                col_id : col_id,
+                nivel_cod : nivel_cod
+            })
+            .then(function (response){
+                console.log(response)
+                me.arrayCursos = response.data;
+            })
+            .cath(function (error){
+                console.log(error);
+            })
+        },
+
+        selectBuscarParalelo(col_id,nivel_cod,curso_cod){
+            let me = this;
+            axios
+            .post('/paralelosColegio',{
+                col_id : col_id,
+                nivel_cod : nivel_cod,
+                curso_cod : curso_cod
+            })
+            .the(function (response){
+                console.log(response)
+                me.arrayParalelos = response.data;
+            })
+            .catch(function (eror){
+                console.log(error);
+            })
+        },
+
+        changeItemCurso: function changeItemCurso(rowId, event) {
+            this.selected = "rowId: " + rowId + ", target.value: " + event.target.value;
+            this.selectBuscarCurso(event.target.value);
+        },
+
+        // cursosColegio(col_id){
+        //     let me = this;
+        //     axios
+        //     .post('/cursosColegio', {
+        //         col_id : col_id
+        //     })
+        //     .then(function (response) {
+        //         console.log(response)
+        //         me.arrayCursosColegio = response.data; 
+        //     })
+        //     .catch(function (error) {
+        //         // handle error
+        //         console.log(error);
+        //     })
+        // },
 
         selectSubespecialidad(){
             let me =this;
@@ -713,7 +411,7 @@ export default {
 
         changeItemEspe: function changeItemEspe(rowId, event) {
             this.selected = "rowId: " + rowId + ", target.value: " + event.target.value;
-            this.selectbuscarSubespecialidad(event.target.value);
+            this.selectBuscarCurso(event.target.value);
         },
 
         selectbuscarSubespecialidad(depa)
@@ -894,13 +592,14 @@ export default {
         },
         // FIN BUSQUEDA POR DESTINO
 
-        Atras(){
+        Atras(datos){
             this.$router.push({
-                name: "ListarPersonalEspecialidades",
-                //ENVIO DE DATOS
-                // params:{
-                //     d: datos
-                // }   
+                name: "OpcionColegios",
+                // ENVIO DE DATOS
+                params:{
+                    d: datos
+                }
+                
             });
         },
 

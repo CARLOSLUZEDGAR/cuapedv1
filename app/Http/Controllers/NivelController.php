@@ -16,4 +16,23 @@ class NivelController extends Controller
         ->get();
         return response()->json($nivel);
     }
+
+    public function selectBuscarNivel(Request $request)
+    {
+        $col_id = $request->col_id;
+
+        $nivel = DB::table('estudiante_cursos')
+        ->join('niveles','niveles.id','estudiante_cursos.cod_nivel')
+        ->select('cod_nivel',
+                'niveles.nivel_abreviatura',
+                'niveles.nivel_nombre')
+        ->where('cod_col',$col_id)
+        ->where('estc_estado',1)
+        ->groupBy('cod_nivel')
+        ->groupBy('niveles.nivel_abreviatura')
+        ->groupBy('niveles.nivel_nombre')
+        ->orderBy('cod_nivel','asc')
+        ->get();
+        return response()->json($nivel);
+    }
 }
