@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SIPEFAB</title>
+  <title>SISCUAPED</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -34,7 +34,7 @@
     <App ruta="{{route('basepath')}}"></App>  
   </div>
   <footer class="main-footer">
-    <strong>Copyright &copy; 2021 <a href="https://www.fab.bo">DPTO VI CyT - DIGETIC</a>.</strong>
+    <strong>Copyright &copy; 2022 <a href="https://www.fab.bo">ALBERT</a>.</strong>
     
     <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 1.0.0

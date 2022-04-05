@@ -102,6 +102,12 @@
                     
                     <!-- FIN MOSTRAR DATOS POR PROMOCION -->
                 <div class="row p-2 bd-highlight justify-content-center">
+
+                     <div class="col-md-4">
+                        <button type="button" class="btn btn-danger btn-sm btn-block" @click="Atras(col_id)">
+                            <i class="fas fa-reply" aria-hidden="true">  MOSTRAR ESTUDIANTES</i>
+                        </button>
+                    </div>
                     
                     <div class="col-md-4">
                         <button type="button" class="btn btn-danger btn-sm btn-block" @click="Atras(col_id)">

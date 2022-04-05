@@ -2868,6 +2868,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 //import { required, minLength, between } from 'vuelidate/lib/validators'
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -45312,6 +45318,31 @@ var render = function() {
                     staticClass: "row p-2 bd-highlight justify-content-center"
                   },
                   [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger btn-sm btn-block",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.Atras(_vm.col_id)
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "i",
+                            {
+                              staticClass: "fas fa-reply",
+                              attrs: { "aria-hidden": "true" }
+                            },
+                            [_vm._v("  MOSTRAR ESTUDIANTES")]
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
                     _c("div", { staticClass: "col-md-4" }, [
                       _c(
                         "button",
