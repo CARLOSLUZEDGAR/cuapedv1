@@ -2879,6 +2879,9 @@ __webpack_require__.r(__webpack_exports__);
       arrayNiveles: [],
       arrayCursos: [],
       arrayParalelos: [],
+      nivel: '',
+      curso: '',
+      paralelo: '',
       // arrayPerPromo : [],
       // arrayPerEspecialidad : [],
       // arrayPerGrado : [],
@@ -2906,10 +2909,7 @@ __webpack_require__.r(__webpack_exports__);
         'to': 0
       },
       offset: 3,
-      rowId: 0 //VARIABLES  PARA CERTIFICACION
-      // notaAsc : '',
-      // criterio : '',
-
+      rowId: 0
     };
   },
   validations: {},
@@ -2917,9 +2917,9 @@ __webpack_require__.r(__webpack_exports__);
     //this.ver();
     // this.listarPerPromo(this.page,this.promocion,this.especialidad,this.subespecialidad);
     // this.cursosColegio(this.col_id);
-    this.selectBuscarNivel(this.col_id);
-    this.selectBuscarCurso(this.col_id, this.nivel_cod);
-    this.selectBuscarParalelo(this.col_id, this.nivel_cod, this.curso_cod); // this.datosPersonal(this.per_codigo);
+    this.selectBuscarNivel(this.col_id); // this.selectBuscarCurso(this.col_id,this.nivel_cod);
+    // this.selectBuscarParalelo(this.col_id,this.nivel_cod,this.curso_cod)
+    // this.datosPersonal(this.per_codigo);
   },
   computed: {
     isActived: function isActived() {
@@ -3050,11 +3050,11 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    selectBuscarCurso: function selectBuscarCurso(col_id, nivel_cod) {
+    selectBuscarCurso: function selectBuscarCurso(col_id, nivel) {
       var me = this;
       axios.post('/cursosColegio', {
         col_id: col_id,
-        nivel_cod: nivel_cod
+        nivel_cod: nivel
       }).then(function (response) {
         console.log(response);
         me.arrayCursos = response.data;
@@ -3062,23 +3062,23 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    selectBuscarParalelo: function selectBuscarParalelo(col_id, nivel_cod, curso_cod) {
+    selectBuscarParalelo: function selectBuscarParalelo(col_id, nivel, curso) {
       var me = this;
       axios.post('/paralelosColegio', {
         col_id: col_id,
-        nivel_cod: nivel_cod,
-        curso_cod: curso_cod
-      }).the(function (response) {
+        nivel_cod: nivel,
+        curso_cod: curso
+      }).then(function (response) {
         console.log(response);
         me.arrayParalelos = response.data;
-      })["catch"](function (eror) {
+      })["catch"](function (error) {
         console.log(error);
       });
     },
-    changeItemCurso: function changeItemCurso(rowId, event) {
-      this.selected = "rowId: " + rowId + ", target.value: " + event.target.value;
-      this.selectBuscarCurso(event.target.value);
-    },
+    // changeItemCurso: function changeItemCurso(rowId, event) {
+    //     this.selected = "rowId: " + rowId + ", target.value: " + event.target.value;
+    //     this.selectBuscarCurso(event.target.value);
+    // },
     // cursosColegio(col_id){
     //     let me = this;
     //     axios
@@ -45039,12 +45039,18 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.cursos,
-                              expression: "cursos"
+                              value: _vm.nivel,
+                              expression: "nivel"
                             }
                           ],
                           staticClass: "form-control col-md-6",
                           on: {
+                            click: function($event) {
+                              return _vm.selectBuscarCurso(
+                                _vm.col_id,
+                                _vm.nivel
+                              )
+                            },
                             change: function($event) {
                               var $$selectedVal = Array.prototype.filter
                                 .call($event.target.options, function(o) {
@@ -45054,7 +45060,7 @@ var render = function() {
                                   var val = "_value" in o ? o._value : o.value
                                   return val
                                 })
-                              _vm.cursos = $event.target.multiple
+                              _vm.nivel = $event.target.multiple
                                 ? $$selectedVal
                                 : $$selectedVal[0]
                             }
@@ -45071,7 +45077,7 @@ var render = function() {
                             return _c("option", {
                               key: nivel.cod_col,
                               domProps: {
-                                value: nivel.nivel_abreviatura,
+                                value: nivel.cod_nivel,
                                 textContent: _vm._s(nivel.nivel_abreviatura)
                               }
                             })
@@ -45100,12 +45106,19 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.cursos,
-                              expression: "cursos"
+                              value: _vm.curso,
+                              expression: "curso"
                             }
                           ],
                           staticClass: "form-control col-md-6",
                           on: {
+                            click: function($event) {
+                              return _vm.selectBuscarParalelo(
+                                _vm.col_id,
+                                _vm.nivel,
+                                _vm.curso
+                              )
+                            },
                             change: function($event) {
                               var $$selectedVal = Array.prototype.filter
                                 .call($event.target.options, function(o) {
@@ -45115,7 +45128,7 @@ var render = function() {
                                   var val = "_value" in o ? o._value : o.value
                                   return val
                                 })
-                              _vm.cursos = $event.target.multiple
+                              _vm.curso = $event.target.multiple
                                 ? $$selectedVal
                                 : $$selectedVal[0]
                             }
@@ -45128,12 +45141,12 @@ var render = function() {
                             [_vm._v("SELECCIONE")]
                           ),
                           _vm._v(" "),
-                          _vm._l(_vm.arrayNiveles, function(nivel) {
+                          _vm._l(_vm.arrayCursos, function(curso) {
                             return _c("option", {
-                              key: nivel.cod_col,
+                              key: curso.cod_col,
                               domProps: {
-                                value: nivel.nivel_abreviatura,
-                                textContent: _vm._s(nivel.nivel_abreviatura)
+                                value: curso.cod_curso,
+                                textContent: _vm._s(curso.curso_sigla)
                               }
                             })
                           })
@@ -45161,8 +45174,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.cursos,
-                              expression: "cursos"
+                              value: _vm.paralelo,
+                              expression: "paralelo"
                             }
                           ],
                           staticClass: "form-control col-md-6",
@@ -45176,7 +45189,7 @@ var render = function() {
                                   var val = "_value" in o ? o._value : o.value
                                   return val
                                 })
-                              _vm.cursos = $event.target.multiple
+                              _vm.paralelo = $event.target.multiple
                                 ? $$selectedVal
                                 : $$selectedVal[0]
                             }
@@ -45189,12 +45202,12 @@ var render = function() {
                             [_vm._v("SELECCIONE")]
                           ),
                           _vm._v(" "),
-                          _vm._l(_vm.arrayNiveles, function(nivel) {
+                          _vm._l(_vm.arrayParalelos, function(paralelo) {
                             return _c("option", {
-                              key: nivel.cod_col,
+                              key: paralelo.cod_col,
                               domProps: {
-                                value: nivel.nivel_abreviatura,
-                                textContent: _vm._s(nivel.nivel_abreviatura)
+                                value: paralelo.paralelo,
+                                textContent: _vm._s(paralelo.paralelo)
                               }
                             })
                           })

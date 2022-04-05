@@ -32,7 +32,10 @@ Route::post('/nivelesColegio','NivelController@selectBuscarNivel');
 
 //ROUTES CURSO
 Route::get('/selectCursos','CursoController@selectCurso');
-Route::post('/cursosColegio','CursoController@cursosColegio');
+Route::post('/cursosColegio','CursoController@selectBuscarCurso');
+Route::post('/paralelosColegio','CursoController@selectBuscarParalelo');
+
+// Route::post('/cursosColegio','CursoController@cursosColegio');
 //FIN ROUTES CURSO
 
 //ROUTES ESTUDIANTE

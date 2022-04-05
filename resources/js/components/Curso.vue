@@ -41,10 +41,10 @@
                             <!-- select combo patr abuscar-->
                             <label class="form-control-label col-md-4" for="text-input">NIVEL:</label>
                                 <!-- <select class="form-control col-md-6" v-model="cursos" @click="cursosColegio(col_id),reset()"> -->
-                                <select class="form-control col-md-6" v-model="cursos">
+                                <select class="form-control col-md-6" v-model="nivel" @click="selectBuscarCurso(col_id,nivel)">
                                     <!-- values como la base de datos -->
                                     <option value="0" disabled>SELECCIONE</option>
-                                    <option v-for="nivel in arrayNiveles" :key="nivel.cod_col" :value="nivel.nivel_abreviatura"  v-text="nivel.nivel_abreviatura"></option>
+                                    <option v-for="nivel in arrayNiveles" :key="nivel.cod_col" :value="nivel.cod_nivel"  v-text="nivel.nivel_abreviatura"></option>
                                     <!-- <option value="per_paterno">APELLIDO PATERNO</option> -->
                                 </select>
                             </div>
@@ -54,10 +54,10 @@
                             <!-- select combo patr abuscar-->
                             <label class="form-control-label col-md-4" for="text-input">CURSO:</label>
                                 <!-- <select class="form-control col-md-6" v-model="cursos" @click="cursosColegio(col_id),reset()"> -->
-                                <select class="form-control col-md-6" v-model="cursos">
+                                <select class="form-control col-md-6" v-model="curso" @click="selectBuscarParalelo(col_id,nivel,curso)">
                                     <!-- values como la base de datos -->
                                     <option value="0" disabled>SELECCIONE</option>
-                                    <option v-for="nivel in arrayNiveles" :key="nivel.cod_col" :value="nivel.nivel_abreviatura"  v-text="nivel.nivel_abreviatura"></option>
+                                    <option v-for="curso in arrayCursos" :key="curso.cod_col" :value="curso.cod_curso"  v-text="curso.curso_sigla"></option>
                                     <!-- <option value="per_paterno">APELLIDO PATERNO</option> -->
                                 </select>
                             </div>
@@ -67,10 +67,10 @@
                             <!-- select combo patr abuscar-->
                             <label class="form-control-label col-md-4" for="text-input">PARALELO:</label>
                                 <!-- <select class="form-control col-md-6" v-model="cursos" @click="cursosColegio(col_id),reset()"> -->
-                                <select class="form-control col-md-6" v-model="cursos">
+                                <select class="form-control col-md-6" v-model="paralelo">
                                     <!-- values como la base de datos -->
                                     <option value="0" disabled>SELECCIONE</option>
-                                    <option v-for="nivel in arrayNiveles" :key="nivel.cod_col" :value="nivel.nivel_abreviatura"  v-text="nivel.nivel_abreviatura"></option>
+                                    <option v-for="paralelo in arrayParalelos" :key="paralelo.cod_col" :value="paralelo.paralelo"  v-text="paralelo.paralelo"></option>
                                     <!-- <option value="per_paterno">APELLIDO PATERNO</option> -->
                                 </select>
                             </div>
@@ -136,6 +136,9 @@ export default {
             arrayNiveles : [],
             arrayCursos : [],
             arrayParalelos : [],
+            nivel : '',
+            curso : '',
+            paralelo : '',
             // arrayPerPromo : [],
             // arrayPerEspecialidad : [],
             // arrayPerGrado : [],
@@ -165,10 +168,6 @@ export default {
             },
             offset : 3,
             rowId : 0,
-
-            //VARIABLES  PARA CERTIFICACION
-            // notaAsc : '',
-            // criterio : '',
         }
     },
 
@@ -181,8 +180,8 @@ export default {
         // this.listarPerPromo(this.page,this.promocion,this.especialidad,this.subespecialidad);
         // this.cursosColegio(this.col_id);
         this.selectBuscarNivel(this.col_id);
-        this.selectBuscarCurso(this.col_id,this.nivel_cod);
-        this.selectBuscarParalelo(this.col_id,this.nivel_cod,this.curso_cod)
+        // this.selectBuscarCurso(this.col_id,this.nivel_cod);
+        // this.selectBuscarParalelo(this.col_id,this.nivel_cod,this.curso_cod)
 
         // this.datosPersonal(this.per_codigo);
     },
@@ -338,12 +337,12 @@ export default {
             })
         },
 
-        selectBuscarCurso(col_id,nivel_cod){
+        selectBuscarCurso(col_id,nivel){
             let me = this;
             axios
             .post('/cursosColegio',{
                 col_id : col_id,
-                nivel_cod : nivel_cod
+                nivel_cod : nivel
             })
             .then(function (response){
                 console.log(response)
@@ -354,27 +353,27 @@ export default {
             })
         },
 
-        selectBuscarParalelo(col_id,nivel_cod,curso_cod){
+        selectBuscarParalelo(col_id,nivel,curso){
             let me = this;
             axios
             .post('/paralelosColegio',{
                 col_id : col_id,
-                nivel_cod : nivel_cod,
-                curso_cod : curso_cod
+                nivel_cod : nivel,
+                curso_cod : curso
             })
-            .the(function (response){
+            .then(function (response){
                 console.log(response)
                 me.arrayParalelos = response.data;
             })
-            .catch(function (eror){
+            .catch(function (error){
                 console.log(error);
             })
         },
 
-        changeItemCurso: function changeItemCurso(rowId, event) {
-            this.selected = "rowId: " + rowId + ", target.value: " + event.target.value;
-            this.selectBuscarCurso(event.target.value);
-        },
+        // changeItemCurso: function changeItemCurso(rowId, event) {
+        //     this.selected = "rowId: " + rowId + ", target.value: " + event.target.value;
+        //     this.selectBuscarCurso(event.target.value);
+        // },
 
         // cursosColegio(col_id){
         //     let me = this;

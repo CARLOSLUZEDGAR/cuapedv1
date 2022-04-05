@@ -18,6 +18,52 @@ class CursoController extends Controller
         return response()->json($curso);
     }
 
+    public function selectBuscarCurso(Request $request)
+    {
+        $cod_col = $request->col_id;
+        $nivel_cod = $request->nivel_cod;
+        $curso = DB::table('estudiante_cursos')
+                    ->join('cursos','cursos.id','estudiante_cursos.cod_curso')
+                    ->select('cod_col',
+                            'cod_nivel',
+                            'cod_curso',
+                            'cursos.curso_sigla')
+                    ->where('cod_col',$cod_col)
+                    ->where('cod_nivel',$nivel_cod)
+                    ->where('estudiante_cursos.estc_estado',1)
+                    ->groupBy('cod_col')
+                    ->groupBy('cod_nivel')
+                    ->groupBy('cod_curso')
+                    ->groupBy('cursos.curso_sigla')
+                    ->orderBy('cod_curso','asc')
+                    ->get();
+        return response()->json($curso);
+    }
+
+    public function selectBuscarParalelo(Request $request)
+    {
+        $cod_col = $request->col_id;
+        $nivel = $request->nivel_cod;
+        $curso = $request->curso_cod;
+        $paralelo = DB::table('estudiante_cursos')
+                    ->select('cod_col',
+                            'cod_nivel',
+                            'cod_curso',
+                            'paralelo')
+                    ->where('cod_col',$cod_col)
+                    ->where('cod_nivel',$nivel)
+                    ->where('cod_curso',$curso)
+                    ->where('estudiante_cursos.estc_estado',1)
+                    ->groupBy('cod_col')
+                    ->groupBy('cod_nivel')
+                    ->groupBy('cod_curso')
+                    ->groupBy('paralelo')
+                    ->orderBy('paralelo','asc')
+                    ->get();
+        return response()->json($paralelo);
+    }
+
+
     public function cursosColegio(Request $request){
         // if(!$request->ajax()) return view('/');
         $colegio = $request->col_id;
