@@ -2874,6 +2874,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //import { required, minLength, between } from 'vuelidate/lib/validators'
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2885,6 +2934,7 @@ __webpack_require__.r(__webpack_exports__);
       arrayNiveles: [],
       arrayCursos: [],
       arrayParalelos: [],
+      arrayEstudiantesCurso: [],
       nivel: '',
       curso: '',
       paralelo: '',
@@ -2964,15 +3014,17 @@ __webpack_require__.r(__webpack_exports__);
       //console.log(this.personal_destinos)
     },
     // INICIO BUSCAR POR PROMOCION
-    listarPerPromo: function listarPerPromo(page, promocion, especialidad, subespecialidad) {
+    listarEstudiantes: function listarEstudiantes(page, col_id, nivel, curso, paralelo) {
       var me = this;
-      axios.post("/listarPerPromo", {
+      axios.post("/estudiantesCurso", {
         page: page,
-        promocion: promocion,
-        especialidad: especialidad,
-        subespecialidad: subespecialidad
+        col_id: col_id,
+        nivel: nivel,
+        curso: curso,
+        paralelo: paralelo
       }).then(function (response) {
-        me.arrayPerPromo = response.data.personal_especialidades.data;
+        console.log(response);
+        me.arrayEstudiantesCurso = response.data.estudiantesCurso.data;
         me.pagination = response.data.pagination;
       })["catch"](function (error) {
         // handle error
@@ -2987,22 +3039,6 @@ __webpack_require__.r(__webpack_exports__);
       me.listarPerPromo(page, promocion, especialidad, subespecialidad);
     },
     // FIN BUSCAR POR PROMOCION
-    // INICIO BUSCAR POR GRADO
-    // selectEspeGrado(){
-    //     let me =this;
-    //     var url='/gradoEspecialidad';
-    //     axios.get(url).then(function (response) {
-    //         var respuesta = response.data;
-    //         me.arrayGrados = respuesta.grados; 
-    //     })
-    //     .catch(function (error) {
-    //     // handle error
-    //     console.log(error);
-    //     })
-    //     .then(function () {
-    //     // always executed
-    //     });
-    // },
     listarPerGrado: function listarPerGrado(page, grado, especialidad, subespecialidad) {
       var me = this;
       axios.post("/listarPerGrado", {
@@ -45224,6 +45260,71 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
+                _c(
+                  "table",
+                  {
+                    staticClass: "table table-bordered table-striped table-sm"
+                  },
+                  [
+                    _c("thead", [
+                      _c("tr", [
+                        _c("th", [_c("center", [_vm._v("RUDE")])], 1),
+                        _vm._v(" "),
+                        _c("th", [_c("center", [_vm._v("C. IDENTIDAD")])], 1),
+                        _vm._v(" "),
+                        _c("th", [_c("center", [_vm._v("AP. PATERNO")])], 1),
+                        _vm._v(" "),
+                        _c("th", [_c("center", [_vm._v("AP. MATERNO")])], 1),
+                        _vm._v(" "),
+                        _c("th", [_c("center", [_vm._v("NOMBRES")])], 1)
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.arrayEstudiantesCurso, function(
+                        estudiantesCurso
+                      ) {
+                        return _c("tr", { key: estudiantesCurso.id }, [
+                          _c("td", {
+                            domProps: {
+                              textContent: _vm._s(estudiantesCurso.est_rude)
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(estudiantesCurso.est_ci) +
+                                " " +
+                                _vm._s(estudiantesCurso.est_expedido)
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", {
+                            domProps: {
+                              textContent: _vm._s(estudiantesCurso.est_paterno)
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("td", {
+                            domProps: {
+                              textContent: _vm._s(estudiantesCurso.est_materno)
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("td", {
+                            domProps: {
+                              textContent: _vm._s(estudiantesCurso.est_nombre)
+                            }
+                          })
+                        ])
+                      }),
+                      0
+                    )
+                  ]
+                ),
+                _c("br"),
+                _vm._v(" "),
                 _c("div", { staticClass: "form-group row" }, [
                   _c("nav", [
                     _c(
@@ -45326,7 +45427,13 @@ var render = function() {
                           attrs: { type: "button" },
                           on: {
                             click: function($event) {
-                              return _vm.Atras(_vm.col_id)
+                              return _vm.listarEstudiantes(
+                                1,
+                                _vm.col_id,
+                                _vm.nivel,
+                                _vm.curso,
+                                _vm.paralelo
+                              )
                             }
                           }
                         },

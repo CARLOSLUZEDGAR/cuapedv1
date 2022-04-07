@@ -70,6 +70,50 @@ class EstudianteCursosController extends Controller
         //return response()->json($estudiante);
     }
 
+    public function estudiantesCurso (Request $request)
+    {
+        $col_id = $request->col_id;
+        $nivel = $request->nivel;
+        $curso = $request->curso;
+        $paralelo = $request->paralelo;
+
+        $estudiantesCurso = DB::table('estudiante_cursos as estcur')
+                                ->join('estudiantes as est','estcur.cod_est','est.id')
+                                ->select(
+                                    'estcur.id',
+                                    'est.id',
+                                    'est.est_rude',
+                                    'est.est_paterno',
+                                    'est.est_materno',
+                                    'est.est_nombre',
+                                    'est.est_ci',
+                                    'est.est_expedido'
+                                )
+                                ->where('cod_col',$col_id)
+                                ->where('cod_nivel',$nivel)
+                                ->where('cod_curso',$curso)
+                                ->where('paralelo',$paralelo)
+                                ->where('estc_estado',1)
+                                ->orderBy('est.est_paterno','asc')
+                                ->take(1)
+                                ->paginate(10);
+        
+        return [
+            'pagination' => [
+                'total'         => $estudiantesCurso->total(),
+                'current_page'  => $estudiantesCurso->currentPage(),
+                'per_page'      => $estudiantesCurso->perPage(),
+                'last_page'     => $estudiantesCurso->lastPage(),
+                'from'          => $estudiantesCurso->firstItem(),
+                'to'            => $estudiantesCurso->lastItem(),
+            
+            ],
+            'estudiantesCurso' => $estudiantesCurso
+        ];
+
+        //return response()->json($estudiante);
+    }
+
     public function designarEstudiante(Request $request)
     {
        $estudiante = EstudianteCursos::create([

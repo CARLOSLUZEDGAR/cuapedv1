@@ -76,7 +76,56 @@
                             </div>
                         </div>     
                     </div>
-                    
+                    <table class="table table-bordered table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <!-- <th><center>OPCIONES</center></th> -->
+                                <th><center>RUDE</center></th>
+                                <th><center>C. IDENTIDAD</center></th>
+                                <th><center>AP. PATERNO</center></th>
+                                <th><center>AP. MATERNO</center></th>
+                                <th><center>NOMBRES</center></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="estudiantesCurso in arrayEstudiantesCurso" :key="estudiantesCurso.id">
+                                <!-- <td>
+                                    <button type="button" class="btn btn-warning btn-sm" @click="abrirEditar(estudiante)">
+                                        <i class="fas fa-edit"></i>
+                                    </button> &nbsp;
+                                    <button type="button" class="btn btn-info btn-sm" @click="abrirEditar(estudiante)">
+                                        <i class="fas fa-globe-americas"></i>
+                                    </button> &nbsp;
+                                    <template v-if="estudiantesCurso.est_estado==1">
+                                        <button type="button" class="btn btn-danger btn-sm" @click="desactivarEstudiante(usuario.id)" >
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                    </template>
+                                    <template v-else>
+                                        <button type="button" class="btn btn-info btn-sm" @click="activarUsuario(usuario.id)">
+                                        <i class="far fa-check-square"></i>
+                                    </button>
+                                    </template>
+                                </td> -->
+                                <td v-text="estudiantesCurso.est_rude" ></td>
+                                <td>{{estudiantesCurso.est_ci}} {{estudiantesCurso.est_expedido}}</td>
+                                <td v-text="estudiantesCurso.est_paterno"></td>
+                                <td v-text="estudiantesCurso.est_materno"></td>
+                                <td v-text="estudiantesCurso.est_nombre"></td>
+                                <!-- <td v-text="estudiantesCurso.nivel_abreviatura"></td>
+                                <td>{{estudiantesCurso.curso_sigla}} "{{estudiantesCurso.paralelo}}"</td> -->
+                                <!--<td>
+                                <div v-if="usuario.estado">
+                                    <span class="badge badge-success">Activo</span>
+                                </div>
+                                <div v-else>
+                                    <span class="badge badge-danger">Inactivo</span>
+                                </div>
+                                </td>-->
+                            </tr>
+                            
+                        </tbody>
+                    </table><br>
 
                     <!-- INICIO MOSTRAR DATOS POR PROMOCION -->
                    
@@ -101,20 +150,20 @@
                         </div>
                     
                     <!-- FIN MOSTRAR DATOS POR PROMOCION -->
-                <div class="row p-2 bd-highlight justify-content-center">
+                    <div class="row p-2 bd-highlight justify-content-center">
 
-                     <div class="col-md-4">
-                        <button type="button" class="btn btn-danger btn-sm btn-block" @click="Atras(col_id)">
-                            <i class="fas fa-reply" aria-hidden="true">  MOSTRAR ESTUDIANTES</i>
-                        </button>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-danger btn-sm btn-block" @click="listarEstudiantes(1,col_id,nivel,curso,paralelo)">
+                                <i class="fas fa-reply" aria-hidden="true">  MOSTRAR ESTUDIANTES</i>
+                            </button>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-danger btn-sm btn-block" @click="Atras(col_id)">
+                                <i class="fas fa-reply" aria-hidden="true">  ATRAS</i>
+                            </button>
+                        </div> 
                     </div>
-                    
-                    <div class="col-md-4">
-                        <button type="button" class="btn btn-danger btn-sm btn-block" @click="Atras(col_id)">
-                            <i class="fas fa-reply" aria-hidden="true">  ATRAS</i>
-                        </button>
-                    </div> 
-                </div>
               </div>
               <!-- /.card -->
             </div>
@@ -142,6 +191,7 @@ export default {
             arrayNiveles : [],
             arrayCursos : [],
             arrayParalelos : [],
+            arrayEstudiantesCurso : [],
             nivel : '',
             curso : '',
             paralelo : '',
@@ -227,19 +277,19 @@ export default {
         },
 
         // INICIO BUSCAR POR PROMOCION
-        listarPerPromo(page,promocion,especialidad,subespecialidad){
+        listarEstudiantes(page,col_id,nivel,curso,paralelo){
             let me = this;
             axios
-        
-          .post("/listarPerPromo", {
+          .post("/estudiantesCurso", {
             page : page,
-            promocion : promocion,
-            especialidad : especialidad,
-            subespecialidad : subespecialidad
+            col_id : col_id,
+            nivel : nivel,
+            curso : curso,
+            paralelo : paralelo  
           })
           .then(function (response) {
-            
-            me.arrayPerPromo = response.data.personal_especialidades.data
+            console.log(response)
+            me.arrayEstudiantesCurso = response.data.estudiantesCurso.data
             me.pagination = response.data.pagination;
           })
           .catch(function (error) {
@@ -256,25 +306,6 @@ export default {
             me.listarPerPromo(page, promocion,especialidad,subespecialidad);
         },
         // FIN BUSCAR POR PROMOCION
-
-        // INICIO BUSCAR POR GRADO
-        // selectEspeGrado(){
-        //     let me =this;
-        //     var url='/gradoEspecialidad';
-        //     axios.get(url).then(function (response) {
-
-        //         var respuesta = response.data;
-        //         me.arrayGrados = respuesta.grados; 
-              
-        //     })
-        //     .catch(function (error) {
-        //     // handle error
-        //     console.log(error);
-        //     })
-        //     .then(function () {
-        //     // always executed
-        //     });
-        // },
 
         listarPerGrado(page,grado,especialidad,subespecialidad){
             let me = this;
