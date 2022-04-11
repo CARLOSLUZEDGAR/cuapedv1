@@ -385,7 +385,7 @@ export default {
                 console.log(response)
                 me.arrayCursos = response.data;
             })
-            .cath(function (error){
+            .catch(function (error){
                 console.log(error);
             })
         },
