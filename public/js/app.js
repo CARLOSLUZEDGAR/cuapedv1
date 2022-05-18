@@ -2299,10 +2299,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      buscador: '',
       arrayColegio: [],
       criterio: 'col_nombre',
       buscar: '',
@@ -2443,6 +2445,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    buscarColegio: function buscarColegio() {
+      console.log('Buscando Colegios......');
+    },
     Cerrar: function Cerrar() {
       this.$v.$reset();
     },
@@ -3100,7 +3105,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         console.log(response);
         me.arrayCursos = response.data;
-      }).cath(function (error) {
+      })["catch"](function (error) {
         console.log(error);
       });
     },
@@ -43664,6 +43669,29 @@ var render = function() {
                 _c("div", { staticClass: "form-group row" }, [
                   _c("div", { staticClass: "col-md-6" }, [
                     _c("div", { staticClass: "input-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.buscador,
+                            expression: "buscador"
+                          }
+                        ],
+                        attrs: { type: "text", placeholder: "BUSCADOR" },
+                        domProps: { value: _vm.buscador },
+                        on: {
+                          keyup: _vm.buscarColegio,
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.buscador = $event.target.value
+                          }
+                        }
+                      }),
+                      _c("br"),
+                      _vm._v(" "),
                       _c(
                         "select",
                         {

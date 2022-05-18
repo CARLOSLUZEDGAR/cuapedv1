@@ -39,6 +39,7 @@
                         <div class="col-md-6">
                             <div class="input-group">
                             <!-- select combo patr abuscar-->
+                            <input type="text" v-model="buscador" @keyup="buscarColegio" placeholder="BUSCADOR"><br>
                                 <select class="form-control col-md-4" v-model="criterio">
                                     <!-- values como la base de datos -->
                                     <option value="col_nombre">NOMBRE</option>
@@ -374,6 +375,8 @@ export default {
     data() {
         return {
             
+            buscador : '',
+
             arrayColegio : [],
             criterio : 'col_nombre',
             buscar : '',
@@ -500,6 +503,14 @@ export default {
         }
     },
     methods: {
+
+        buscarColegio(){
+            console.log('Buscando Colegios......')
+
+        },
+
+
+
 
         Cerrar(){
             this.$v.$reset()
