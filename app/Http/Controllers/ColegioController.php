@@ -12,7 +12,7 @@ class ColegioController extends Controller
     public function index (Request $request)
     {
         $buscar = $request->buscar;
-        $criterio = $request->criterio;
+        // $criterio = $request->criterio;
 
         if($buscar=='')
         {
@@ -48,7 +48,8 @@ class ColegioController extends Controller
                             'colegios.col_estado',
                             'colegios.col_observacion'
                         )
-                        ->where($criterio,'like','%'.$buscar.'%')
+                        ->where('col_abreviatura','like','%'.$buscar.'%')
+                        ->orWhere('col_sie','like','%'.$buscar.'%')
                         ->orderBy('colegios.col_nombre','asc')
                         ->take(1)
                         ->paginate(10);

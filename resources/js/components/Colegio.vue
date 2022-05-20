@@ -39,15 +39,17 @@
                         <div class="col-md-6">
                             <div class="input-group">
                             <!-- select combo patr abuscar-->
-                            <input type="text" v-model="buscador" @keyup="buscarColegio" placeholder="BUSCADOR"><br>
-                                <select class="form-control col-md-4" v-model="criterio">
-                                    <!-- values como la base de datos -->
+                                <!-- <select class="form-control col-md-4" v-model="criterio">
                                     <option value="col_nombre">NOMBRE</option>
                                     <option value="col_sie">SIE</option>
-                                    <!--<option value="per_paterno">APELLIDO PATERNO</option>-->
-                                </select>
-                                <input type="text" v-model="buscar" @keyup.enter="listarColegios(1,buscar,criterio)" class="form-control" placeholder="TEXTO A BUSCAR">
-                                <button type="submit" @click="listarColegios(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> BUSCAR</button><br>
+                                </select> -->
+                                <!-- <label for="">BUSCADOR</label> -->
+                                <input type="text" v-model="buscar" @keyup="buscarColegio()" class="form-control" style="text-transform: uppercase"><br>
+                                <span class="input-group-text border-0" id="search-addon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                                <!-- <input type="text" v-model="buscar" @keyup.enter="listarColegios(1,buscar,criterio)" class="form-control" placeholder="TEXTO A BUSCAR">
+                                <button type="submit" @click="listarColegios(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> BUSCAR</button><br> -->
                             </div><br>
                             <div class="form-group row">
                                 <button type="button" class="btn btn-primary btn-sm" @click="NuevoColegio()">
@@ -370,16 +372,17 @@
 </template>
 
 <script>
+// import { timeout } from "q";
+// import { clearTimeout } from "timers";
 import { required, minLength, maxLength, alpha, numeric, email, sameAs} from "vuelidate/lib/validators";
 export default {
     data() {
         return {
             
-            buscador : '',
-
             arrayColegio : [],
-            criterio : 'col_nombre',
-            buscar : '',
+            criterio : "col_nombre",
+            buscar : "",
+            setTiemoutBuscador : '',
     
             col_foto : '',
             col_sie : '',
@@ -461,7 +464,7 @@ export default {
     },
 
     mounted() {
-        this.listarColegios(this.page,this.buscar,this.criterio);
+        this.listarColegios(1);
         // this.datosColegio(this.col_id);
     },
 
@@ -504,9 +507,31 @@ export default {
     },
     methods: {
 
-        buscarColegio(){
-            console.log('Buscando Colegios......')
+        listarColegios(page){
+            let me = this;
+            axios
+            .post("/listarColegio", {    
+                    page : page,
+                    buscar : me.buscar.toUpperCase(),
+                    // criterio : me.criterio, 
+            })
+            .then(function (response) {
+                console.log(response)
+                me.arrayColegio = response.data.colegio.data;
+                me.pagination = response.data.pagination;
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+        },
 
+        buscarColegio(){
+            clearTimeout(this.setTiemoutBuscador);
+            this.setTiemoutBuscador = setTimeout(() => {
+                this.listarColegios(1)
+                // console.log(this.buscar);
+            }, 360)
         },
 
 
@@ -516,25 +541,7 @@ export default {
             this.$v.$reset()
         },
 
-        listarColegios(page,buscar,criterio){
-            let me = this;
-            axios
-            .post("/listarColegio", {
-                page : page,
-                buscar : buscar,
-                criterio : criterio,
-                
-            })
-            .then(function (response) {
-                console.log(response)
-                me.arrayColegio = response.data.colegio.data
-                me.pagination = response.data.pagination;
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-        },
+        
 
         cambiarPagina(page, buscar, criterio){
             let me = this;

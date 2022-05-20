@@ -2300,14 +2300,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+// import { timeout } from "q";
+// import { clearTimeout } from "timers";
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      buscador: '',
       arrayColegio: [],
-      criterio: 'col_nombre',
-      buscar: '',
+      criterio: "col_nombre",
+      buscar: "",
+      setTiemoutBuscador: '',
       col_foto: '',
       col_sie: '',
       col_nombre: '',
@@ -2404,7 +2408,7 @@ __webpack_require__.r(__webpack_exports__);
     validationGroupEdit: ['col_nombreA', 'col_abreviaturaA', 'col_sieA', 'col_directorA', 'col_turnoA', 'col_dependenciaA']
   },
   mounted: function mounted() {
-    this.listarColegios(this.page, this.buscar, this.criterio); // this.datosColegio(this.col_id);
+    this.listarColegios(1); // this.datosColegio(this.col_id);
   },
   computed: {
     isActived: function isActived() {
@@ -2445,18 +2449,12 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    buscarColegio: function buscarColegio() {
-      console.log('Buscando Colegios......');
-    },
-    Cerrar: function Cerrar() {
-      this.$v.$reset();
-    },
-    listarColegios: function listarColegios(page, buscar, criterio) {
+    listarColegios: function listarColegios(page) {
       var me = this;
       axios.post("/listarColegio", {
         page: page,
-        buscar: buscar,
-        criterio: criterio
+        buscar: me.buscar.toUpperCase() // criterio : me.criterio, 
+
       }).then(function (response) {
         console.log(response);
         me.arrayColegio = response.data.colegio.data;
@@ -2465,6 +2463,18 @@ __webpack_require__.r(__webpack_exports__);
         // handle error
         console.log(error);
       });
+    },
+    buscarColegio: function buscarColegio() {
+      var _this = this;
+
+      clearTimeout(this.setTiemoutBuscador);
+      this.setTiemoutBuscador = setTimeout(function () {
+        _this.listarColegios(1); // console.log(this.buscar);
+
+      }, 360);
+    },
+    Cerrar: function Cerrar() {
+      this.$v.$reset();
     },
     cambiarPagina: function cambiarPagina(page, buscar, criterio) {
       var me = this; //Actualiza la pagina actual
@@ -2483,13 +2493,13 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     obtenerImagen: function obtenerImagen(e) {
-      var _this = this;
+      var _this2 = this;
 
       try {
         var fileReader = new FileReader();
 
         fileReader.onload = function (e) {
-          _this.col_foto = e.target.result;
+          _this2.col_foto = e.target.result;
         };
 
         fileReader.readAsDataURL(e.target.files[0]);
@@ -2497,13 +2507,13 @@ __webpack_require__.r(__webpack_exports__);
       } catch (error) {}
     },
     obtenerImagenA: function obtenerImagenA(e) {
-      var _this2 = this;
+      var _this3 = this;
 
       try {
         var fileReader = new FileReader();
 
         fileReader.onload = function (e) {
-          _this2.col_fotoA = e.target.result;
+          _this3.col_fotoA = e.target.result;
         };
 
         fileReader.readAsDataURL(e.target.files[0]);
@@ -2525,7 +2535,7 @@ __webpack_require__.r(__webpack_exports__);
       this.listarCargos()*/
     },
     RegistrarColegio: function RegistrarColegio() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.$v.$reset();
 
@@ -2550,7 +2560,7 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (result) {
           if (result.value) {
             //CODIGO HA SER VALIDADO
-            var me = _this3;
+            var me = _this4;
             axios.post("/registrarColegio", {
               //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
               col_nombre: me.col_nombre,
@@ -2590,7 +2600,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$v.$reset(), this.col_id = colegio.id, this.col_fotoA = colegio.col_foto, this.col_nombreA = colegio.col_nombre, this.col_abreviaturaA = colegio.col_abreviatura, this.col_sieA = colegio.col_sie, this.col_directorA = colegio.col_director, this.col_turnoA = colegio.col_turno, this.col_dependenciaA = colegio.col_dependencia, this.col_observacionesA = colegio.col_observacion, this.vA = 0, $('#EditarColegio').modal('show');
     },
     EditarColegio: function EditarColegio() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.$v.$reset();
 
@@ -2615,7 +2625,7 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (result) {
           if (result.value) {
             //CODIGO HA SER VALIDADO
-            var me = _this4;
+            var me = _this5;
             axios.put("/editarColegio", {
               //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
               col_id: me.col_id,
@@ -2652,7 +2662,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     DesactivarColegio: function DesactivarColegio(colegio) {
-      var _this5 = this;
+      var _this6 = this;
 
       //if(!this.$v.$invalid){
       swal.fire({
@@ -2675,7 +2685,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.value) {
           //CODIGO HA SER VALIDADO
-          var me = _this5;
+          var me = _this6;
           axios.put('/desactivarColegio', {
             //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
             col_id: colegio.id
@@ -2692,7 +2702,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     ActivarColegio: function ActivarColegio(colegio) {
-      var _this6 = this;
+      var _this7 = this;
 
       //if(!this.$v.$invalid){
       swal.fire({
@@ -2715,7 +2725,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.value) {
           //CODIGO HA SER VALIDADO
-          var me = _this6;
+          var me = _this7;
           axios.put('/activarColegio', {
             //NOMBRE ENVIA AL CONTROLADOR : me.NOMBRE V-MODEL O VARIBLE DECLARADA
             col_id: colegio.id
@@ -43674,94 +43684,17 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.buscador,
-                            expression: "buscador"
-                          }
-                        ],
-                        attrs: { type: "text", placeholder: "BUSCADOR" },
-                        domProps: { value: _vm.buscador },
-                        on: {
-                          keyup: _vm.buscarColegio,
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.buscador = $event.target.value
-                          }
-                        }
-                      }),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.criterio,
-                              expression: "criterio"
-                            }
-                          ],
-                          staticClass: "form-control col-md-4",
-                          on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.criterio = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            }
-                          }
-                        },
-                        [
-                          _c("option", { attrs: { value: "col_nombre" } }, [
-                            _vm._v("NOMBRE")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "col_sie" } }, [
-                            _vm._v("SIE")
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
                             value: _vm.buscar,
                             expression: "buscar"
                           }
                         ],
                         staticClass: "form-control",
-                        attrs: { type: "text", placeholder: "TEXTO A BUSCAR" },
+                        staticStyle: { "text-transform": "uppercase" },
+                        attrs: { type: "text" },
                         domProps: { value: _vm.buscar },
                         on: {
                           keyup: function($event) {
-                            if (
-                              !$event.type.indexOf("key") &&
-                              _vm._k(
-                                $event.keyCode,
-                                "enter",
-                                13,
-                                $event.key,
-                                "Enter"
-                              )
-                            ) {
-                              return null
-                            }
-                            return _vm.listarColegios(
-                              1,
-                              _vm.buscar,
-                              _vm.criterio
-                            )
+                            return _vm.buscarColegio()
                           },
                           input: function($event) {
                             if ($event.target.composing) {
@@ -43771,28 +43704,9 @@ var render = function() {
                           }
                         }
                       }),
+                      _c("br"),
                       _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-primary",
-                          attrs: { type: "submit" },
-                          on: {
-                            click: function($event) {
-                              return _vm.listarColegios(
-                                1,
-                                _vm.buscar,
-                                _vm.criterio
-                              )
-                            }
-                          }
-                        },
-                        [
-                          _c("i", { staticClass: "fa fa-search" }),
-                          _vm._v(" BUSCAR")
-                        ]
-                      ),
-                      _c("br")
+                      _vm._m(2)
                     ]),
                     _c("br"),
                     _vm._v(" "),
@@ -45056,6 +44970,19 @@ var staticRenderFns = [
         _vm._v("\n                COLEGIOS\n              ")
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "span",
+      {
+        staticClass: "input-group-text border-0",
+        attrs: { id: "search-addon" }
+      },
+      [_c("i", { staticClass: "fas fa-search" })]
+    )
   }
 ]
 render._withStripped = true
