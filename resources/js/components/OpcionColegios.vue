@@ -86,20 +86,20 @@
                                             </button> &nbsp;
                                         </div>
                                         <div class="col-md-3">
-                                            <button  type="button" class="btn btn-secondary btn-sm btn-block" @click="CurrResumen(per_codigo)" style="width: 100%;">
-                                                <i class="far fa-file-alt" aria-hidden="true">  Curriculum Resumen</i>
+                                            <button  type="button" class="btn btn-secondary btn-sm btn-block" @click="EnvioDatosAsignacion(col_id)" style="width: 100%;">
+                                                <i class="far fa-file-alt" aria-hidden="true">  ASIGNACIÓN DE MATERIAS</i>
                                             </button> &nbsp;
                                         </div>
-                                        <div class="col-md-3">
+                                        <!-- <div class="col-md-3">
                                             <button  type="button" class="btn btn-secondary btn-sm btn-block" @click="CertTrabajo(per_codigo)" style="width: 100%;">
                                                 <i class="far fa-file-alt" aria-hidden="true">  Certificado de Trabajo</i>
                                             </button> &nbsp;
-                                        </div>
+                                        </div> -->
                                     </div>
 
                                     <!-- FILA 3 -->
                                     <div class="row p-2 bd-highlight justify-content-center">
-                                        <div class="col-md-3">
+                                        <!-- <div class="col-md-3">
                                             <button  type="button" class="btn btn-secondary btn-sm btn-block" @click="CurrVitae(per_codigo)" style="width: 100%;">
                                                 <i class="far fa-file-alt" aria-hidden="true">  Curriculum Vitae</i>
                                             </button> &nbsp;
@@ -108,7 +108,7 @@
                                             <button  type="button" class="btn btn-secondary btn-sm btn-block" @click="HojaVida(per_codigo)" style="width: 100%;">
                                                 <i class="far fa-file-alt" aria-hidden="true">  Hoja de Vida</i>
                                             </button> &nbsp;
-                                        </div>
+                                        </div> -->
                                         <!-- <div class="col-md-3">
                                             <button  type="button" class="btn btn-secondary btn-sm btn-block" @click="CurrResumen(per_codigo)" style="width: 100%;">
                                                 <i class="far fa-file-alt" aria-hidden="true">  Curriculum Resumen</i>
@@ -590,6 +590,16 @@ export default {
         EnvioDatosCurso(datos){
             this.$router.push({
                 name: "ListarCursos",
+                //ENVIO DE DATOS
+                params:{
+                    d: datos
+                } 
+            });
+        },
+
+        EnvioDatosAsignacion(datos){
+            this.$router.push({
+                name: "ListarMaterias",
                 //ENVIO DE DATOS
                 params:{
                     d: datos

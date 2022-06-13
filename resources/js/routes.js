@@ -41,6 +41,12 @@ export default new Router ({
         },
 
         {
+            path: '/listarMaterias/:d',
+            name: 'ListarMaterias',
+            component: require('./components/Materia.vue').default
+        },
+
+        {
             path: '/designarEstudiantes',
             component: require('./components/DesignacionCurso.vue').default
         },

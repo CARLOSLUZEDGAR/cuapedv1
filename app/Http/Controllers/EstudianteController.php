@@ -12,7 +12,7 @@ class EstudianteController extends Controller
     public function index (Request $request)
     {
         $buscar = $request->buscar;
-        $criterio = $request->criterio;
+        // $criterio = $request->criterio;
         $colegio = $request->col_id;
 
         if($buscar=='')
@@ -69,9 +69,15 @@ class EstudianteController extends Controller
                             'niveles.nivel_abreviatura',
                             'cursos.curso_sigla',
                         )
-                        ->where($criterio,'like','%'.$buscar.'%')
                         ->where('estudiante_cursos.cod_col',$colegio)
                         ->where('estudiante_cursos.estc_estado',1)
+                        ->where(function ( $query ) use ($buscar) {
+                            $query->orWhere('est_rude','like','%'.$buscar.'%')
+                                    ->orWhere('est_paterno','like','%'.$buscar.'%')
+                                    ->orWhere('est_materno','like','%'.$buscar.'%')
+                                    ->orWhere('est_nombre','like','%'.$buscar.'%')
+                                    ->orWhere('est_ci','like','%'.$buscar.'%');
+                        })
                         ->orderBy('estudiantes.est_paterno','asc')
                         ->take(1)
                         ->paginate(10);

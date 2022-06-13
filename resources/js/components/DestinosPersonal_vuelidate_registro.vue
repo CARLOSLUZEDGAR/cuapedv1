@@ -69,7 +69,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="personalDestinos in arrayPersonalDestinos">
+                            <tr v-for="personalDestinos in arrayPersonalDestinos" :key="personalDestinos.id">
                                 
                                 <td>
                                     <button type="button" class="btn btn-warning btn-sm" @click="abrirEditar(personalDestinos,arrayPersonalDestinos2)">

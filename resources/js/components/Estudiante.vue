@@ -39,17 +39,19 @@
                         <div class="col-md-6">
                             <div class="input-group">
                             <!-- select combo patr abuscar-->
-                                <select class="form-control col-md-4" v-model="criterio">
-                                    <!-- values como la base de datos -->
+                                <!-- <select class="form-control col-md-4" v-model="criterio">
                                     <option value="est_rude">RUDE</option>
                                     <option value="est_paterno">AP. PATERNO</option>
                                     <option value="est_materno">AP. MATERNO</option>
                                     <option value="est_nombre">NOMBRE(S)</option>
                                     <option value="est_ci">C. IDENTIDAD</option>
-                                    <!--<option value="per_paterno">APELLIDO PATERNO</option>-->
-                                </select>
-                                <input type="text" v-model="buscar" @keyup.enter="listarEstudiantes(1,buscar,criterio,col_id)" class="form-control" placeholder="TEXTO A BUSCAR">
-                                <button type="submit" @click="listarEstudiantes(1,buscar,criterio,col_id)" class="btn btn-primary"><i class="fa fa-search"></i> BUSCAR</button><br>
+                                </select> -->
+                                <input type="text" v-model="buscar" @keyup="buscarEstudiante()" class="form-control" style="text-transform: uppercase"><br>
+                                <span class="input-group-text border-0" id="search-addon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                                <!-- <input type="text" v-model="buscar" @keyup.enter="listarEstudiantes(1,buscar,criterio,col_id)" class="form-control" placeholder="TEXTO A BUSCAR">
+                                <button type="submit" @click="listarEstudiantes(1,buscar,criterio,col_id)" class="btn btn-primary"><i class="fa fa-search"></i> BUSCAR</button><br> -->
                             </div><br>
                             <div class="form-group row">
                                 <button type="button" class="btn btn-primary btn-sm" @click="NuevoEstudiante()">
@@ -87,7 +89,7 @@
                                         <i class="fas fa-globe-americas"></i>
                                     </button> &nbsp; -->
                                     <template v-if="estudiante.est_estado==1">
-                                        <button type="button" class="btn btn-danger btn-sm" @click="desactivarEstudiante(usuario.id)" >
+                                        <button type="button" class="btn btn-danger btn-sm" @click="desactivarEstudiante(estudiante.id)" >
                                         <i class="far fa-trash-alt"></i>
                                     </button>
                                     </template>
@@ -461,6 +463,7 @@ export default {
             arrayCursos : [],
             criterio : 'est_rude',
             buscar : '',
+            setTiemoutBuscador : '',
 
             est_rude : '',
             est_nombre : '',
@@ -553,7 +556,7 @@ export default {
     },
 
     mounted() {
-        this.listarEstudiantes(this.page,this.buscar,this.criterio,this.col_id);
+        this.listarEstudiantes(this.page);
     },
 
     computed:{
@@ -591,14 +594,13 @@ export default {
             this.$v.$reset()
         },
 
-    listarEstudiantes(page,buscar,criterio,col_id){
+    listarEstudiantes(page){
             let me = this;
             axios
           .post("/listarEstudiante", {
             page : page,
-            buscar : buscar,
-            criterio : criterio,
-            col_id : col_id  
+            buscar : me.buscar.toUpperCase(),
+            col_id : me.col_id  
           })
           .then(function (response) {
             console.log(response)
@@ -610,6 +612,16 @@ export default {
             console.log(error);
           })
         },
+
+        buscarEstudiante(){
+            clearTimeout(this.setTiemoutBuscador);
+            this.setTiemoutBuscador = setTimeout(() => {
+                this.listarEstudiantes(1)
+                // console.log(this.buscar);
+            }, 360)
+        },
+
+    
         cambiarPagina(page, buscar, criterio){
                 let me = this;
                 //Actualiza la pagina actual

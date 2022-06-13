@@ -153,7 +153,7 @@
                     <div class="row p-2 bd-highlight justify-content-center">
 
                         <div class="col-md-4">
-                            <button type="button" class="btn btn-danger btn-sm btn-block" @click="listarEstudiantes(1,col_id,nivel,curso,paralelo)">
+                            <button type="button" class="btn btn-primary btn-sm btn-block" @click="listarEstudiantes(1,col_id,nivel,curso,paralelo)">
                                 <i class="fas fa-reply" aria-hidden="true">  MOSTRAR ESTUDIANTES</i>
                             </button>
                         </div>
@@ -163,6 +163,16 @@
                                 <i class="fas fa-reply" aria-hidden="true">  ATRAS</i>
                             </button>
                         </div> 
+                    </div>
+
+                    <div v-if="boton == 1" class="row p-2 bd-highlight justify-content-center">
+
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-secondary btn-sm btn-block" @click="reporteListarEstudiantes(col_id,nivel,curso,paralelo)">
+                                <i class="far fa-file-alt" aria-hidden="true">  GENERAR LISTADO</i>
+                            </button>
+                        </div>
+                         
                     </div>
               </div>
               <!-- /.card -->
@@ -195,6 +205,9 @@ export default {
             nivel : '',
             curso : '',
             paralelo : '',
+
+
+            boton : 0,
             // arrayPerPromo : [],
             // arrayPerEspecialidad : [],
             // arrayPerGrado : [],
@@ -279,6 +292,7 @@ export default {
         // INICIO BUSCAR POR PROMOCION
         listarEstudiantes(page,col_id,nivel,curso,paralelo){
             let me = this;
+            me.boton = 1;
             axios
           .post("/estudiantesCurso", {
             page : page,
@@ -650,8 +664,8 @@ export default {
             me.reparticion = 0;
         },
 
-        RepPromEspe(promocion,especialidad,subespecialidad){
-            window.open('http://127.0.0.1:8000/reporteEspecialidadPromocion?promocion='+promocion+'&especialidad='+especialidad+'&subespecialidad='+subespecialidad);
+        reporteListarEstudiantes(col_id,nivel,curso,paralelo){
+            window.open('http://127.0.0.1:8000/reporteListarEstudiantes?idcol='+col_id+'&idnivel='+nivel+'&idcurso='+curso+'&idparalelo='+paralelo);
 
             // let me = this;
             // axios

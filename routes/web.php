@@ -51,12 +51,19 @@ Route::put('/designarEstudiante', 'EstudianteCursosController@designarEstudiante
 
 //FIN ROUTES ESTUDIANTE
 
-Route::post('/listarPersonalDestinos', 'PersonalDestinosController@index');
-Route::post('/registrarDestino', 'PersonalDestinosController@store');
-Route::put('/editarDestino', 'PersonalDestinosController@update');
-Route::put('/desactivarDestino', 'PersonalDestinosController@desactivarDestino');
+//ROUTES CAMPO
+Route::post('/campoNivel','CampoController@selectBuscarCampo');
+//FIN ROUTES CAMPO
 
-Route::post('/actualizarDestino','PersonalDestinosController@index');
+//ROUTE AREA
+Route::post('/areaCampo','AreaController@selectBuscarArea');
+//FIN ROUTE AREA
+
+//REPORTES SISTEMA
+Route::get('/reporteListarEstudiantes','ReporteController@listadoEstudiantes');
+//FIN REPORTES SISTEMA
+
+
 
 //SELECT DINAMICOS
 Route::get('/destinos_nivel1/selectDestinos_nivel1', 'DestinosNivel1Controller@selectDestinosNivel1');
