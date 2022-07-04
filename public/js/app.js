@@ -6244,6 +6244,67 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //import { required, minLength, between } from 'vuelidate/lib/validators'
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -50768,6 +50829,127 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "row p-2 bd-highlight justify-content-center"
+                  },
+                  [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-info btn-sm btn-block",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.Atras(_vm.col_id)
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "i",
+                            {
+                              staticClass: "fas fa-plus",
+                              attrs: { "aria-hidden": "true" }
+                            },
+                            [_vm._v("  AÑADIR")]
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger btn-sm btn-block",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.Atras(_vm.col_id)
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "i",
+                            {
+                              staticClass: "fas fa-reply",
+                              attrs: { "aria-hidden": "true" }
+                            },
+                            [_vm._v("  ATRAS")]
+                          )
+                        ]
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "table",
+                  {
+                    staticClass: "table table-bordered table-striped table-sm"
+                  },
+                  [
+                    _c("thead", [
+                      _c("tr", [
+                        _c("th", [_c("center", [_vm._v("NIVEL")])], 1),
+                        _vm._v(" "),
+                        _c("th", [_c("center", [_vm._v("CAMPO")])], 1),
+                        _vm._v(" "),
+                        _c("th", [_c("center", [_vm._v("ARÉA")])], 1),
+                        _vm._v(" "),
+                        _c("th", [_c("center", [_vm._v("OPCIONES")])], 1)
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.arrayEstudiantesCurso, function(
+                        estudiantesCurso
+                      ) {
+                        return _c("tr", { key: estudiantesCurso.id }, [
+                          _c("td", {
+                            domProps: {
+                              textContent: _vm._s(estudiantesCurso.est_rude)
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(estudiantesCurso.est_ci) +
+                                " " +
+                                _vm._s(estudiantesCurso.est_expedido)
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", {
+                            domProps: {
+                              textContent: _vm._s(estudiantesCurso.est_paterno)
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("td", {
+                            domProps: {
+                              textContent: _vm._s(estudiantesCurso.est_materno)
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("td", {
+                            domProps: {
+                              textContent: _vm._s(estudiantesCurso.est_nombre)
+                            }
+                          })
+                        ])
+                      }),
+                      0
+                    )
+                  ]
+                ),
+                _c("br"),
+                _vm._v(" "),
                 _c("div", { staticClass: "form-group row" }, [
                   _c("nav", [
                     _c(
@@ -50854,40 +51036,7 @@ var render = function() {
                       2
                     )
                   ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "row p-2 bd-highlight justify-content-center"
-                  },
-                  [
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-danger btn-sm btn-block",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              return _vm.Atras(_vm.col_id)
-                            }
-                          }
-                        },
-                        [
-                          _c(
-                            "i",
-                            {
-                              staticClass: "fas fa-reply",
-                              attrs: { "aria-hidden": "true" }
-                            },
-                            [_vm._v("  ATRAS")]
-                          )
-                        ]
-                      )
-                    ])
-                  ]
-                )
+                ])
               ])
             ])
           ])

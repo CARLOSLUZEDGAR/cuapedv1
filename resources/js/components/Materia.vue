@@ -45,7 +45,6 @@
                                     <!-- values como la base de datos -->
                                     <option value="0" disabled>SELECCIONE</option>
                                     <option v-for="nivel in arrayNiveles" :key="nivel.cod_col" :value="nivel.cod_nivel"  v-text="nivel.nivel_abreviatura"></option>
-                                    <!-- <option value="per_paterno">APELLIDO PATERNO</option> -->
                                 </select>
                             </div>
                         </div>
@@ -58,7 +57,6 @@
                                     <!-- values como la base de datos -->
                                     <option value="0" disabled>SELECCIONE</option>
                                     <option v-for="campo in arrayCampos" :key="campo.id" :value="campo.id"  v-text="campo.campo_nombre"></option>
-                                    <!-- <option value="per_paterno">APELLIDO PATERNO</option> -->
                                 </select>
                             </div>
                         </div>
@@ -71,11 +69,73 @@
                                     <!-- values como la base de datos -->
                                     <option value="0" disabled>SELECCIONE</option>
                                     <option v-for="area in arrayAreas" :key="area.id" :value="area.id"  v-text="area.area_nombre"></option>
-                                    <!-- <option value="per_paterno">APELLIDO PATERNO</option> -->
                                 </select>
                             </div>
-                        </div>     
+                        </div>  
                     </div>
+
+                    <div class="row p-2 bd-highlight justify-content-center">                        
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info btn-sm btn-block" @click="Atras(col_id)">
+                                <i class="fas fa-plus" aria-hidden="true">  AÑADIR</i>
+                            </button>
+                        </div> 
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-danger btn-sm btn-block" @click="Atras(col_id)">
+                                <i class="fas fa-reply" aria-hidden="true">  ATRAS</i>
+                            </button>
+                        </div> 
+                    </div>
+
+                    <table class="table table-bordered table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <!-- <th><center>OPCIONES</center></th> -->
+                                <th><center>NIVEL</center></th>
+                                <th><center>CAMPO</center></th>
+                                <th><center>ARÉA</center></th>
+                                <th><center>OPCIONES</center></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="estudiantesCurso in arrayEstudiantesCurso" :key="estudiantesCurso.id">
+                                <!-- <td>
+                                    <button type="button" class="btn btn-warning btn-sm" @click="abrirEditar(estudiante)">
+                                        <i class="fas fa-edit"></i>
+                                    </button> &nbsp;
+                                    <button type="button" class="btn btn-info btn-sm" @click="abrirEditar(estudiante)">
+                                        <i class="fas fa-globe-americas"></i>
+                                    </button> &nbsp;
+                                    <template v-if="estudiantesCurso.est_estado==1">
+                                        <button type="button" class="btn btn-danger btn-sm" @click="desactivarEstudiante(usuario.id)" >
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                    </template>
+                                    <template v-else>
+                                        <button type="button" class="btn btn-info btn-sm" @click="activarUsuario(usuario.id)">
+                                        <i class="far fa-check-square"></i>
+                                    </button>
+                                    </template>
+                                </td> -->
+                                <td v-text="estudiantesCurso.est_rude" ></td>
+                                <td>{{estudiantesCurso.est_ci}} {{estudiantesCurso.est_expedido}}</td>
+                                <td v-text="estudiantesCurso.est_paterno"></td>
+                                <td v-text="estudiantesCurso.est_materno"></td>
+                                <td v-text="estudiantesCurso.est_nombre"></td>
+                                <!-- <td v-text="estudiantesCurso.nivel_abreviatura"></td>
+                                <td>{{estudiantesCurso.curso_sigla}} "{{estudiantesCurso.paralelo}}"</td> -->
+                                <!--<td>
+                                <div v-if="usuario.estado">
+                                    <span class="badge badge-success">Activo</span>
+                                </div>
+                                <div v-else>
+                                    <span class="badge badge-danger">Inactivo</span>
+                                </div>
+                                </td>-->
+                            </tr>
+                            
+                        </tbody>
+                    </table><br>
                     
 
                     <!-- INICIO MOSTRAR DATOS POR PROMOCION -->
@@ -101,20 +161,21 @@
                         </div>
                     
                     <!-- FIN MOSTRAR DATOS POR PROMOCION -->
-                    <div class="row p-2 bd-highlight justify-content-center">
 
-                        <!-- <div class="col-md-4">
+                    <!-- <div class="row p-2 bd-highlight justify-content-center">
+
+                        <div class="col-md-4">
                             <button type="button" class="btn btn-danger btn-sm btn-block" @click="listarEstudiantes(1,col_id,nivel,curso,paralelo)">
                                 <i class="fas fa-reply" aria-hidden="true">  MOSTRAR ESTUDIANTES</i>
                             </button>
-                        </div> -->
+                        </div>
                         
                         <div class="col-md-4">
                             <button type="button" class="btn btn-danger btn-sm btn-block" @click="Atras(col_id)">
                                 <i class="fas fa-reply" aria-hidden="true">  ATRAS</i>
                             </button>
                         </div> 
-                    </div>
+                    </div> -->
               </div>
               <!-- /.card -->
             </div>
