@@ -174,7 +174,7 @@
                             <button type="button" class="btn btn-danger btn-sm btn-block" @click="Atras(col_id)">
                                 <i class="fas fa-reply" aria-hidden="true">  ATRAS</i>
                             </button>
-                        </div> 
+                        </div>
                     </div> -->
               </div>
               <!-- /.card -->
